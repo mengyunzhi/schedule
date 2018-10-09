@@ -1,0 +1,24 @@
+<ui-view>
+    
+    <table class="table table-hover table-bordered">
+        <tr align="center" class="info">
+            <td>姓名</td>
+            <td>贡献值</td>
+            <td>本月累增</td>
+            <td>本周累增</td>
+            <td>当前系数</td>
+            <td>操作</td>
+        </tr>
+        <tr align="center">
+        	<td>张三</td>
+            <td>23</td>
+            <td>10</td>
+            <td>4</td>
+            <td>1</td>
+            <td>
+                <a class="btn btn-sm btn-default glyphicon glyphicon-list" href="#!/course/view/{{_semester.id}}">&nbsp;详情信息</a>
+                <a class="btn btn-sm btn-primary glyphicon glyphicon-pencil" href="#!/course/edit/{{_semester.id}}">&nbsp;编辑</a>
+            </td>
+        </tr>
+    </table>
+</ui-view>

@@ -1,23 +1,84 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>
+<ui-view>
+    <div class="row">
+        <form class="form-inline" method="get">
+            <div class="col-md-6">
+                <label>周次：</label>
+                <input type="" name="week" class="form-control" placeholder="显示当前周次">
+                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+            </div>
+            <div class="col-md-6 col-md-push-2">
+                <span style="background-color: red" class="badge">请假</span>&nbsp;
+                <span style="background-color: green;" class="badge">有课</span>&nbsp;
+                <span style="background-color: blue;" class="badge">无课</span>&nbsp;
+                <span style="background-color: black;" class="badge">休息</span>&nbsp;
+            </div>
+        </form>
+    </div>
+    <br>
+    <table class="table table-bordered table-hover table-striped">
+        <tr align="center" class="info">
+            <td>周次</td>
+            <td>第一节</td>
+            <td>第二节</td>
+            <td>第三节</td>
+            <td>第四节</td>
+            <td>第五节</td>
+        </tr>
+        <tr>
+            <td>星期一</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>星期二</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>星期三</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>星期四</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>星期五</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>星期六</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>星期日</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</ui-view>
