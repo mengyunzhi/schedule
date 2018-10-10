@@ -1,0 +1,39 @@
+<ui-view>
+    <div class="row">
+        <div class="col-md-8">
+            <form class="form-inline">
+                <input class="form-control" type="text" name="CourseName" placeholder="学期名..." value="">
+                <button type="submit" class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                    &nbsp;查找
+                </button>
+            </form>
+        </div>
+        <div class="col-md-4 text-right">
+            <a href="#!/semester/add" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a>
+        </div>
+    </div>
+    <br />
+    <table class="table table-hover table-bordered">
+        <tr align="center" class="info">
+            <td>序号</td>
+            <td>学期名称</td>
+            <td>起始时间</td>
+            <td>结束时间</td>
+            <td>状态</td>
+            <td>操作</td>
+        </tr>
+        <tr align="center">
+        	<td>1</td>
+            <td>2018年秋</td>
+            <td>2018-09-03</td>
+            <td>2019-01-14</td>
+            <td><span style="background-color: blue" class="badge">进行中</span></td>
+            <td>
+                <a class="btn btn-sm btn-primary glyphicon glyphicon-off" href="#!/course/view/{{_semester.id}}">&nbsp;激活</a>
+                <a class="btn btn-sm btn-primary glyphicon glyphicon-pencil" href="#!/course/edit/{{_semester.id}}">&nbsp;编辑</a>
+                <button class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete(_semester)">&nbsp;删除</button>
+            </td>
+        </tr>
+    </table>
+</ui-view>
