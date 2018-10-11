@@ -29,7 +29,7 @@ before_install:
 # 执行脚本
 script:
   - cd api
-  - cd shcedule
+  - cd schedule
   - java -version
   - javac -version
   - mvn test
