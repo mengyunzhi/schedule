@@ -1,0 +1,15 @@
+<form ng-submit="add()">
+  <div class="form-group">
+    <label for="name">name</label>
+    <input type="text" class="form-control" id="name" placeholder="name" ng-model="semester.name">
+  </div>
+  <div class="form-group">
+    <label for="startDate">startDate</label>
+    <input type="date" class="form-control" id="startDate" ng-model="semester.startTime" required/>
+  </div>
+  <div class="form-group">
+    <label for="endDate">endDate</label>
+    <input type="date" class="form-control" id="endDate" ng-model="semester.endTime" required/>
+  </div>
+  <button type="submit" class="btn btn-default">add</button>
+</form>

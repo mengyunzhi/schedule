@@ -1,5 +1,7 @@
 package com.mengyunzhi.schedule.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -29,9 +31,12 @@ public class Schedule {
     //周次
     private int weekOrder;
 
+    public interface semesterInterface extends Semester.semesterInterface{}
+
     public Schedule() {
     }
 
+    @JsonView(value = semesterInterface.class)
     public Long getId() {
         return id;
     }
@@ -40,6 +45,7 @@ public class Schedule {
         this.id = id;
     }
 
+    @JsonView(value = semesterInterface.class)
     public int getNode() {
         return node;
     }
@@ -47,6 +53,7 @@ public class Schedule {
     public void setNode(int node) {
         this.node = node;
     }
+
 
     public Semester getSemester() {
         return semester;
@@ -64,6 +71,7 @@ public class Schedule {
         this.courseList = courseList;
     }
 
+    @JsonView(value = semesterInterface.class)
     public int getWeek() {
         return week;
     }
@@ -72,6 +80,7 @@ public class Schedule {
         this.week = week;
     }
 
+    @JsonView(value = semesterInterface.class)
     public int getWeekOrder() {
         return weekOrder;
     }
