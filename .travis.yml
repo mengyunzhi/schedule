@@ -1,0 +1,35 @@
+#声明使用的语言
+language: java
+
+# 声明使用的JDK版本
+djk:
+  - oraclejdk8
+
+# 声明所需的服务
+services:
+  - mysql
+
+# 指定使用的软件版本
+addons:
+  apt:
+    packages:
+      - mysql-server-5.6
+      - mysql-client-core-5.6
+      - mysql-client-5.6
+
+# 通知方式
+notifications:
+  email: false
+  webhooks: https://oapi.dingtalk.com/robot/send?access_token=a2aea3835064e9d9ca1ea1c9c1583422746d09071d2b8f711870f027300c8093
+
+# 执行脚本之前创建数据库
+before_install:
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS schedule default charset utf8 COLLATE utf8_general_ci;' -uroot
+
+# 执行脚本
+script:
+  - cd api
+  - cd shcedule
+  - java -version
+  - javac -version
+  - mvn test
