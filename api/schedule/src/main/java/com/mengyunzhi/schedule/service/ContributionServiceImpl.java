@@ -4,14 +4,9 @@ import com.mengyunzhi.schedule.entity.Contribution;
 import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.ContributionRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
-import com.sun.xml.internal.bind.v2.schemagen.episode.Klass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.ServletRequestBindingException;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.math.BigInteger;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;

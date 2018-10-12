@@ -1,8 +1,6 @@
 package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Contribution;
-import com.mengyunzhi.schedule.repository.ContributionRepository;
-import com.sun.xml.internal.bind.v2.schemagen.episode.Klass;
 
 import java.util.List;
 
