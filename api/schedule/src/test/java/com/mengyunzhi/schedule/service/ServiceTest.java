@@ -6,5 +6,6 @@ import org.junit.Test;
 public class ServiceTest extends ScheduleApplicationTests {
     @Test
     public void test() {
+
     }
 }
