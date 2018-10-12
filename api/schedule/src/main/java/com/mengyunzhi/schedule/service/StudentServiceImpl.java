@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentServiceImpl implements  StudentService{
+public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentRepository studentRepository;
 
@@ -18,5 +18,25 @@ public class StudentServiceImpl implements  StudentService{
     @Override
     public Student save(Student student) {
         return studentRepository.save(student);
+    }
+
+    @Override
+    public Student getById(Long id) {
+        return studentRepository.findOne(id);
+    }
+
+    //更新
+    @Override
+    public Student update(Long id, Student student) {
+        Student oldstudent = studentRepository.findOne(id);
+
+        if (oldstudent != null) {
+            oldstudent.setName(student.getName());
+            oldstudent.setPhoneNumber(student.getPhoneNumber());
+            oldstudent.setGithub(student.getGithub());
+            oldstudent.setContributionCoefficient(student.getContributionCoefficient());
+
+        }
+        return studentRepository.save(oldstudent);
     }
 }
