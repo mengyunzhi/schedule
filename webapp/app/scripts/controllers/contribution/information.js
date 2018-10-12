@@ -13,7 +13,7 @@ angular.module('scheduleApp')
       self.init = function () {
           contribution.getDetailedInformation(function (data) {
               //莫名其妙的错误，以后研究
-              // $scope.contributionInformations = data.contributionList;
+              $scope.contributionInformations = data.contributionList;
               
           });
       };
