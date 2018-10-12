@@ -7,6 +7,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author chenjie
  * @date 2018/10/11 19:50
@@ -48,13 +50,17 @@ public class CourseController {
     @PutMapping("/{id}")
     public void update(@PathVariable Long id, @RequestBody Course course) {
         courseService.updateByIdAndCourse(id, course);
+
     }
 
-    // 删除课程
-    @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
-        courseService.delete(id);
+//    // 删除课程
+//    @DeleteMapping("")
+//    @ResponseStatus(HttpStatus.NO_CONTENT)
+//    public void delete(@PathVariable Long id) {
+//        courseService.delete(id);
+//    }
+    @PostMapping("/deleteAll")
+    public void deleteAllById(@RequestBody List<Long> ids) {
+        courseService.deleteAllById(ids);
     }
-
 }

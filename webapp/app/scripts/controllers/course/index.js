@@ -51,46 +51,38 @@ angular.module('scheduleApp')
             });
         };
         
+       
+        
+        self.selectAll = function(all) {
+            console.log($scope.data);
+            if (all === true) {
+                var j = 0;
+                for (var i = $scope.data.size - 1; i >= 0; i--,j++) {
+                    $scope.array[j] = $scope.data.content[i]
+                }
+
+            } else {
+                $scope.array.splice(0, $scope.array.length);
+            }
+        };
+
+        //点击 删除所选 按钮的事件
+        self.deleteMultiple = function() {
+            $http.post($scope.array).then(function success() {
+                console.log("deletesuccesss");
+            },function error() {
+                console.log("deleteerror");
+            })
+        };
+        
         self.init();
+        $scope.all = false;
+        $scope.selectAll = self.selectAll;
+        $scope.array = [];
         $scope.delete = self.delete;
         $scope.reloadByPage = self.reloadByPage;
         $scope.reloadBySize = self.reloadBySize;
-        // 
-        // //数组
-        // $scope.courses = [{
-        //     id: 1,
-        //     name: "大物",
-        //     checked: "false"
-        // }, {
-        //     id: 2,
-        //     name: "复变",
-        //     checked: "false"
-        // }, {
-        //     id: 3,
-        //     name: "数据结构",
+        $scope.deleteMultiple = self.deleteMultiple;
+        
 
-        //     checked: "false"
-        // }, {
-        //     id: 4,
-        //     name: "数电",
-        //     checked: "false"
-        // }];
-        // $scope.all = false;
-        // self.selectAll = function(all) {
-        //     if (all === true) {
-        //         angular.forEach($scope.courses, function(course) {
-        //             course.checked = true;
-        //         })
-        //     } else {
-        //         angular.forEach($scope.courses, function(course) {
-        //             course.checked = false;
-        //         })
-        //     }
-        // };
-        // $scope.selectAll = self.selectAll;
-
-        // //点击 删除所选 按钮的事件
-        // $scope.deleteMultiple = function() {
-
-        // };
     });

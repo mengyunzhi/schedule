@@ -7,6 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author chenjie
  * @date 2018/10/11 19:05
@@ -24,6 +27,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public Iterable<Course> getAll() {
         return courseRespository.findAll();
+
     }
 
     @Override
@@ -32,8 +36,8 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void delete(long id) {
-        courseRespository.delete(id);
+    public void deleteAllById(List<Long> ids) {
+        courseRespository.deleteAllByIdIn(ids);
     }
 
     @Override

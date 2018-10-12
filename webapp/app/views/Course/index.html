@@ -22,8 +22,8 @@
             <td>课程名</td>
             <td>操作</td>
         </tr>
-        <tr align="center" ng-repeat="_list in data.content | orderBy: '-id'" >
-            <td><input type="checkbox" ng-checked="all" ng-model="course.checked" /></td>
+        <tr align="center" ng-repeat="(key,_list) in data.content | orderBy: '-id'" >
+            <td><input type="checkbox" ng-checked="all" ng-true-value="{{_list}}" ng-false-value="{{null}}" ng-model="array[key]" /></td>
             <td>{{_list.id}}</td>
             <td>{{_list.name}}</td>
             <td>
@@ -33,6 +33,6 @@
             </td>
         </tr>
     </table>
-    <pre>{{data | json}}</pre>
+    <pre>{{array | json}}</pre>
     <yunzhi-page data-total-pages="data.totalPages" data-number="data.number" data-reload="reloadByPage"></yunzhi-page>
 </ui-view>

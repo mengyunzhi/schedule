@@ -5,16 +5,18 @@ import com.mengyunzhi.schedule.entity.Course;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 /*
  * 课程
- * @author chen jie
+ * @author chenjie
  */
 public interface CourseService {
     Course save(Course course);
 
     Iterable<Course> getAll();
 
-    void delete(long id);
+    void deleteAllById(List<Long> ids);
 
     Page<Course> page(Pageable pageable);
 
