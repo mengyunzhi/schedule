@@ -1,6 +1,8 @@
 package com.mengyunzhi.schedule.service;
 
+import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.entity.Semester;
+import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -15,15 +18,18 @@ public class SemesterServiceImplTest extends ServiceTest{
     @Autowired SemesterService semesterService;
     @Autowired
     SemesterRepository semesterRepository;
+    @Autowired ScheduleService scheduleService;
+    @Autowired
+    ScheduleRepository scheduleRepository;
     @Test
     public void add() {
         Semester semester = new Semester();
-        semester.setName("semester");
+        semester.setName("semester333");
 
         semester.setStartTime("1514739661000");
         semester.setEndTime("1514739671000");
         semesterService.add(semester);
-        assertThat(semester.getName()).isEqualTo("semester");
+        assertThat(semester.getName()).isEqualTo("semester333");
     }
 
     @Test
@@ -85,6 +91,45 @@ public class SemesterServiceImplTest extends ServiceTest{
             } else {
                 assertThat(semester.isStatus()).isFalse();
             }
+        }
+    }
+
+    @Test
+    public void creatScheduleOfSemester() {
+        Semester semester = new Semester();
+        semesterRepository.save(semester);
+
+        semesterService.creatScheduleOfSemester(semester, 1, 3);
+        Iterable<Schedule> schedules = scheduleRepository.findAll();
+        int number  = 0;
+        int i  = 1;
+        for (Schedule schedule :
+                schedules) {
+            if (schedule.getSemester().getId() == semester.getId()) {
+                assertThat(schedule.getWeekOrder()).isEqualTo(i);
+                number ++;
+                if (number % 35 == 0) {
+                    i++;
+                }
+            }
+        }
+        assertThat(number).isNotEqualTo(0);
+    }
+
+    @Test
+    public void deleteScheduleOfSemesterAndWeekorder() {
+        Semester semester = new Semester();
+        semesterRepository.save(semester);
+
+        semesterService.creatScheduleOfSemester(semester, 1, 2);
+        semesterService.deleteScheduleOfSemesterAndWeekorder(semester, 2);
+        assertThat(scheduleRepository.findBySemesterAndWeekOrder(semester, 2)).isEmpty();
+        semester = semesterRepository.findOne(semester.getId());
+        List<Schedule> schedules = semester.getSchedules();
+        Iterable<Schedule> schedules2 = scheduleRepository.findAll();
+        for (Schedule schedule :
+                semester.getSchedules()) {
+            assertThat(schedule.getWeekOrder()).isNotEqualTo(2);
         }
     }
 }

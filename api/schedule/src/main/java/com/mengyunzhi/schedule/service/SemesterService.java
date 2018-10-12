@@ -31,4 +31,13 @@ public interface SemesterService {
 
     //通过学期名字来返回学期
     List<Semester> getByName(String name);
+
+    //生成学期的行程
+    void creatScheduleOfSemester(Semester semester, int startWeek, int endWeek);
+
+    //删除指定学期和周次的行程
+    void deleteScheduleOfSemesterAndWeekorder(Semester semester, int weekOrder);
+
+    //返回学期的总周次
+    int getSemesterWeekorder(Semester semester);
 }
