@@ -59,8 +59,8 @@ public class CourseController {
 //    public void delete(@PathVariable Long id) {
 //        courseService.delete(id);
 //    }
-    @PostMapping("/deleteAll")
-    public void deleteAllById(@RequestBody List<Long> ids) {
-        courseService.deleteAllById(ids);
-    }
+//    @PostMapping("/deleteAll")
+//    public void deleteAllById(@RequestBody List<Long> ids) {
+//        courseService.deleteAllById(ids);
+//    }
 }
