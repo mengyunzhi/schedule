@@ -20,6 +20,12 @@ public class Student {
     //贡献值系数
     private float contributionCoefficient;
 
+    @OneToMany
+    private List<Contribution> contributionList;
+
+    @ManyToMany
+    private List<Course> courseList;
+
     private String name;
 
     private String phoneNumber;
@@ -90,10 +96,4 @@ public class Student {
         this.courseList = courseList;
     }
 
-    @OneToMany
-    private List<Contribution> contributionList;
-
-    @ManyToMany
-    private List<Course> courseList;
-
- }
+}

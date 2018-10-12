@@ -1,0 +1,24 @@
+<ui-view>
+    <div>
+        <h1 style="text-align: center">贡献值详细信息 - XXX</h1>
+    </div>
+    <hr/>
+    <table class="table table-hover table-bordered">
+        <tr align="center" class="info">
+            <td>序号</td>
+            <td>时间</td>
+            <td>标题</td>
+            <td>pull request</td>
+            <td>贡献值</td>
+            <td>备注</td>
+        </tr>
+        <tr align="center" ng-repeat="_contribution in contributionInformations | orderBy '-id'">
+            <td>{{$index + 1}}</td>
+            <td>{{_contribution.time}}</td>
+            <td>{{_contribution.title}}</td>
+            <td>{{_contribution.pullRequest}}</td>
+            <td>{{_contribution.value}}</td>
+            <td>{{_contribution.remarks}}</td>
+        </tr>
+    </table>
+</ui-view>

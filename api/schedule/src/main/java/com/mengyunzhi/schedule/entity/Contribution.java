@@ -1,6 +1,7 @@
 package com.mengyunzhi.schedule.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author liyiheng
@@ -42,7 +43,7 @@ public class Contribution {
         this.remarks = remarks;
     }
 
-    public Long getTime() {
+    public long getTime() {
         return time;
     }
 
@@ -66,7 +67,7 @@ public class Contribution {
         this.pullRequest = pullRequest;
     }
 
-    private Long time;
+    private long time;
 
     private String title;
 
