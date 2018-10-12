@@ -61,7 +61,9 @@ public class SemesterServiceImpl implements SemesterService {
     public void delete(Long id) {
         Semester semester = semesterRepository.findOne(id);
         List<Schedule> schedules = semester.getSchedules();
-        scheduleService.delteAll(schedules);
+        if (schedules != null) {
+            scheduleService.delteAll(schedules);
+        }
         semesterRepository.delete(id);
         return;
     }

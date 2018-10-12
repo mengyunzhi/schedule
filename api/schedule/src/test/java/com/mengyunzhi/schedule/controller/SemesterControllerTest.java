@@ -35,6 +35,8 @@ public class SemesterControllerTest extends ControllerTest {
     @Test
     public void delete() throws Exception {
         Semester semester = new Semester();
+        semester.setStartTime("1514739661000");
+        semester.setEndTime("1515862861000");
         semesterRepository.save(semester);
         Long id = semester.getId();
         String deleteUrl = this.baseUrl + id.toString();
