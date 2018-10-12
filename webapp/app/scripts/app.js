@@ -36,6 +36,13 @@ angular
           data: { title: '学生管理', show: true }
         },
         {
+          name: 'student.add',
+          url: '/add',
+          templateUrl: 'views/Student/add.html',
+          controller: 'StudentAddCtrl',
+          data: { title: '增加', show: false }
+        },
+        {
           name: 'course',
           url: '/course',
           templateUrl: 'views/Course/index.html',

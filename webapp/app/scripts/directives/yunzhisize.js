@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name webAppApp.directive:yunzhiSize
+ * @name scheduleApp.directive:yunzhiSize
  * @description
  * # 每页大小
  * @Author panjie
  */
-angular.module('webAppApp')
+angular.module('scheduleApp')
     .directive('yunzhiSize', function () {
         return {
             scope: {

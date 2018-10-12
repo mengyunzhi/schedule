@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc directive
- * @name webAppApp.directive:yunzhiPage
+ * @name scheduleApp.directive:yunzhiPage
  * @description
  * # 分页
  * panjie
  */
-angular.module('webAppApp')
+angular.module('scheduleApp')
     .directive('yunzhiPage', function () {
         return {
             scope: {

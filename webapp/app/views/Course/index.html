@@ -23,15 +23,16 @@
             <td>操作</td>
         </tr>
         <tr align="center" ng-repeat="_list in data.content | orderBy: '-id'" >
-            <td><input type="checkbox" ng-checked="all" ng-model="course.checked" />{{course.checked}}</td>
-            <td>{{course.id}}</td>
-            <td>{{course.name}}</td>
+            <td><input type="checkbox" ng-checked="all" ng-model="course.checked" /></td>
+            <td>{{_list.id}}</td>
+            <td>{{_list.name}}</td>
             <td>
-                <a class="btn btn-sm btn-primary glyphicon glyphicon-facetime-video" href="#!/course/view/{{_course.id}}">&nbsp查看</a>
-                <a class="btn btn-sm btn-default glyphicon glyphicon-pencil" href="#!/course/edit/{{_course.id}}">&nbsp;编辑</a>
+                <a class="btn btn-sm btn-primary glyphicon glyphicon-facetime-video" href="#!/course/view/{{_list.id}}">&nbsp查看</a>
+                <a class="btn btn-sm btn-default glyphicon glyphicon-pencil" href="#!/course/edit/{{_list.id}}">&nbsp;编辑</a>
                 <!-- <button class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete(_course)">&nbsp;删除</button> -->
             </td>
         </tr>
     </table>
+    <pre>{{data | json}}</pre>
     <yunzhi-page data-total-pages="data.totalPages" data-number="data.number" data-reload="reloadByPage"></yunzhi-page>
 </ui-view>
