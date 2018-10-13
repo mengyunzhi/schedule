@@ -8,31 +8,30 @@
  * 学生管理
  */
 angular.module('scheduleApp')
-    .controller('StudentIndexCtrl', function($scope, $http) {
+    .controller('StudentIndexCtrl', function($scope, $http, studentService) {
         var self = this;
         self.init = function() {
-            $scope.change = {
-                change: false
-            };
 
-            var url = '/student/';
-            $http.get(url)
-                .then(function success(response) {
-                    $scope.student = response.data;
-                }, function error() {
-
-                });
+            self.reload();
         };
 
-        self.changeState = function(change) {
-            if (change === false) {
-                $scope.change = true;
-            } else {
-                $scope.change = false;
-            }
+        self.reload = function(students) {
+            studentService.getAllStudent(function(students) {
+                $scope.students = students;
+            });
+        };
 
+        self.changeState = function(students) {
+            var url = '/student/state/' + students.id;
+            $http.put(url, $scope.students)
+                .then(function success() {
+                    self.reload();
+                }, function error() {
+                    console.log('errer');
+                });
         };
 
         self.init()
         $scope.changeState = self.changeState;
+
     });

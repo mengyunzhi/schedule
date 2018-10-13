@@ -8,7 +8,7 @@
  * 学生
  */
 angular.module('scheduleApp')
-    .service('studentservice', function($http) {
+    .service('studentService', function($http) {
         var self = this;
 
         //获取所有学生
