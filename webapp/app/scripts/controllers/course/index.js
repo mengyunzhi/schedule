@@ -9,9 +9,5 @@
  */
 angular.module('scheduleApp')
   .controller('CourseIndexCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+    
   });

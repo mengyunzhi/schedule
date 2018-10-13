@@ -64,6 +64,20 @@ angular
           data: { title: '学期管理', show: true }
         },
         {
+          name: 'semester.add',
+          url: '/add',
+          templateUrl: 'views/Semester/add.html',
+          controller: 'SemesterAddCtrl',
+          data: {title: 'semesterAdd', show: false}
+        },
+        {
+          name: 'semester.edit',
+          url: '/edit/:id',
+          templateUrl: 'views/Semester/edit.html',
+          controller: 'SemesterEditCtrl',
+          data: {title: 'semesterEdit', show: false}
+        },
+        {
           name: 'contribution',
           url: '/contribution',
           templateUrl: 'views/Contribution/index.html',
