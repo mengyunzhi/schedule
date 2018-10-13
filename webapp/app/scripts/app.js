@@ -49,6 +49,30 @@ angular
           controller: 'CourseIndexCtrl',
           data: { title: '课程管理', show: true }
         },
+        // course/add
+        // @author chenjie
+        {
+          name: 'course.add', 
+          url: '/add', 
+          templateUrl: 'views/course/add.html',
+          controller: 'CourseAddCtrl',
+          data: {
+              title: '增加',
+              show: false
+          }
+        },
+        // course/edit
+        // @author chenjie
+        {
+          name: 'course.edit', 
+          url: '/edit/:id', 
+          templateUrl: 'views/course/edit.html',
+          controller: 'CourseEditCtrl',
+          data: {
+              title: '编辑',
+              show: false
+          }
+        },
         {
           name: 'semester',
           url: '/semester',
