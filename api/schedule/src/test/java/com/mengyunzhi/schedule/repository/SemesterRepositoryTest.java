@@ -10,7 +10,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,6 +34,30 @@ public class SemesterRepositoryTest {
         for (Semester item:
              findSemesters) {
             assertThat(item.getName()).isEqualTo(name);
+        }
+    }
+
+    @Test
+    public void findByStatus() {
+        Semester semester1 = new Semester();
+        semester1.setStatus(true);
+
+        Semester semester2 = new Semester();
+        semester2.setStatus(false);
+
+        Semester semester3 = new Semester();
+        semester3.setStatus(true);
+
+        List<Semester> semesters = new ArrayList<Semester>();
+        semesters.add(semester1);
+        semesters.add(semester2);
+        semesters.add(semester3);
+        semesterRepository.save(semesters);
+
+        List<Semester> trueS = semesterRepository.findByStatus(true);
+        for (Semester t :
+                trueS) {
+            assertThat(t.isStatus()).isTrue();
         }
     }
 }
