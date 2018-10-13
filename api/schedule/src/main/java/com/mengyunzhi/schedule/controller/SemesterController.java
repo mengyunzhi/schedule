@@ -62,4 +62,10 @@ public class SemesterController {
     public List<Semester> getByName(@PathVariable String name) {
         return semesterService.getByName(name);
     }
+
+    @GetMapping("/currentSemester")
+    @JsonView(View.Semester.class)
+    public Semester getCurrentSemester() {
+        return semesterService.currentSemester();
+    }
 }

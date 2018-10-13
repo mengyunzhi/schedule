@@ -11,8 +11,10 @@ import java.util.List;
 
 
 public interface SemesterService {
+
     //新建学期时　要新建行程
     Semester add(Semester semester);
+
     //返回所有的学期
     Iterable<Semester> getAll();
 
@@ -40,4 +42,7 @@ public interface SemesterService {
 
     //返回学期的总周次
     int getSemesterWeekorder(Semester semester);
+
+    //返回当前时间并激活的学期
+    Semester currentSemester();
 }

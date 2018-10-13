@@ -132,4 +132,28 @@ public class SemesterServiceImplTest extends ServiceTest{
             assertThat(schedule.getWeekOrder()).isNotEqualTo(2);
         }
     }
+
+    @Test
+    public void currentSemester() {
+        Semester testSemester = new Semester();
+        testSemester.setStatus(true);
+        testSemester.setStartTime("1539398828749");
+        testSemester.setEndTime("1539399828749");
+
+        Semester pastSemester = new Semester();
+        pastSemester.setStatus(true);
+        pastSemester.setStartTime("1539398828749");
+        pastSemester.setEndTime("1539398828759");
+
+        Semester fultureSemester = new Semester();
+        fultureSemester.setStatus(true);
+        fultureSemester.setStartTime("1639398828749");
+        fultureSemester.setEndTime("1639398828799");
+
+        semesterRepository.save(testSemester);
+        semesterRepository.save(pastSemester);
+        semesterRepository.save(fultureSemester);
+        Semester semester = semesterService.currentSemester();
+        assertThat(semester).isEqualTo(testSemester);
+    }
 }

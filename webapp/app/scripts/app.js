@@ -22,10 +22,10 @@ angular
     $provide
     .constant('routers', [
         {
-          name: 'main',
+          name: 'schedule',
           url: '/',
-          templateUrl: 'views/main.html',
-          controller: 'MainCtrl',
+          templateUrl: 'views/schedule/index.html',
+          controller: 'ScheduleIndexCtrl',
           data: { title: '首页', show: true }
         },
         {
