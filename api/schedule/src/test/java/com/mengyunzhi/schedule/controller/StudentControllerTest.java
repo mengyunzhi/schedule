@@ -6,11 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class StudentControllerTest extends ControllerTest{
@@ -25,7 +22,6 @@ public class StudentControllerTest extends ControllerTest{
                 .perform(get(url)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content("{}"))
-                //.andDo(print())
                 .andExpect(status().isOk());
     }
 
@@ -35,7 +31,6 @@ public class StudentControllerTest extends ControllerTest{
                 .perform(post(url)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content("{}"))
-                //.andDo(print())
                 .andExpect(status().is(HttpStatus.CREATED.value()));
     }
 }

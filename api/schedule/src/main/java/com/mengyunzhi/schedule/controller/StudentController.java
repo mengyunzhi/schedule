@@ -21,27 +21,16 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public Iterable<Student> getAll() {
-        Iterable students = studentService.getAll();
+    public Iterable<Student> getAll(){
+        Iterable<Student> students = studentService.getAll();
         return students;
     }
 
-    //增加
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Student save(@RequestBody Student student) {
         return studentService.save(student);
     }
 
-    //编辑
-    @GetMapping("/{id}")
-    public Student getById(@PathVariable Long id) {
-        return studentService.getById(id);
-    }
-
-    @PutMapping("/{id}")
-    public Student uptade(@PathVariable Long id, @RequestBody Student student) {
-        return studentService.update(id, student);
-    }
 
 }
