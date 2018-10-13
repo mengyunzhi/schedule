@@ -1,9 +1,13 @@
 package com.mengyunzhi.schedule.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mengyunzhi.schedule.config.View;
+import com.mengyunzhi.schedule.repository.SemesterRepository;
+import com.mengyunzhi.schedule.service.SemesterService;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * @author liyiheng
@@ -17,16 +21,21 @@ public class Semester {
     private Long id;
 
     //本学期的终止时间
-    private Long endTime;
+    private String endTime;
 
     private String name;
-
     //本学期的开始时间
-    private Long startTime;
+    private String startTime;
 
-    //该学期所处的情况
+    //该学期所处的情况 默认为不激活
     private boolean status;
 
+
+
+    @OneToMany(mappedBy = "semester")
+    List<Schedule> schedules;
+
+    @JsonView(value = View.Semester.class)
     public Long getId() {
         return id;
     }
@@ -35,14 +44,16 @@ public class Semester {
         this.id = id;
     }
 
-    public Long getEndTime() {
+    @JsonView(value = View.Semester.class)
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Long endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
+    @JsonView(value = View.Semester.class)
     public String getName() {
         return name;
     }
@@ -51,14 +62,16 @@ public class Semester {
         this.name = name;
     }
 
-    public Long getStartTime() {
+    @JsonView(value = View.Semester.class)
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Long startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
+    @JsonView(value = View.Semester.class)
     public boolean isStatus() {
         return status;
     }
@@ -67,6 +80,12 @@ public class Semester {
         this.status = status;
     }
 
-    public Semester() {
+    @JsonView(value = View.Semester.class)
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 }
