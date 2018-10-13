@@ -1,6 +1,8 @@
 package com.mengyunzhi.schedule.repository;
 
 import com.mengyunzhi.schedule.entity.Course;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
@@ -10,5 +12,6 @@ import java.util.List;
  * 课程
  */
 public interface CourseRepository extends PagingAndSortingRepository<Course, Long> {
-    void deleteAllByIdIn(List<Long>  ids);
+    void deleteAllByIdIn(List<Long> ids);
+    List<Course> findAllByIdIn(List<Long> ids);
 }

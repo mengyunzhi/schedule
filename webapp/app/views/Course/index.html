@@ -23,7 +23,7 @@
             <td>操作</td>
         </tr>
         <tr align="center" ng-repeat="(key,_list) in data.content | orderBy: '-id'" >
-            <td><input type="checkbox" ng-checked="all" ng-true-value="{{_list}}" ng-false-value="{{null}}" ng-model="array[key]" /></td>
+            <td><input type="checkbox" ng-checked="all" ng-true-value="{{_list.id}}" ng-false-value="{{null}}" ng-model="array[key]" /></td>
             <td>{{_list.id}}</td>
             <td>{{_list.name}}</td>
             <td>

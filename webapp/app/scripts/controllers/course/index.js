@@ -58,7 +58,7 @@ angular.module('scheduleApp')
             if (all === true) {
                 var j = 0;
                 for (var i = $scope.data.size - 1; i >= 0; i--,j++) {
-                    $scope.array[j] = $scope.data.content[i]
+                    $scope.array[j] = $scope.data.content.id[i]
                 }
 
             } else {
@@ -68,11 +68,12 @@ angular.module('scheduleApp')
 
         //点击 删除所选 按钮的事件
         self.deleteMultiple = function() {
-            $http.post($scope.array).then(function success() {
+            var url = '/Course/deleteAllById';    
+            $http.delete(url,{params: {ids: $scope.array}}).then(function success() {
                 console.log("deletesuccesss");
             },function error() {
                 console.log("deleteerror");
-            })
+            });
         };
         
         self.init();
