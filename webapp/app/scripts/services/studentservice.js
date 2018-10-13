@@ -16,12 +16,12 @@ angular.module('scheduleApp')
             var url = '/student/';
             $http.get(url)
                 .then(function success(response) {
-                    console.log(response);
+                    // console.log(response);
                     if (callback) {
                         callback(response.data);
                     }
-                }, function error(response) {
-                    console.log(response);
+                }, function error() {
+                    // console.log(response);
                     console.log('error');
                 });
 
