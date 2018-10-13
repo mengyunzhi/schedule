@@ -1,5 +1,4 @@
 <ui-view>
-    
     <table class="table table-hover table-bordered">
         <tr align="center" class="info">
             <td>姓名</td>
@@ -9,15 +8,16 @@
             <td>当前系数</td>
             <td>操作</td>
         </tr>
-        <tr align="center">
-        	<td>张三</td>
-            <td>23</td>
-            <td>10</td>
-            <td>4</td>
-            <td>1</td>
+        <!--以后需要增加一个排序-->
+        <tr align="center" ng-repeat="_contribution in data ">
+        	<td>{{_contribution.name}}</td>
+            <td>{{_contribution.contribution}}</td>
+            <td>{{_contribution.monthIncrease}}</td>
+            <td>{{_contribution.weekIncrease}}</td>
+            <td>{{_contribution.contributionCoefficient}}</td>
             <td>
-                <a class="btn btn-sm btn-default glyphicon glyphicon-list" href="#!/course/view/{{_semester.id}}">&nbsp;详情信息</a>
-                <a class="btn btn-sm btn-primary glyphicon glyphicon-pencil" href="#!/course/edit/{{_semester.id}}">&nbsp;编辑</a>
+                <a class="btn btn-sm btn-default glyphicon glyphicon-list" href="#!/contribution/information/{{_contribution.id}}">&nbsp;详情信息</a>
+                <a class="btn btn-sm btn-primary glyphicon glyphicon-pencil" href="#!/contribution/edit/{{_contribution.id}}">&nbsp;编辑</a>
             </td>
         </tr>
     </table>

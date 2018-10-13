@@ -8,7 +8,7 @@
  * 学生
  */
 angular.module('scheduleApp')
-    .service('studentservice', function($http) {
+    .service('studentService', function($http) {
         var self = this;
 
         //获取所有学生
@@ -16,8 +16,12 @@ angular.module('scheduleApp')
             var url = '/student/';
             $http.get(url)
                 .then(function success(response) {
-                    if (callback) { callback(response.data); }
-                }, function error() {
+                    console.log(response);
+                    if (callback) {
+                        callback(response.data);
+                    }
+                }, function error(response) {
+                    console.log(response);
                     console.log('error');
                 });
 

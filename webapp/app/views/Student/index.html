@@ -1,5 +1,4 @@
 <ui-view>
-    <pre>{{ student | json}}</pre>
     <div class="row">
         <div class="col-md-6">
             <form class="form-inline">
@@ -23,26 +22,30 @@
             <td>状态</td>
             <td>操作</td>
         </tr>
-        <tr align="center" ng-repeat="_student in student | orderBy:'-id'">
-            <td>{{$index + 1}}</td>
-            <td>{{_student.name}}</td>
-            <td>{{_student.phoneNumber}}</td>
-            <td>{{_student.contributionCoefficient}}</td>
-            <td >
-                
-                <span ng-hide="change" class="badge"">冻结</span>
-                
-                <span ng-show="change" class="badge" style="background-color: #85db18">正常</span>
-               
-            </td>
+        <tr align="center">
+            <td>1</td>
+            <td>张三</td>
+            <td>12345678912</td>
+            <td>1</td>
+            <td><span style="background-color: green" class="badge">正常</span></td>
             <td>
                 <a class="btn btn-sm btn-primary glyphicon glyphicon-pencil" href="#!/student/edit/{{_student.id}}">&nbsp;编辑</a>
                 <button class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete(_student)">&nbsp;删除</button>
                 <a class="btn btn-sm btn-success glyphicon glyphicon-list-alt" href="#!/student/view/{{_student.id}}">&nbsp;选课</a>
-               
-                <a class="btn btn-sm btn-info glyphicon glyphicon glyphicon-ok-sign" href="" ng-model="student.name" ng-hide="change"  ng-click="changeState(change)">&nbsp;解冻</a>
-            
-                <a class="btn btn-sm btn-info glyphicon glyphicon glyphicon-remove-sign" href="#!/student" ng-model="student.name" ng-show="change"  ng-click="changeState(change)">&nbsp;冻结</a>
+                <a class="btn btn-sm btn-info glyphicon glyphicon glyphicon-remove-sign" href="#!/student/view/{{_student.id}}">&nbsp;冻结</a>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>2</td>
+            <td>李四</td>
+            <td>110</td>
+            <td>1</td>
+            <td><span class="badge">冻结</span></td>
+            <td>
+                <a class="btn btn-sm btn-primary glyphicon glyphicon-pencil" href="#!/student/edit/{{_student.id}}">&nbsp;编辑</a>
+                <button class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete(_student)">&nbsp;删除</button>
+                <a class="btn btn-sm btn-success glyphicon glyphicon-list-alt" href="#!/student/view/{{_student.id}}">&nbsp;选课</a>
+                <a class="btn btn-sm btn-info glyphicon glyphicon glyphicon-ok-sign" href="#!/student/view/{{_student.id}}">&nbsp;解冻</a>
             </td>
         </tr>
     </table>
