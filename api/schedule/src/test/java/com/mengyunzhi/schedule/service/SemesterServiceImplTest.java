@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.transaction.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -131,5 +132,28 @@ public class SemesterServiceImplTest extends ServiceTest{
                 semester.getSchedules()) {
             assertThat(schedule.getWeekOrder()).isNotEqualTo(2);
         }
+    }
+
+    @Test
+    public void currentSemester() {
+        Semester testSemester = new Semester();
+        Date date = new Date();
+        Long nowTime = date.getTime();
+        Long endTime = nowTime + 222;
+        testSemester.setStatus(true);
+        testSemester.setStartTime(Long.toString(nowTime));
+        testSemester.setEndTime(Long.toString(endTime));
+
+        Semester pastSemester = new Semester();
+        pastSemester.setStatus(true);
+        pastSemester.setStartTime("1539398828749");
+        pastSemester.setEndTime("1539398828759");
+
+
+
+        semesterRepository.save(testSemester);
+        semesterRepository.save(pastSemester);
+        Semester semester = semesterService.currentSemester();
+        assertThat(semester).isEqualTo(testSemester);
     }
 }

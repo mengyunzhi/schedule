@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -62,7 +63,7 @@ public class SemesterServiceImpl implements SemesterService {
     public void creatScheduleOfSemester(Semester semester, int startWeek, int endWeek) {
         if (startWeek <= 0 && endWeek <= 0) {return;}
         ArrayList<Schedule> schedules = new ArrayList<Schedule>();
-        for (startWeek = 1; startWeek <= endWeek; startWeek++) {
+        for (; startWeek <= endWeek; startWeek++) {
             for(int week = 1; week <= SemesterServiceImpl.week; week++) {
                 for (int node = 1; node <= SemesterServiceImpl.node; node++) {
                     Schedule schedule = new Schedule();
@@ -106,6 +107,25 @@ public class SemesterServiceImpl implements SemesterService {
         if (totalTime <= 0) {return 0;}
         int totalWeek = (int) (totalTime / aWeekStamp) + 1;
         return totalWeek;
+    }
+
+    /**
+     * 返回当前时间的激活学期
+     * @return  semester
+     */
+    @Override
+    public Semester currentSemester() {
+        List<Semester> semesters = semesterRepository.findByStatus(true);
+        long currentTime = new Date().getTime();
+        for (Semester semester :
+                semesters) {
+            long startTime = Long.parseLong(semester.getStartTime());
+            long endTime = Long.parseLong(semester.getEndTime());
+            if (startTime <= currentTime && endTime >= currentTime) {
+                return semester;
+            }
+        }
+        return null;
     }
 
     /**
