@@ -22,10 +22,10 @@ angular
     $provide
     .constant('routers', [
         {
-          name: 'main',
+          name: 'schedule',
           url: '/',
-          templateUrl: 'views/main.html',
-          controller: 'MainCtrl',
+          templateUrl: 'views/schedule/index.html',
+          controller: 'ScheduleIndexCtrl',
           data: { title: '首页', show: true }
         },
         {
@@ -43,18 +43,35 @@ angular
           data: { title: '增加', show: false }
         },
         {
-          name: 'student.edit',
-          url: '/edit/:id',
-          templateUrl: 'views/Student/edit.html',
-          controller: 'StudentEditCtrl',
-          data: { title: '编辑', show: false }
-        },
-        {
           name: 'course',
           url: '/course',
           templateUrl: 'views/Course/index.html',
           controller: 'CourseIndexCtrl',
           data: { title: '课程管理', show: true }
+        },
+        // course/add
+        // @author chenjie
+        {
+          name: 'course.add', 
+          url: '/add', 
+          templateUrl: 'views/course/add.html',
+          controller: 'CourseAddCtrl',
+          data: {
+              title: '增加',
+              show: false
+          }
+        },
+        // course/edit
+        // @author chenjie
+        {
+          name: 'course.edit', 
+          url: '/edit/:id', 
+          templateUrl: 'views/course/edit.html',
+          controller: 'CourseEditCtrl',
+          data: {
+              title: '编辑',
+              show: false
+          }
         },
         {
           name: 'semester',
@@ -64,11 +81,45 @@ angular
           data: { title: '学期管理', show: true }
         },
         {
+          name: 'semester.add',
+          url: '/add',
+          templateUrl: 'views/Semester/add.html',
+          controller: 'SemesterAddCtrl',
+          data: {title: 'semesterAdd', show: false}
+        },
+        {
+          name: 'semester.edit',
+          url: '/edit/:id',
+          templateUrl: 'views/Semester/edit.html',
+          controller: 'SemesterEditCtrl',
+          data: {title: 'semesterEdit', show: false}
+        },
+        {
           name: 'contribution',
           url: '/contribution',
           templateUrl: 'views/Contribution/index.html',
           controller: 'ContributionIndexCtrl',
           data: { title: '贡献值管理', show: true }
+        },
+        {
+            name: 'contribution.information',
+            url: '/information/:id',
+            templateUrl: 'views/Contribution/information.html',
+            controller: 'ContributionInformationCtrl',
+            data: {
+                title: '详细信息',
+                show: false
+            }
+        },
+        {
+            name: 'contribution.edit',
+            url: '/edit/:id',
+            templateUrl: 'views/Contribution/edit.html',
+            controller: 'ContributionEditCtrl',
+            data: {
+                title: '编辑信息',
+                show: false
+            }
         }
       ]);
   })

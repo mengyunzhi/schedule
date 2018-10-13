@@ -1,5 +1,8 @@
 package com.mengyunzhi.schedule.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mengyunzhi.schedule.config.View;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,6 +15,7 @@ import java.util.List;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView({View.Schedule.class})
     private Long id;
 
     //贡献值
@@ -20,6 +24,16 @@ public class Student {
     //贡献值系数
     private float contributionCoefficient;
 
+    //一个学生多条贡献值
+    @OneToMany
+    private List<Contribution> contributionList;
+
+    //一个学生多门课
+    @ManyToMany
+    private List<Course> courseList;
+
+
+    @JsonView({View.Schedule.class})
     private String name;
 
     private String phoneNumber;
@@ -90,10 +104,4 @@ public class Student {
         this.courseList = courseList;
     }
 
-    @OneToMany
-    private List<Contribution> contributionList;
-
-    @ManyToMany
-    private List<Course> courseList;
-
- }
+}

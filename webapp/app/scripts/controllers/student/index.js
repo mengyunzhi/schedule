@@ -5,9 +5,10 @@
  * @name scheduleApp.controller:StudentIndexCtrl
  * @description
  * # StudentIndexCtrl
- * 学生管理
+ * Controller of the scheduleApp
  */
 angular.module('scheduleApp')
+<<<<<<< HEAD
     .controller('StudentIndexCtrl', function($scope, $http, studentService) {
         var self = this;
         self.init = function() {
@@ -35,3 +36,12 @@ angular.module('scheduleApp')
         $scope.changeState = self.changeState;
 
     });
+=======
+  .controller('StudentIndexCtrl', function () {
+    this.awesomeThings = [
+      'HTML5 Boilerplate',
+      'AngularJS',
+      'Karma'
+    ];
+  });
+>>>>>>> master
