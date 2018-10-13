@@ -22,10 +22,10 @@ angular
     $provide
     .constant('routers', [
         {
-          name: 'main',
+          name: 'schedule',
           url: '/',
-          templateUrl: 'views/main.html',
-          controller: 'MainCtrl',
+          templateUrl: 'views/schedule/index.html',
+          controller: 'ScheduleIndexCtrl',
           data: { title: '首页', show: true }
         },
         {
@@ -86,6 +86,20 @@ angular
           templateUrl: 'views/Semester/index.html',
           controller: 'SemesterIndexCtrl',
           data: { title: '学期管理', show: true }
+        },
+        {
+          name: 'semester.add',
+          url: '/add',
+          templateUrl: 'views/Semester/add.html',
+          controller: 'SemesterAddCtrl',
+          data: {title: 'semesterAdd', show: false}
+        },
+        {
+          name: 'semester.edit',
+          url: '/edit/:id',
+          templateUrl: 'views/Semester/edit.html',
+          controller: 'SemesterEditCtrl',
+          data: {title: 'semesterEdit', show: false}
         },
         {
           name: 'contribution',
