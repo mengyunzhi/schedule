@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7259373-0408-4e18-8723-e9ef67eb0ad5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/controllers/contribution/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/controllers/contribution/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/services/contribution.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/contribution.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/services/studentservice.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/studentservice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Contribution/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Contribution/index.html" afterDir="false" />
-    </list>
+    <list default="true" id="c7259373-0408-4e18-8723-e9ef67eb0ad5" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -66,8 +60,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/Contribution/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="16" column="62" lean-forward="true" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
+            <state relative-caret-position="490">
+              <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -176,9 +170,8 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="20" />
-    <option name="y" value="320" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="8" />
     <option name="width" value="1920" />
     <option name="height" value="890" />
   </component>
@@ -310,12 +303,12 @@
       <workItem from="1539339729285" duration="2208000" />
       <workItem from="1539361732737" duration="543000" />
       <workItem from="1539422908850" duration="274000" />
-      <workItem from="1539423934078" duration="6947000" />
+      <workItem from="1539423934078" duration="7487000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43752000" />
+    <option name="totallyTimeSpent" value="44292000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -503,8 +496,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Contribution/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="16" column="62" lean-forward="true" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
+        <state relative-caret-position="490">
+          <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
         </state>
       </provider>
     </entry>
