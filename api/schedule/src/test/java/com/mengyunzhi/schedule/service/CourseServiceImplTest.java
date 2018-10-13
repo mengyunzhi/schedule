@@ -11,7 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
+
 
 public class CourseServiceImplTest extends ServiceTest {
     private final static Logger logger = Logger.getLogger(CourseServiceImplTest.class.getName());

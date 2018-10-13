@@ -4,8 +4,7 @@ import com.mengyunzhi.schedule.ScheduleApplicationTests;
 import com.mengyunzhi.schedule.entity.Course;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.assertj.core.api.Java6Assertions.assertThat;
 
 /**
  * @author chenjie
