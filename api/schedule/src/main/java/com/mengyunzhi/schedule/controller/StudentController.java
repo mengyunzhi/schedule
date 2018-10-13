@@ -22,15 +22,15 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
-    @GetMapping("/")
+    @GetMapping
     public Iterable<Student> getAll(){
-        Iterable students = studentService.getAll();
+        Iterable<Student> students = studentService.getAll();
         return students;
     }
 
-    @PostMapping("/")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Student save(@RequestBody Student student){
+    public Student save(@RequestBody Student student) {
         return studentService.save(student);
     }
 

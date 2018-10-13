@@ -25,7 +25,6 @@ public class StudentControllerTest extends ControllerTest{
                 .perform(get(url)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content("{}"))
-                .andDo(print())
                 .andExpect(status().isOk());
     }
 
@@ -35,7 +34,6 @@ public class StudentControllerTest extends ControllerTest{
                 .perform(post(url)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content("{}"))
-                .andDo(print())
                 .andExpect(status().is(HttpStatus.CREATED.value()));
     }
 }

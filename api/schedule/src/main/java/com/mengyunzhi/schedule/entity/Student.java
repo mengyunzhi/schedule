@@ -20,9 +20,11 @@ public class Student {
     //贡献值系数
     private float contributionCoefficient;
 
+    //一个学生多条贡献值
     @OneToMany
     private List<Contribution> contributionList;
 
+    //一个学生多门贡献值
     @ManyToMany
     private List<Course> courseList;
 

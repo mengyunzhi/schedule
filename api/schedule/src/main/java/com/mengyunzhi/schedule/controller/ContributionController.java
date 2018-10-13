@@ -50,14 +50,5 @@ public class ContributionController {
     public List<Contribution> getDetailedInformation(@PathVariable Long id) {
         return contributionService.getDetailedInformation(id);
     }
-
-    @GetMapping("/weekIncrease/{id}")
-    public int weekIncrease(@PathVariable Long id) {
-     return contributionService.weekIncrease(id);
-    }
-
-    @GetMapping("/monthIncrease/{id}")
-    public int monthIncrease(@PathVariable Long id) {
-        return contributionService.monthIncrease(id);
-    }
+    
 }
