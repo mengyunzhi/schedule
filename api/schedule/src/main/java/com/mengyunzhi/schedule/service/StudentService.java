@@ -6,4 +6,8 @@ public interface StudentService {
     Iterable<Student> getAll();
 
     Student save(Student student);
+
+    Student getById(Long id);
+
+    Student update(Long id, Student student);
 }
