@@ -3,8 +3,6 @@ package com.mengyunzhi.schedule.repository;
 import com.mengyunzhi.schedule.entity.Contribution;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import java.util.List;
-
 /**
  * @author liyiheng
  * @date 2018/10/10 15:16
