@@ -16,7 +16,7 @@ public interface CourseService {
 
     Iterable<Course> getAll();
 
-//    void deleteAllById(List<Long> ids);
+    void deleteAllById();
 
     Page<Course> page(Pageable pageable);
 

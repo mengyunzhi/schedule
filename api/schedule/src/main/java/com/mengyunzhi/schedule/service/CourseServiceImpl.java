@@ -35,10 +35,10 @@ public class CourseServiceImpl implements CourseService {
         return courseRespository.findAll(pageable);
     }
 
-//    @Override
-//    public void deleteAllById(List<Long> ids) {
-//        courseRespository.deleteAllByIdIn(ids);
-//    }
+    @Override
+    public void deleteAllById() {
+        //courseRepository.deleteAllByIdIn(ids);
+    }
 
     @Override
     public Course getById(Long id) {

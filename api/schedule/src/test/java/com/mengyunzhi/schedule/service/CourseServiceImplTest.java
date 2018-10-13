@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -46,7 +48,13 @@ public class CourseServiceImplTest extends ServiceTest {
     }
 
     @Test
-    public void delete() {
+    public void deleteAllById() {
+        Course [] courses = {new Course(), new Course(), new Course()};
+
+        Long[] array = {(long)6, (long)7, (long)8,};
+        List<Long> ids = new ArrayList<Long>(Arrays.asList(array));
+        courseRepository.deleteAllByIdIn(ids);
+        assertThat(courseRepository.findOne((long)6)).isNull();
     }
 
     @Test
