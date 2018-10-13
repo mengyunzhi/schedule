@@ -1,6 +1,7 @@
 package com.mengyunzhi.schedule.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
 import com.mengyunzhi.schedule.service.SemesterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +35,7 @@ public class Semester {
     @OneToMany(mappedBy = "semester")
     List<Schedule> schedules;
 
-    public interface semesterInterface{}
-
-    @JsonView(value = semesterInterface.class)
+    @JsonView(value = View.Semester.class)
     public Long getId() {
         return id;
     }
@@ -45,7 +44,7 @@ public class Semester {
         this.id = id;
     }
 
-    @JsonView(value = semesterInterface.class)
+    @JsonView(value = View.Semester.class)
     public String getEndTime() {
         return endTime;
     }
@@ -54,7 +53,7 @@ public class Semester {
         this.endTime = endTime;
     }
 
-    @JsonView(value = semesterInterface.class)
+    @JsonView(value = View.Semester.class)
     public String getName() {
         return name;
     }
@@ -63,7 +62,7 @@ public class Semester {
         this.name = name;
     }
 
-    @JsonView(value = semesterInterface.class)
+    @JsonView(value = View.Semester.class)
     public String getStartTime() {
         return startTime;
     }
@@ -72,7 +71,7 @@ public class Semester {
         this.startTime = startTime;
     }
 
-    @JsonView(value = semesterInterface.class)
+    @JsonView(value = View.Semester.class)
     public boolean isStatus() {
         return status;
     }
@@ -81,7 +80,7 @@ public class Semester {
         this.status = status;
     }
 
-    @JsonView(value = semesterInterface.class)
+    @JsonView(value = View.Semester.class)
     public List<Schedule> getSchedules() {
         return schedules;
     }
