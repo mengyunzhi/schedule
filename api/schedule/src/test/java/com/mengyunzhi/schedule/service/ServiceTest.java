@@ -1,11 +1,11 @@
 package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.ScheduleApplicationTests;
-import javax.transaction.Transactional;
+import org.junit.Test;
 
-@Transactional
 public class ServiceTest extends ScheduleApplicationTests {
-    public void Test() {
+    @Test
+    public void test() {
 
     }
 }
