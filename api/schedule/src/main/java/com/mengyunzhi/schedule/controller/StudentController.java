@@ -29,6 +29,7 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
+    @JsonView(View.Student.class)
     public Iterable<Student> getAll(){
         Iterable<Student> students = studentService.getAll();
         return students;

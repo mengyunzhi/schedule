@@ -50,6 +50,11 @@ angular.module('scheduleApp')
                 schedule.getnowschedules($scope.semester.id, $scope.query.weekOrder, function(data) {
                     if (data.length != 0) {
                         var schedules = data;
+
+                        // $http.put('/schedule/init/16')
+                        // .then(function(){},function(){});
+                        
+
                         //为每个行程添加学生数组
                         schedule.addScheduleMessage(schedules);
                         //对集合进行加工转换为7*5的数组
