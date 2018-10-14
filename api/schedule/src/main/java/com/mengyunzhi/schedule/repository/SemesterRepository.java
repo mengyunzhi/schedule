@@ -1,6 +1,5 @@
 package com.mengyunzhi.schedule.repository;
 
-import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.entity.Semester;
 import org.springframework.data.repository.CrudRepository;
 

@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7259373-0408-4e18-8723-e9ef67eb0ad5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/other/PayLoad.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/other/PullRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/other/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/controller/ContributionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/controller/ContributionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/entity/Contribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/entity/Contribution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/entity/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/ContributionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/ContributionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/ContributionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/ContributionServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ContributionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ContributionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/service/ContributionServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/service/ContributionServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/controllers/contribution/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/controllers/contribution/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/controllers/contribution/information.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/controllers/contribution/information.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/services/contribution.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/contribution.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/services/studentservice.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/studentservice.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Contribution/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Contribution/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/Contribution/information.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Contribution/information.html" afterDir="false" />
-    </list>
+    <list default="true" id="c7259373-0408-4e18-8723-e9ef67eb0ad5" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -35,7 +15,7 @@
     <session id="1987706583">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.17" value="2" />
           <entry key="project.open.time.18" value="1" />
@@ -170,7 +150,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="6" />
     <option name="width" value="1920" />
     <option name="height" value="890" />
@@ -313,7 +293,7 @@
     <option name="totallyTimeSpent" value="49306000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49361703" visible="true" weight="0.2014531" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />

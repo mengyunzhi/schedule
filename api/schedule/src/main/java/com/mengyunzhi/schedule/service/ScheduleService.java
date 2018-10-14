@@ -1,8 +1,6 @@
 package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Schedule;
-import com.mengyunzhi.schedule.entity.Semester;
-
 
 import java.util.ArrayList;
 import java.util.List;
