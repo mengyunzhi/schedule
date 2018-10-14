@@ -4,8 +4,6 @@ import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +20,7 @@ public class CourseServiceImplTest extends ServiceTest {
     CourseRepository courseRepository; // 课程
 
     @Test
-    public void save() throws Exception {
+    public void saveTest() throws Exception {
         logger.info("new一个对象");
         Course course = new Course();
 
@@ -37,7 +35,7 @@ public class CourseServiceImplTest extends ServiceTest {
     }
 
     @Test
-    public void getAll() throws Exception {
+    public void getAllTest() throws Exception {
         logger.info("new一个对象");
         Course course = new Course();
 
@@ -49,20 +47,36 @@ public class CourseServiceImplTest extends ServiceTest {
     }
 
     @Test
-    public void deleteAllById() {
+    public void deleteByIdTest() {
+        //新建三个course实体
         Course [] courses = {new Course(), new Course(), new Course()};
 
-        Long[] array = {(long)6, (long)7, (long)8,};
-        List<Long> ids = new ArrayList<Long>(Arrays.asList(array));
-        courseRepository.deleteAllByIdIn(ids);
-        assertThat(courseRepository.findOne((long)6)).isNull();
+        //批量保存
+        for (int i = 0;i < 3;i++) {
+            courseRepository.save(courses[i]);
+        }
+
+        //将id存到数组中
+        Long [] idArray = new Long[3];
+        for (int i = 0;i < 3;i++) {
+            idArray[i] = courses[i].getId();
+        }
+
+        //将id数组封装成List接口类
+        List<Long> ids = new ArrayList<Long>(Arrays.asList(idArray));
+
+        //批量删除
+        courseService.deleteById(ids);
+
+        //断言删除成功
+        assertThat(courseRepository.findAllByIdIn(ids)).isEmpty();
     }
 
     @Test
-    public void getById() {
+    public void getByIdTest() {
     }
 
     @Test
-    public void updateByIdAndCourse() {
+    public void updateByIdAndCourseTest() {
     }
 }
