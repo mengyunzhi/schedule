@@ -22,6 +22,15 @@
             <td>状态</td>
             <td>操作</td>
         </tr>
+<<<<<<< HEAD
+        <tr align="center" ng-repeat="_student in students | orderBy:'-id'">
+            <td>{{$index + 1}}</td>
+            <td>{{_student.name}}</td>
+            <td>{{_student.phoneNumber}}</td>
+            <td>{{_student.contributionCoefficient}}</td>
+            <td>
+                <span ng-class="{true:'label label-success',false:'label label-default'}[_student.state]">&nbsp;{{_student.state | stateFilter}}</span>
+=======
         <tr align="center">
             <td>1</td>
             <td>张三</td>
@@ -33,6 +42,7 @@
                 <button class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete(_student)">&nbsp;删除</button>
                 <a class="btn btn-sm btn-success glyphicon glyphicon-list-alt" href="#!/student/view/{{_student.id}}">&nbsp;选课</a>
                 <a class="btn btn-sm btn-info glyphicon glyphicon glyphicon-remove-sign" href="#!/student/view/{{_student.id}}">&nbsp;冻结</a>
+>>>>>>> master
             </td>
         </tr>
         <tr align="center">
@@ -43,10 +53,17 @@
             <td><span class="badge">冻结</span></td>
             <td>
                 <a class="btn btn-sm btn-primary glyphicon glyphicon-pencil" href="#!/student/edit/{{_student.id}}">&nbsp;编辑</a>
-                <button class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete(_student)">&nbsp;删除</button>
+
                 <a class="btn btn-sm btn-success glyphicon glyphicon-list-alt" href="#!/student/view/{{_student.id}}">&nbsp;选课</a>
+<<<<<<< HEAD
+
+                <button type="button" ng-class="{true:'btn btn-sm btn-info glyphicon glyphicon glyphicon-ok-sign',false:'btn btn-sm btn-warning glyphicon glyphicon glyphicon-remove-sign'}[_student.state]" ng-click="changeState(_student)">&nbsp;{{_student.state | operateFilter}}</button>
+                
+                <button class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete(_student)">&nbsp;删除</button>
+=======
                 <a class="btn btn-sm btn-info glyphicon glyphicon glyphicon-ok-sign" href="#!/student/view/{{_student.id}}">&nbsp;解冻</a>
             </td>
+>>>>>>> master
         </tr>
     </table>
     </div>

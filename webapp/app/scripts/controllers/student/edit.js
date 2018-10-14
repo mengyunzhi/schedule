@@ -29,10 +29,9 @@ angular.module('scheduleApp')
             var url = '/student/' + id;
             $http.put(url, $scope.data)
                 .then(function success() {
-                    $state.transitionTo('student', {}, { reload: true });
-                    console.log('更新成功');
+                    console.log('success');
                 }, function error() {
-                    console.log('更新失败');
+                    console.log('error');
                 });
         };
 
