@@ -52,10 +52,10 @@ public class ContributionServiceImplTest extends ServiceTest {
     public void addContribution() {
         //创建一个PayLoad对象
         PayLoad payLoad = PayLoad.create();
-
-        //初始化数据
-        payLoad.getPull_request().getUser().setLogin("323");
         String github = "123";
+        //初始化数据
+        payLoad.getPull_request().getUser().setLogin(github);
+
         payLoad.getPull_request().setTitle("12314141 2.5h");
         Calendar calendar =Calendar.getInstance();
 //        Date date = calendar.getTime();
@@ -65,13 +65,14 @@ public class ContributionServiceImplTest extends ServiceTest {
         //创建并保存学生对象
         Student student = new Student();
         student.setGithub(github);
+        student.setContributionCoefficient(1);
+        student.setContributionValue(123);
         studentRepository.save(student);
-        Student student1 = studentRepository.findByGithub(github);
-        studentRepository.save(student);
+
 
         //判断测试方法是否运行成功
         contributionService.addContribution(payLoad);
-        assertThat(student1.getGithub().equals(github)).isTrue();
+        assertThat(student.getContributionValue()).isEqualTo(125.5f);
 
     }
 }
