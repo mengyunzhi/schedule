@@ -10,4 +10,7 @@ public class View {
 
     //行程返回格式
     public interface Schedule {};
+
+    //学生返回格式
+    public interface Student {};
 }

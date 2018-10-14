@@ -36,7 +36,7 @@
         </tr>
         <tr ng-repeat="(key, value) in schedules">
             <td>星期{{key + 1}}</td>
-            <td ng-repeat="schedule in value track by $index">{{schedule.id}}</td>
+            <td ng-repeat="schedule in value track by $index"><span ng-repeat="student in schedule.students">{{student.name}}<br></span></td>
         </tr>
     </table>
 </ui-view>
