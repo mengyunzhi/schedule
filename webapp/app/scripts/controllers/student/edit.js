@@ -11,8 +11,10 @@ angular.module('scheduleApp')
     .controller('StudentEditCtrl', function($scope, $http, $stateParams, $state) {
         var self = this;
         self.init = function() {
+
             //获取当前编辑的ID
             var id = $stateParams.id;
+
             //用接收的ID去请求信息
             var url = '/student/' + id;
             $http.get(url)
@@ -30,7 +32,6 @@ angular.module('scheduleApp')
             $http.put(url, $scope.data)
                 .then(function success() {
                     $state.transitionTo('student', {}, { reload: true });
-                    console.log('更新成功');
                 }, function error() {
                     console.log('更新失败');
                 });
