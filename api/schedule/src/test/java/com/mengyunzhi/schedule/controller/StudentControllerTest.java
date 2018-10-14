@@ -31,6 +31,7 @@ public class StudentControllerTest extends ControllerTest{
                 .perform(post(url)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content("{}"))
+
                 .andExpect(status().is(HttpStatus.CREATED.value()));
     }
 }

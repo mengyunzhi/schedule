@@ -28,6 +28,7 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
+
     @GetMapping
     public Iterable<Student> getAll(){
         Iterable<Student> students = studentService.getAll();
@@ -35,16 +36,28 @@ public class StudentController {
     }
 
     @PostMapping
+    @GetMapping("/")
+    public Iterable<Student> getAll(){
+        Iterable students = studentService.getAll();
+        return students;
+    }
+
+    @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public Student save(@RequestBody Student student) {
+    public Student save(@RequestBody Student student){
         return studentService.save(student);
     }
+
 
     @PostMapping("/getStudentByCourse")
     @JsonView(View.Student.class)
     public Set<Student> getStudentByCoursesIn(@RequestBody List<Course> courses) {
         return studentService.findByCoursesIn(courses);
     }
+
+
+
+
 
 }
 
