@@ -32,7 +32,6 @@ public class Student {
     @ManyToMany
     private List<Course> courseList;
 
-
     @JsonView({View.Schedule.class})
     private String name;
 

@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c7259373-0408-4e18-8723-e9ef67eb0ad5" name="Default Changelist" comment="" />
+    <list default="true" id="c7259373-0408-4e18-8723-e9ef67eb0ad5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/other/PayLoad.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/other/PullRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/other/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/schedule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/controller/ContributionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/controller/ContributionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/entity/Contribution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/entity/Contribution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/entity/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/repository/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/ContributionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/ContributionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/ContributionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/ContributionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ContributionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ContributionControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/service/ContributionServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/service/ContributionServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scripts/controllers/contribution/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/controllers/contribution/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scripts/controllers/contribution/information.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/controllers/contribution/information.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scripts/services/contribution.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/contribution.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scripts/services/studentservice.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/studentservice.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/Contribution/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Contribution/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/Contribution/information.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/Contribution/information.html" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -15,73 +35,52 @@
     <session id="1987706583">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.17" value="2" />
+          <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.47" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.open.time.50" value="1" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="gitignore" value="1" />
-          <entry key="html" value="26" />
-          <entry key="js" value="50" />
+          <entry key="gitignore" value="2" />
+          <entry key="html" value="28" />
+          <entry key="js" value="55" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="26" />
-          <entry key="JavaScript" value="50" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="HTML" value="28" />
+          <entry key="JavaScript" value="55" />
+          <entry key="PLAIN_TEXT" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="html" value="752" />
-          <entry key="js" value="3925" />
+          <entry key="gitignore" value="6" />
+          <entry key="html" value="794" />
+          <entry key="js" value="4076" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="752" />
-          <entry key="JavaScript" value="3925" />
+          <entry key="HTML" value="794" />
+          <entry key="JavaScript" value="4076" />
+          <entry key="PLAIN_TEXT" value="6" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/Contribution/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/services/contribution.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="78" selection-start-line="78" selection-end-line="78" />
-              <folding>
-                <element signature="e#376#976#0" />
-                <element signature="e#1076#1626#0" />
-                <element signature="e#1709#2702#0" />
-                <element signature="e#2784#3450#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -99,12 +98,13 @@
         <option value="$PROJECT_DIR$/app/scripts/app.js" />
         <option value="$PROJECT_DIR$/app/views/Contribution/edit.html" />
         <option value="$PROJECT_DIR$/app/index.html" />
-        <option value="$PROJECT_DIR$/app/views/Contribution/information.html" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/contribution/edit.js" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/contribution/information.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/scripts/services/studentservice.js" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/contribution/index.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/contribution.js" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/contribution/information.js" />
+        <option value="$PROJECT_DIR$/app/views/Contribution/information.html" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/contribution/index.js" />
         <option value="$PROJECT_DIR$/app/views/Contribution/index.html" />
       </list>
     </option>
@@ -170,8 +170,8 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="8" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="6" />
     <option name="width" value="1920" />
     <option name="height" value="890" />
   </component>
@@ -303,18 +303,19 @@
       <workItem from="1539339729285" duration="2208000" />
       <workItem from="1539361732737" duration="543000" />
       <workItem from="1539422908850" duration="274000" />
-      <workItem from="1539423934078" duration="7487000" />
+      <workItem from="1539423934078" duration="11224000" />
+      <workItem from="1539474734104" duration="604000" />
+      <workItem from="1539503760619" duration="673000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44292000" />
+    <option name="totallyTimeSpent" value="49306000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49361703" visible="true" weight="0.2014531" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49361703" visible="true" weight="0.2014531" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Grunt " order="3" sideWeight="0.506383" side_tool="true" weight="0.2014531" />
@@ -329,7 +330,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32907802" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32907802" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -390,13 +391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/main.html">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -428,29 +422,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Contribution/information.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/student/index.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/contribution/information.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/contribution/edit.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -467,37 +440,59 @@
         <state relative-caret-position="-350" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/services/studentservice.js">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="22" column="34" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        <state relative-caret-position="175">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/contribution/index.js">
+    <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+        <state relative-caret-position="483">
+          <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/services/studentservice.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/services/contribution.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
-          <folding>
-            <element signature="e#376#976#0" />
-            <element signature="e#1076#1626#0" />
-            <element signature="e#1709#2702#0" />
-            <element signature="e#2784#3450#0" />
-          </folding>
+        <state relative-caret-position="1023">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/Contribution/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="14" column="52" lean-forward="true" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
+        <state relative-caret-position="350">
+          <caret line="10" column="54" selection-start-line="10" selection-start-column="52" selection-end-line="10" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/contribution/information.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="606">
+          <caret line="24" column="18" lean-forward="true" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/contribution/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Contribution/information.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="14" column="89" selection-start-line="14" selection-start-column="89" selection-end-line="14" selection-end-column="89" />
         </state>
       </provider>
     </entry>

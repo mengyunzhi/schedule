@@ -1,12 +1,16 @@
 package com.mengyunzhi.schedule.controller;
 
 import com.mengyunzhi.schedule.entity.Contribution;
+import com.mengyunzhi.schedule.other.PayLoad;
 import com.mengyunzhi.schedule.service.ContributionService;
 import com.mengyunzhi.schedule.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author liyiheng
@@ -48,5 +52,19 @@ public class ContributionController {
     public List<Contribution> getDetailedInformation(@PathVariable Long id) {
         return contributionService.getDetailedInformation(id);
     }
-    
+
+    /**
+     *
+     * @param: [payLoad]
+     * @return void
+     * @author liyiheng
+     * @description
+     * pull request时自动增加贡献值
+     */
+    @PostMapping("/github")
+    public void addContribution(@RequestBody PayLoad payLoad) {
+
+        contributionService.addContribution(payLoad);
+    }
+
 }
