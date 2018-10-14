@@ -9,8 +9,7 @@
  * @author chenjie
  */
 angular.module('scheduleApp')
-    .controller('CourseAddCtrl', function($scope, $http, $state) {
-
+    .controller('CourseAddCtrl', function($scope, $http, $state, courseService) {
         var self = this;
 
         //初始化
@@ -22,15 +21,9 @@ angular.module('scheduleApp')
 
         //提交add信息
         self.submit = function() {
-            var url = '/Course/';
-            $http.post(url, $scope.data)
-                .then(function success(response) {
-                    console.log(response);
-                    $state.transitionTo('course', {}, { reload: true });
-
-                }, function error() {
-                    console.log('请求课程列表发生错误');
-                });
+            courseService.add($scope.data, function() {
+                $state.transitionTo('course', {}, { reload: true });
+            })
         };
 
 

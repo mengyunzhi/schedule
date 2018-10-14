@@ -17,19 +17,18 @@
     <br />
     <table class="table table-hover table-bordered">
         <tr align="center" class="info">
-            <td><input type="checkbox" ng-model="all" ng-click="selectAll(!all)" >全选{{all}}</td>
+            <td><input type="checkbox" ng-model="allStatus" ng-click="selectAll(!allStatus)" >全选{{allStatus}}</td>
             <td>序号</td>
             <td>课程名</td>
             <td>操作</td>
         </tr>
         <tr align="center" ng-repeat="(key,_list) in data.content | orderBy: '-id'" >
-            <td><input type="checkbox" ng-checked="all" ng-true-value="{{_list.id}}" ng-false-value="{{null}}" ng-model="array[key]" /></td>
+            <td><input type="checkbox" ng-checked="allStatus" ng-true-value="{{_list.id}}" ng-false-value="{{null}}" ng-model="array[key]" /></td>
             <td>{{_list.id}}</td>
             <td>{{_list.name}}</td>
             <td>
                 <a class="btn btn-sm btn-primary glyphicon glyphicon-facetime-video" href="#!/course/view/{{_list.id}}">&nbsp查看</a>
                 <a class="btn btn-sm btn-default glyphicon glyphicon-pencil" href="#!/course/edit/{{_list.id}}">&nbsp;编辑</a>
-                <!-- <button class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete(_course)">&nbsp;删除</button> -->
             </td>
         </tr>
     </table>
