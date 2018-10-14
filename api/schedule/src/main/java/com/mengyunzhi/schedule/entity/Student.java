@@ -15,7 +15,7 @@ import java.util.List;
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView({View.Schedule.class})
+    @JsonView({View.Schedule.class, View.Student.class})
     private Long id;
 
     //贡献值
@@ -33,7 +33,7 @@ public class Student {
     private List<Course> courseList;
 
 
-    @JsonView({View.Schedule.class})
+    @JsonView({View.Schedule.class, View.Student.class})
     private String name;
 
     private String phoneNumber;
