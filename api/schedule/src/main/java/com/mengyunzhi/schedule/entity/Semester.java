@@ -2,9 +2,6 @@ package com.mengyunzhi.schedule.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
-import com.mengyunzhi.schedule.repository.SemesterRepository;
-import com.mengyunzhi.schedule.service.SemesterService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.List;

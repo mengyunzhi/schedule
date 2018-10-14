@@ -2,7 +2,6 @@ package com.mengyunzhi.schedule.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;

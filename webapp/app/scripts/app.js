@@ -43,13 +43,6 @@ angular
           data: { title: '增加', show: false }
         },
         {
-          name: 'student.edit',
-          url: '/edit/:id',
-          templateUrl: 'views/Student/edit.html',
-          controller: 'StudentEditCtrl',
-          data: { title: '编辑', show: false }
-        },
-        {
           name: 'course',
           url: '/course',
           templateUrl: 'views/Course/index.html',
@@ -107,6 +100,26 @@ angular
           templateUrl: 'views/Contribution/index.html',
           controller: 'ContributionIndexCtrl',
           data: { title: '贡献值管理', show: true }
+        },
+        {
+            name: 'contribution.information',
+            url: '/information/:id',
+            templateUrl: 'views/Contribution/information.html',
+            controller: 'ContributionInformationCtrl',
+            data: {
+                title: '详细信息',
+                show: false
+            }
+        },
+        {
+            name: 'contribution.edit',
+            url: '/edit/:id',
+            templateUrl: 'views/Contribution/edit.html',
+            controller: 'ContributionEditCtrl',
+            data: {
+                title: '编辑信息',
+                show: false
+            }
         }
       ]);
   })
