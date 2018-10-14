@@ -12,6 +12,5 @@ import java.util.List;
  * 课程
  */
 public interface CourseRepository extends PagingAndSortingRepository<Course, Long> {
-    void deleteAllByIdIn(List<Long> ids);
     List<Course> findAllByIdIn(List<Long> ids);
 }

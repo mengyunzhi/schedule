@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -35,10 +36,14 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public void deleteAllById(List<Long> ids) {
-        List<Course> courses = courseRepository.findAllByIdIn(ids);
+    public void deleteById(List<Long> ids) {
         //批量删除
-        courseRepository.deleteAllByIdIn(ids);
+        for (Long id: ids) {
+           Course deleteCourse = courseRepository.findOne(id);
+            if (!ObjectUtils.isEmpty(deleteCourse)) {
+                courseRepository.delete(id);
+            }
+        }
     }
 
     @Override

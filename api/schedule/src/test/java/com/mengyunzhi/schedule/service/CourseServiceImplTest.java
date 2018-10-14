@@ -4,7 +4,6 @@ import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +20,7 @@ public class CourseServiceImplTest extends ServiceTest {
     CourseRepository courseRepository; // 课程
 
     @Test
-    public void save() throws Exception {
+    public void saveTest() throws Exception {
         logger.info("new一个对象");
         Course course = new Course();
 
@@ -36,7 +35,7 @@ public class CourseServiceImplTest extends ServiceTest {
     }
 
     @Test
-    public void getAll() throws Exception {
+    public void getAllTest() throws Exception {
         logger.info("new一个对象");
         Course course = new Course();
 
@@ -48,7 +47,7 @@ public class CourseServiceImplTest extends ServiceTest {
     }
 
     @Test
-    public void deleteAllById() {
+    public void deleteByIdTest() {
         //新建三个course实体
         Course [] courses = {new Course(), new Course(), new Course()};
 
@@ -66,20 +65,18 @@ public class CourseServiceImplTest extends ServiceTest {
         //将id数组封装成List接口类
         List<Long> ids = new ArrayList<Long>(Arrays.asList(idArray));
 
-        System.out.print(ids);
-
         //批量删除
-        courseRepository.deleteAllByIdIn(ids);
+        courseService.deleteById(ids);
 
         //断言删除成功
-        assertThat(courseRepository.findAllByIdIn(ids)).isNull();
+        assertThat(courseRepository.findAllByIdIn(ids)).isEmpty();
     }
 
     @Test
-    public void getById() {
+    public void getByIdTest() {
     }
 
     @Test
-    public void updateByIdAndCourse() {
+    public void updateByIdAndCourseTest() {
     }
 }

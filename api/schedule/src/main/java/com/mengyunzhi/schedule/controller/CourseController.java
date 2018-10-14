@@ -58,6 +58,6 @@ public class CourseController {
     @DeleteMapping("/deleteAllById")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@RequestParam("ids") List<Long> ids) {
-        courseService.deleteAllById(ids);
+        courseService.deleteById(ids);
     }
 }
