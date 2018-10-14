@@ -4,6 +4,7 @@ import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,14 +54,10 @@ public class CourseController {
 
     }
 
-//    // 删除课程
-//    @DeleteMapping("")
-//    @ResponseStatus(HttpStatus.NO_CONTENT)
-//    public void delete(@PathVariable Long id) {
-//        courseService.delete(id);
-//    }
-//    @PostMapping("/deleteAll")
-//    public void deleteAllById(@RequestBody List<Long> ids) {
-//        courseService.deleteAllById(ids);
-//    }
+    // 批量删除课程
+    @DeleteMapping("/deleteAllById")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@RequestParam("ids") List<Long> ids) {
+        courseService.deleteById(ids);
+    }
 }
