@@ -5,16 +5,18 @@
  * @name scheduleApp.controller:StudentAddCtrl
  * @description
  * # StudentAddCtrl
- * Controller of the scheduleApp
+ * 学生管理  增加
  */
 angular.module('scheduleApp')
-    .controller('StudentAddCtrl', function($scope, $http) {
+    .controller('StudentAddCtrl', function($scope, $http, $state) {
         var self = this;
+        //初始化
         self.init = function() {
             $scope.data = {
                 name: '',
                 phoneNumber: '',
-                contributionCoefficient: ''
+                github: '',
+                contributionCoefficient: 1
             };
         };
 
@@ -22,9 +24,9 @@ angular.module('scheduleApp')
             var url = '/student/';
             $http.post(url, $scope.data)
                 .then(function success() {
-                	console.log('增加成功');
+                    $state.transitionTo('student', {}, { reload: true });
                 }, function error() {
-                	console.log('增加失败');
+                    console.log('增加失败');
                 });
         };
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 /**
  * @author chenjie
@@ -14,45 +15,51 @@ import org.springframework.stereotype.Service;
 @Service
 public class CourseServiceImpl implements CourseService {
     @Autowired
-    CourseRepository courseRespository;  //课程
+    CourseRepository courseRepository;  //课程
 
     @Override
     public Course save(Course course) {
-        return courseRespository.save(course);
+        return courseRepository.save(course);
     }
 
     @Override
     public Iterable<Course> getAll() {
-        return courseRespository.findAll();
+        return courseRepository.findAll();
 
     }
 
     @Override
     public Page<Course> page(Pageable pageable) {
-        return courseRespository.findAll(pageable);
+        return courseRepository.findAll(pageable);
     }
 
     @Override
-    public void deleteAllById() {
-        //courseRepository.deleteAllByIdIn(ids);
+    public void deleteById(List<Long> ids) {
+        //批量删除
+        for (Long id: ids) {
+           Course deleteCourse = courseRepository.findOne(id);
+            if (!ObjectUtils.isEmpty(deleteCourse)) {
+                courseRepository.delete(id);
+            }
+        }
     }
 
     @Override
     public Course getById(Long id) {
-        return courseRespository.findOne(id);
+        return courseRepository.findOne(id);
     }
 
     @Override
     public void updateByIdAndCourse(long id, Course newCourse) {
         // 根据传入的ID获取要更新的实体
-        Course oldCourse = courseRespository.findOne(id);
+        Course oldCourse = courseRepository.findOne(id);
 
         //更新实体的内容
         if (oldCourse != null) {
             oldCourse.setName(newCourse.getName());
 
             // 持久化更新的实体
-            courseRespository.save(oldCourse);
+            courseRepository.save(oldCourse);
         }
     }
 

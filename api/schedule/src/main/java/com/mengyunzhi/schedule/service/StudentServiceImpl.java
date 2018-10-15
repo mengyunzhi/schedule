@@ -33,4 +33,33 @@ public class StudentServiceImpl implements  StudentService{
     public Set<Student> findByCoursesIn(List<Course> courses) {
         return studentRepository.findByCourseListIn(courses);
     }
+
+    @Override
+    public Student getById(Long id) {
+        return studentRepository.findOne(id);
+    }
+
+    //更新
+    @Override
+    public Student update(Long id, Student student) {
+        Student oldStudent = studentRepository.findOne(id);
+        if (oldStudent != null) {
+            oldStudent.setName(student.getName());
+            oldStudent.setPhoneNumber(student.getPhoneNumber());
+            oldStudent.setGithub(student.getGithub());
+            oldStudent.setContributionCoefficient(student.getContributionCoefficient());
+        }
+        return studentRepository.save(oldStudent);
+    }
+
+    //改变当前学生状态
+    @Override
+    public Student changeState(Long id) {
+        Student oldStudent = studentRepository.findOne(id);
+
+        if (oldStudent != null) {
+            oldStudent.setState(!oldStudent.isState());
+        }
+        return studentRepository.save(oldStudent);
+    }
 }

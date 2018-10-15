@@ -43,6 +43,13 @@ angular
           data: { title: '增加', show: false }
         },
         {
+          name: 'student.edit',
+          url: '/edit/:id',
+          templateUrl: 'views/Student/edit.html',
+          controller: 'StudentEditCtrl',
+          data: { title: '编辑', show: false }
+        },
+        {
           name: 'course',
           url: '/course',
           templateUrl: 'views/Course/index.html',
