@@ -27,11 +27,12 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public Iterable<Student> getAll(){
+    public Iterable<Student> getAll() {
         Iterable<Student> students = studentService.getAll();
         return students;
     }
 
+    //增加
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Student save(@RequestBody Student student) {
@@ -43,6 +44,25 @@ public class StudentController {
     public Set<Student> getStudentByCoursesIn(@RequestBody List<Course> courses) {
         return studentService.findByCoursesIn(courses);
     }
+
+
+    @GetMapping("/{id}")
+    public Student getById(@PathVariable Long id) {
+        return studentService.getById(id);
+    }
+
+    //编辑
+    @PutMapping("/{id}")
+    public Student update(@PathVariable Long id, @RequestBody Student student) {
+        return studentService.update(id, student);
+    }
+
+    //改变当前学生状态
+    @PutMapping("/state/{id}")
+    public Student changeState(@PathVariable Long id){
+        return studentService.changeState(id);
+    }
+
 
 }
 
