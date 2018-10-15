@@ -18,4 +18,15 @@ public interface StudentService {
      * @return          所有的学生
      */
     Set<Student> findByCoursesIn(List<Course> courses);
+
+    Student getById(Long id);
+
+    Student update(Long id, Student student);
+
+    /**
+     * 改变学生状态
+     * @param id 该学生
+     * @return 学生状态
+     */
+    Student changeState(Long id);
 }
