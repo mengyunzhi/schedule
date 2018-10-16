@@ -25,8 +25,12 @@
     <div class="header">
         <list-index></list-index>
     </div>
-    <div class="container">
-        <ui-view></ui-view>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <ui-view></ui-view>  
+            </div>
+        </div> 
     </div>
     <div class="footer">
         <div class="container">
