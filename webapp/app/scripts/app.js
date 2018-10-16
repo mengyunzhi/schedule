@@ -50,6 +50,13 @@ angular
           data: { title: '编辑', show: false }
         },
         {
+          name: 'student.select',
+          url: '/select/:id',
+          templateUrl: 'views/Student/selectCourse.html',
+          controller: 'StudentSelectcourseCtrl',
+          data: { title: '选课', show: false }
+        },
+        {
           name: 'course',
           url: '/course',
           templateUrl: 'views/Course/index.html',

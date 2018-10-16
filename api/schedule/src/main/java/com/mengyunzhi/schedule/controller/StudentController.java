@@ -63,6 +63,12 @@ public class StudentController {
         return studentService.changeState(id);
     }
 
+    //选课
+    @PutMapping("/select/{id}")
+    public void selectCourse(@PathVariable Long id, @RequestBody List<Course> courses) {
+        studentService.selectCourse(id, courses);
+    }
+
 
 }
 

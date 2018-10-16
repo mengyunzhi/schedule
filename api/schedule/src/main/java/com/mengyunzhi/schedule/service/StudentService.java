@@ -29,4 +29,7 @@ public interface StudentService {
      * @return 学生状态
      */
     Student changeState(Long id);
+
+
+    void selectCourse(Long id, List<Course> courses);
 }

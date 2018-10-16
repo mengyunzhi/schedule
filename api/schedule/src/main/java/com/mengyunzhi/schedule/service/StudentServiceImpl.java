@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class StudentServiceImpl implements  StudentService{
+public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentRepository studentRepository;
 
@@ -26,7 +26,8 @@ public class StudentServiceImpl implements  StudentService{
 
     /**
      * 返回有关课程的所有学生
-     * @param courses   有关课程
+     *
+     * @param courses 有关课程
      * @return
      */
     @Override
@@ -62,4 +63,13 @@ public class StudentServiceImpl implements  StudentService{
         }
         return studentRepository.save(oldStudent);
     }
+
+    @Override
+    public void selectCourse(Long id, List<Course> courses) {
+        Student student = studentRepository.findOne(id);
+        student.setCourseList(courses);
+        studentRepository.save(student);
+    }
+
+
 }

@@ -1,7 +1,11 @@
 package com.mengyunzhi.schedule.controller;
 
+import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Student;
+import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +13,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -21,6 +28,8 @@ public class StudentControllerTest extends ControllerTest {
 
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    CourseRepository courseRepository;
     @Autowired
     private MockMvc mockMvc;
 
@@ -94,7 +103,7 @@ public class StudentControllerTest extends ControllerTest {
 
     //学生状态方法测试
     @Test
-    public void changeStateTest() throws Exception{
+    public void changeStateTest() throws Exception {
         Student student = new Student();
         studentRepository.save(student);
 
@@ -110,6 +119,54 @@ public class StudentControllerTest extends ControllerTest {
         //断言为true
         Student newStudent = studentRepository.findOne(student.getId());
         assertThat(newStudent.isState()).isEqualTo(true);
+
+    }
+
+    @Test
+    public void selectCourseTest() throws Exception {
+
+        //新建一个数组链表
+        List<Course> courseList = new ArrayList<>();
+
+        //新建俩门课程，并持久化
+        Course math = new Course();
+        Course physics = new Course();
+        courseRepository.save(math);
+        courseRepository.save(physics);
+
+        //保存课程到数组链表
+        courseList.add(math);
+        courseList.add(physics);
+
+        //新建一个学生
+        Student student = new Student();
+
+        //为学生选择这俩门课程
+        student.setCourseList(courseList);
+
+        //保存到数据表
+        studentRepository.save(student);
+
+        //将Josn对象转换成Json数组
+        JSONArray jsonArray = JSONArray.fromObject(courseList);
+
+//        JSONObject jsonObject0 = JSONObject.fromObject(math);
+//        JSONObject jsonObject1 = JSONObject.fromObject(physics);
+//
+//        JSONArray jsonArray = new JSONArray();
+//        jsonArray.add(jsonObject0);
+//        jsonArray.add(jsonObject1);
+
+
+        String putUrl = url + "/select/" + student.getId().toString();
+
+        this.mockMvc
+                .perform(MockMvcRequestBuilders.put(putUrl)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .content(jsonArray.toString()))
+                .andDo(print())
+                .andExpect(status().isOk());
+
 
     }
 }

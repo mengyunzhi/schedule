@@ -33,7 +33,7 @@
             <td>
                 <a class="btn btn-sm btn-primary glyphicon glyphicon-pencil" href="#!/student/edit/{{_student.id}}">&nbsp;编辑</a>
 
-                <a class="btn btn-sm btn-success glyphicon glyphicon-list-alt" href="#!/student/view/{{_student.id}}">&nbsp;选课</a>
+                <a class="btn btn-sm btn-success glyphicon glyphicon-list-alt" href="#!/student/select/{{_student.id}}">&nbsp;选课</a>
 
                 <button type="button" ng-class="{true:'btn btn-sm btn-info glyphicon glyphicon glyphicon-ok-sign',false:'btn btn-sm btn-warning glyphicon glyphicon glyphicon-remove-sign'}[_student.state]" ng-click="changeState(_student)">&nbsp;{{_student.state | operateFilter}}</button>
 
