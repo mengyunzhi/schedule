@@ -1,11 +1,15 @@
 package com.mengyunzhi.schedule.service;
 
+import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Student;
+import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
+import net.sf.json.JSONArray;
 import org.junit.Test;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,6 +19,8 @@ public class StudentServiceImplTest extends ServiceTest {
     private final static Logger logger = Logger.getLogger(StudentRepository.class.getName());
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    CourseRepository courseRepository;
     @Autowired
     StudentService studentService;
 
@@ -58,7 +64,7 @@ public class StudentServiceImplTest extends ServiceTest {
         lisi.setGithub("lisi");
 
         //用李四的信息更新张三的信息
-        studentService.update(zhangsan.getId(),lisi);
+        studentService.update(zhangsan.getId(), lisi);
 
         //断言更新成功
         Student newStudent = studentRepository.findOne(zhangsan.getId());
@@ -78,5 +84,32 @@ public class StudentServiceImplTest extends ServiceTest {
         Student student = studentService.changeState(wangwu.getId());
         assertThat(student.isState()).isNotEqualTo(wangwu);
 
+    }
+
+    @Test
+    public void selectCourse() {
+        //新建一个数组链表
+        List<Course> courseList = new ArrayList<>();
+
+        //新建俩门课程，并持久化
+        Course math = new Course();
+        Course physics = new Course();
+        courseRepository.save(math);
+        courseRepository.save(physics);
+
+        //保存课程到数组链表
+        courseList.add(math);
+        courseList.add(physics);
+
+        //新建一个学生
+        Student zhangsan = new Student();
+        studentRepository.save(zhangsan);
+
+        //调用selectCourse方法进行选课
+        studentService.selectCourse(zhangsan.getId(), courseList);
+
+        //断言选课成功
+        Student newstudent = studentRepository.findOne(zhangsan.getId());
+        assertThat( newstudent.getCourseList()).isEqualTo(courseList);
     }
 }
