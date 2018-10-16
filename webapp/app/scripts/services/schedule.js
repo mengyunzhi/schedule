@@ -105,21 +105,43 @@ angular.module('scheduleApp')
          * @param {array} schedules 	行程集合
          */
         self.addScheduleMessage = function(schedules) {
-            $http.get('/student')
-                .then(function(response) {
-                    angular.forEach(schedules, function(schedule) {
+        		$http.get('/student')
+        		.then(function(response) {
+        			var allStudent = response.data;
+        			angular.forEach(schedules, function(schedule) {
                         $http.post('/student/getStudentByCourse', schedule.courseList)
                             .then(function(response) {
                                 var students = response.data;
                                 if (students) {
+                                	self.mergeStudent(students, allStudent);
                                     schedule.students = students;
                                 }
                             }, function() {
                                 console.log('false to get schedule students');
                             });
                     });
-                }, function() {
-                    console.log('false to get all student in schedule');
-                });
+        		}, function(response) {
+        			console.log(response);
+        		});                
+        };
+
+        /**
+         * 将所有学生和获取的学生合并 并设置状态
+         * @param  {arr} 	students   获取的学生
+         * @param  {arr} 	allStudent 所有学生           
+         */
+        self.mergeStudent = function(students, allStudent) {
+        	angular.forEach(allStudent, function(student){
+        		var i = 0;
+        		for (; i < students.length; i++) {
+        			if (students[i].id == student.id) {
+        				students[i].state = true;
+        				break;
+        			}
+        		}
+        		if (i == students.length) {
+        			students.push(Object.assign({state: false}, student));
+        		}
+        	});
         };
     });

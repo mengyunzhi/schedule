@@ -35,13 +35,16 @@ public class StudentRepositoryTest extends ScheduleApplicationTests {
         Student student = new Student();
         student.setCourseList(courses);
         Student student2 = new Student();
+        ArrayList<Course> courses1 = new ArrayList<>();
+        courses1.add(course);
+        student2.setCourseList(courses1);
         studentRepository.save(student);
         studentRepository.save(student2);
+        studentRepository.save(studentRepository.save(new Student()));
 
         Set<Student> students = studentRepository.findByCourseListIn(courses);
-        for (Student stu:
-             students) {
-            assertThat(student).isEqualTo(student);
-        }
+
+        assertThat(students.contains(student)).isTrue();
+        assertThat(students.contains(student2)).isTrue();
     }
 }
