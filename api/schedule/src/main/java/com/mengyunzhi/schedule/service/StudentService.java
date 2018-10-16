@@ -18,4 +18,9 @@ public interface StudentService {
      * @return          所有的学生
      */
     Set<Student> findByCoursesIn(List<Course> courses);
+
+    /**
+     * 判断名字是否存在与学生中
+     */
+    boolean studentNameIsExist(String name);
 }

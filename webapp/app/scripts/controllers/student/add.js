@@ -27,7 +27,8 @@ angular.module('scheduleApp')
                 	console.log('增加失败');
                 });
         };
-
         self.init();
+        $scope.uniqueUrl = '/student/nameExist';
+        $scope.uniqueName = 'name';
         $scope.submit = self.submit;
     });

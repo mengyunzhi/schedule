@@ -15,4 +15,11 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
      * @return          有关课程的所有学生
      */
     Set<Student> findByCourseListIn(List<Course> courses);
+
+    /**
+     * 通过名字找到学生
+     * @param name
+     * @return
+     */
+    List<Student> findByName(String name);
 }

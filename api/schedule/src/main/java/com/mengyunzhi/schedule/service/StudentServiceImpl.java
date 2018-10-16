@@ -33,4 +33,13 @@ public class StudentServiceImpl implements  StudentService{
     public Set<Student> findByCoursesIn(List<Course> courses) {
         return studentRepository.findByCourseListIn(courses);
     }
+
+    @Override
+    public boolean studentNameIsExist(String name) {
+        List<Student> students = studentRepository.findByName(name);
+        if (students.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
 }

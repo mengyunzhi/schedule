@@ -47,5 +47,19 @@ public class StudentController {
         return studentService.findByCoursesIn(courses);
     }
 
+    @GetMapping("/nameExist")
+    public boolean nameIsExist(@RequestParam String name) {
+        return studentService.studentNameIsExist(name);
+    }
+
+    @GetMapping("/init")
+    public void init() {
+        Student student = new Student();
+        student.setName("student");
+        Student student1 = new Student();
+        student1.setName("student1");
+        studentService.save(student);
+        studentService.save(student1);
+    }
 }
 
