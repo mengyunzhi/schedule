@@ -1,9 +1,6 @@
 package com.mengyunzhi.schedule.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author liyiheng
@@ -20,6 +17,19 @@ public class Contribution {
 
     //备注
     private String remarks;
+
+    private long time;
+
+    private String title;
+
+    private String pullRequest;
+
+    public Contribution() {
+    }
+
+    //多个贡献度对应一个学生
+    @ManyToOne
+    Student student;
 
     public Long getId() {
         return id;
@@ -69,13 +79,15 @@ public class Contribution {
         this.pullRequest = pullRequest;
     }
 
-    private long time;
-
-    private String title;
-
-    private String pullRequest;
-
-    public Contribution() {
+    public void setTime(long time) {
+        this.time = time;
     }
 
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 }

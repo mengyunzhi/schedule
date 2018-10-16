@@ -33,6 +33,7 @@ public class Student {
     private List<Course> courseList;
 
 
+
     @JsonView({View.Schedule.class, View.Student.class})
     private String name;
 

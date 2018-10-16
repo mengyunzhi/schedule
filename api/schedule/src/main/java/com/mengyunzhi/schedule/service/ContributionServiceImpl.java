@@ -2,11 +2,13 @@ package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Contribution;
 import com.mengyunzhi.schedule.entity.Student;
+import com.mengyunzhi.schedule.other.PayLoad;
 import com.mengyunzhi.schedule.repository.ContributionRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -41,65 +43,56 @@ public class ContributionServiceImpl implements ContributionService {
         return student.getContributionList();
     }
 
-//    @Override
-//    public int weekIncrease() {
-//
-//        int weekContribution = 0;
-//        Iterable<Student> students = studentRepository.findAll();
-//
-//        for (Student student :students) {
-//
-//            List<Contribution> contributionList = this.getDetailedInformation(student.getId());
-//            Calendar calendar = Calendar.getInstance();
-//
-//            //判断本周内的时间
-//            int min = calendar.getActualMinimum(Calendar.DAY_OF_WEEK); //获取周开始基准
-//            int current = calendar.get(Calendar.DAY_OF_WEEK); //获取当天周内天数
-//            calendar.add(Calendar.DAY_OF_WEEK, min-current); //当天-基准，获取周开始日期
-//            Date start = calendar.getTime();
-//            long longStart = start.getTime();
-//            calendar.add(Calendar.DAY_OF_WEEK, 6); //开始+6，获取周结束日期
-//            Date end = calendar.getTime();
-//            long longEnd = end.getTime();
-//
-//            //计算本周贡献度
-//            int[] week
-//            for (int i = contributionList.size() - 1; i > 0; i--) {
-//                Contribution contribution = contributionList.get(i);
-//                if (contribution.getTime() >= longStart && contribution.getTime() <= longEnd) {
-//                    weekContribution += contribution.getValue();
-//                } else {
-//                    break;
-//                }
-//            }
-//        }
-//        return weekContribution;
-//    }
-//
-//    @Override
-//    public int monthIncrease() {
-//        int monthContribution = 0;
-//
-//        //当前是几年，几月
-//        Date current = new Date();
-//        int currentMonth = current.getMonth();
-//        int currentYear = current.getYear();
-//
-//        //找出本年本月的contribution
-//        List<Contribution> contributionList = this.getDetailedInformation(id);
-//        for (int i = contributionList.size() - 1; i > 0; i--) {
-//            Contribution contribution = contributionList.get(i);
-//
-//            //该contribution的时间
-//            long contributionTime =contribution.getTime();//
-//            Date date = new Date(contributionTime);
-//            int month = date.getMonth();
-//            int year = date.getYear();
-//
-//            if (currentYear == year && currentMonth == month ) {
-//                monthContribution += contribution.getValue();
-//            }
-//        }
-//        return monthContribution;
-//    }
+    /**
+     * @return void
+     * @param: [payLoad]
+     * @author liyiheng
+     * @description github提交时自动计算贡献值
+     */
+    @Override
+    public void addContribution(PayLoad payLoad) {
+
+        //工作时间
+        float workHours;
+        Contribution contribution = new Contribution();
+        contribution.setTitle(payLoad.getPull_request().getTitle());
+
+        //取出标题中的数据
+        String title = payLoad.getPull_request().getTitle();
+
+        int spacePosition = title.indexOf(" ");   // 题目中空格的位置
+        int hPosition = title.indexOf('h');       // h的位置
+
+        workHours = Float.parseFloat(title.substring(spacePosition, hPosition));
+
+        //通过github找到学生
+        Student student = studentRepository
+                .findByGithub(payLoad.getPull_request()
+                        .getUser().getLogin());
+
+        //计算贡献度
+        float newContribution;
+        newContribution = student.getContributionValue() + student.getContributionCoefficient() * workHours;
+        student.setContributionValue(newContribution);
+
+        //构建pull request
+        String pullRequest = payLoad.getPull_request().getTitle()
+                 + "#" + payLoad.getNumber() + " "   //用空格分割名称和网站
+                + payLoad.getPull_request().getUrl();
+
+        contribution.setPullRequest(pullRequest);
+        //设置备注
+        contribution.setRemarks(payLoad.getBody());
+
+        //设置时间
+        Date pullRequestTime = payLoad.getPull_request().getCreated_at().getTime();
+        contribution.setTime(pullRequestTime.getTime());
+
+        //贡献属于那个学生
+        contribution.setStudent(student);
+
+        //保存数据
+        studentRepository.save(student);
+        contributionRepository.save(contribution);
+    }
 }

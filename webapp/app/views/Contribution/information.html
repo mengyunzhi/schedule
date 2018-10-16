@@ -1,6 +1,6 @@
 <ui-view>
     <div>
-        <h1 style="text-align: center">贡献值详细信息 - XXX</h1>
+        <h1 style="text-align: center">贡献值详细信息 - {{}}</h1>
     </div>
     <hr/>
     <table class="table table-hover table-bordered">
@@ -12,7 +12,7 @@
             <td>贡献值</td>
             <td>备注</td>
         </tr>
-        <tr align="center" ng-repeat="_contribution in contributionInformations | orderBy '-id'">
+        <tr align="center" ng-repeat="_contribution in contributionInformations |orderBy: '-id'">
             <td>{{$index + 1}}</td>
             <td>{{_contribution.time}}</td>
             <td>{{_contribution.title}}</td>

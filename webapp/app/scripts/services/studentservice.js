@@ -26,6 +26,8 @@ angular.module('scheduleApp')
                 });
 
         };
+        
+        
         return {
             getAllStudent: self.getAllStudent
         };

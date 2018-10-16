@@ -34,6 +34,7 @@ angular.module('scheduleApp')
     
                     //得到本周累增
                     weekIncrease($scope.allStudents);
+                    console.log($scope.allStudents);
                     
             });
             
