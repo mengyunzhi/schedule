@@ -34,11 +34,14 @@ angular.module('scheduleApp')
         //取得该对象贡献值获取的详细信息
         self.getDetailedInformation = function (callback, tid) {
             // 如果传入的有id，就使用传入的id，否则用路由的Id;
+            var urlId;
             if (tid) {
-                id = tid;
+                urlId = tid;
+            }else {
+                urlId = id;
             }
             
-            var url = '/Contribution/information/' + id;
+            var url = '/Contribution/information/' + urlId;
             $http.get(url)
                 .then(function success(response) {
                     //用回调函数绑定数据到$scope

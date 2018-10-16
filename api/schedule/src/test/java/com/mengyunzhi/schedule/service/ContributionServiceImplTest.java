@@ -2,10 +2,13 @@ package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Contribution;
 import com.mengyunzhi.schedule.entity.Student;
+import com.mengyunzhi.schedule.other.PayLoad;
 import com.mengyunzhi.schedule.repository.ContributionRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Calendar;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -45,4 +48,31 @@ public class ContributionServiceImplTest extends ServiceTest {
     }
 
 
+    @Test
+    public void addContribution() {
+        //创建一个PayLoad对象
+        PayLoad payLoad = PayLoad.create();
+        String github = "123";
+        //初始化数据
+        payLoad.getPull_request().getUser().setLogin(github);
+
+        payLoad.getPull_request().setTitle("12314141 2.5h");
+        Calendar calendar =Calendar.getInstance();
+//        Date date = calendar.getTime();
+        payLoad.getPull_request().setCreated_at(calendar);
+
+
+        //创建并保存学生对象
+        Student student = new Student();
+        student.setGithub(github);
+        student.setContributionCoefficient(1);
+        student.setContributionValue(123);
+        studentRepository.save(student);
+
+
+        //判断测试方法是否运行成功
+        contributionService.addContribution(payLoad);
+        assertThat(student.getContributionValue()).isEqualTo(125.5f);
+
+    }
 }

@@ -1,6 +1,7 @@
 package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Contribution;
+import com.mengyunzhi.schedule.other.PayLoad;
 
 import java.util.List;
 
@@ -26,4 +27,6 @@ public interface ContributionService {
      */
     List<Contribution> getDetailedInformation(Long id);
 
+    //pull request 时自动计算贡献度
+    void addContribution(PayLoad payLoad);
 }

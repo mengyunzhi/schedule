@@ -6,12 +6,11 @@ package com.mengyunzhi.schedule.config;
 public class View {
 
     //学期的返回格式
-    public interface Semester {};
+    public interface Semester {}
 
     //行程返回格式
-    public interface Schedule {};
+    public interface Schedule {}
 
     //学生返回格式
-    public interface Student {};
-
+    public interface Student {}
 }

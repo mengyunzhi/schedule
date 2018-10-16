@@ -13,7 +13,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -22,8 +21,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  */
 public class ContributionControllerTest extends ControllerTest {
     //初始化一些需要的数据
-//    private final static Logger logger = Logger.getLogger(ContributionControllerTest.class.getName());
-    static final String url = "/Contribution/";
+    //private final static Logger logger = Logger.getLogger(ContributionControllerTest.class.getName());
+    private static final String url = "/Contribution/";
 
     @Autowired
     ContributionRepository contributionRepository;
@@ -46,7 +45,7 @@ public class ContributionControllerTest extends ControllerTest {
         this.mockMvc
                 .perform(get(getUrl)
                         .header("content-type", MediaType.APPLICATION_JSON_UTF8))
-//                .andDo(print())
+                //.andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.value").value(11));
     }
@@ -72,7 +71,7 @@ public class ContributionControllerTest extends ControllerTest {
                 .perform(put(getUrl)
                         .content(jsonObject.toString())
                         .header("content-type", MediaType.APPLICATION_JSON_UTF8))
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(status().isOk());
 
     }
@@ -99,7 +98,7 @@ public class ContributionControllerTest extends ControllerTest {
         this.mockMvc
                 .perform(get(getUrl)
                         .header("content-type", MediaType.APPLICATION_JSON_UTF8))
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(status().isOk());
     }
 
