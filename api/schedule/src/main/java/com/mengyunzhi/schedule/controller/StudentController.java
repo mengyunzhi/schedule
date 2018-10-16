@@ -7,11 +7,9 @@ import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import com.mengyunzhi.schedule.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Set;
 
@@ -31,10 +29,12 @@ public class StudentController {
     @GetMapping
     @JsonView(View.Student.class)
     public Iterable<Student> getAll(){
+
         Iterable<Student> students = studentService.getAll();
         return students;
     }
 
+    //增加
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Student save(@RequestBody Student student) {
@@ -52,14 +52,22 @@ public class StudentController {
         return studentService.studentNameIsExist(name);
     }
 
-    @GetMapping("/init")
-    public void init() {
-        Student student = new Student();
-        student.setName("student");
-        Student student1 = new Student();
-        student1.setName("student1");
-        studentService.save(student);
-        studentService.save(student1);
+    @GetMapping("/{id}")
+    public Student getById(@PathVariable Long id) {
+        return studentService.getById(id);
     }
+
+    //编辑
+    @PutMapping("/{id}")
+    public Student update(@PathVariable Long id, @RequestBody Student student) {
+        return studentService.update(id, student);
+    }
+
+    //改变当前学生状态
+    @PutMapping("/state/{id}")
+    public Student changeState(@PathVariable Long id){
+        return studentService.changeState(id);
+    }
+
 }
 

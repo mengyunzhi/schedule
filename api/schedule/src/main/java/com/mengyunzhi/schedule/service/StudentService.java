@@ -19,8 +19,21 @@ public interface StudentService {
      */
     Set<Student> findByCoursesIn(List<Course> courses);
 
+
     /**
      * 判断名字是否存在与学生中
      */
     boolean studentNameIsExist(String name);
+
+    Student getById(Long id);
+
+    Student update(Long id, Student student);
+
+    /**
+     * 改变学生状态
+     * @param id 该学生
+     * @return 学生状态
+     */
+    Student changeState(Long id);
+
 }

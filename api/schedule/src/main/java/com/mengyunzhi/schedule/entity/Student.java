@@ -40,6 +40,9 @@ public class Student {
 
     private String github;
 
+    //学生状态显示 默认为false
+    private boolean state;
+
     public Long getId() {
         return id;
     }
@@ -86,6 +89,14 @@ public class Student {
 
     public void setGithub(String github) {
         this.github = github;
+    }
+
+    public boolean isState() {
+        return state;
+    }
+
+    public void setState(boolean state) {
+        this.state = state;
     }
 
     public List<Contribution> getContributionList() {
