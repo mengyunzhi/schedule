@@ -27,7 +27,8 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public Iterable<Student> getAll() {
+    @JsonView(View.Student.class)
+    public Iterable<Student> getAll(){
         Iterable<Student> students = studentService.getAll();
         return students;
     }
