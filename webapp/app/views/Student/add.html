@@ -1,41 +1,52 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <form class="form-horizontal" ng-submit="submit()">
+            <form class="form-horizontal" ng-submit="submit()" name="studentAddForm">
                 <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">学生姓名:</label>
-                    <div class="col-md-9">
-                        <input type="text" ng-model="data.name" class="form-control" id="name" placeholder="name...">
+                    <label for="name" class="col-md-3 control-label">*学生姓名 :</label>
+                    <div class="col-md-9" style="height:54px; ">
+                        <input type="text" ng-model="data.name" class="form-control" placeholder="name..." unique name="studentName" url="uniqueUrl" unique-name="uniqueName" required />
+                        <p class="text-danger Message" ng-show="studentAddForm.studentName.$touched && studentAddForm.studentName.$error.unique">名字已存在</p>
+                        <p class="text-danger Message" ng-show="studentAddForm.studentName.$touched && studentAddForm.studentName.$error.required">请输入姓名</p>
+                        <span ng-show="studentAddForm.studentName.$valid" class="Message glyphicon glyphicon-ok" ></span>
                     </div>
                 </div>
-
-                <div class="form-group">
+                <div class="form-group" style="height:54px; ">
+                    <label for="github" class="col-md-3 control-label">*github :</label>
+                    <div class="col-md-9">
+                        <input type="text" ng-model="data.github" class="form-control" name="github" placeholder="github..." required />
+                        <span ng-show="studentAddForm.github.$valid" class="Message glyphicon glyphicon-ok"></span>
+                        <p class="text-danger Message" ng-show="studentAddForm.github.$touched && studentAddForm.github.$error.required">请输入github名</p>
+                    </div>
+                </div>
+                <div class="form-group" style="height:54px; ">
                     <label for="phone" class="col-md-3 control-label">电话:</label>
                     <div class="col-md-9">
-                        <input type="text" ng-model="data.phoneNumber" class="form-control" id="phoneNumber" placeholder="phoneNumber...">
+                        <input type="text" ng-model="data.phoneNumber" class="form-control" placeholder="phoneNumber..." ng-minlength="10" name="phoneNumber">
+                        <p class="text-danger Message" ng-show="studentAddForm.phoneNumber.$touched && studentAddForm.phoneNumber.$error.minlength">请填写正确的电话号码</p>
+                        <span ng-show="studentAddForm.phoneNumber.$valid && studentAddForm.phoneNumber.$viewValue" class="Message glyphicon glyphicon-ok" ></span>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="github" class="col-md-3 control-label">github:</label>
-                    <div class="col-md-9">
-                        <input type="text" ng-model="data.github" class="form-control" id="github" placeholder="github...">
-                    </div>
-                </div>
-
-                <div class="form-group">
+                <div class="form-group" style="height:54px; ">
                     <label for="contributionCoefficient" class="col-md-3 control-label">贡献值系数:</label>
                     <div class="col-md-9">
-                         <input type="number" ng-model="data.contributionCoefficient" class="form-control" id="contributionCoefficient" placeholder="贡献值系数">
+                        <input type="number" ng-model="data.contributionCoefficient" class="form-control" id="contributionCoefficient" placeholder="贡献值系数">
                     </div>
                 </div>
-                
-                <div class="form-group">
+                <div class="form-group" style="height:54px; ">
                     <div class="col-md-12 col-md-push-10">
-                        <button type="submit" class="btn btn-default">保存</button>
+                        <button type="submit" class="btn btn-default" ng-disabled="studentAddForm.$invalid">保存</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<style type="text/css">
+.Message {
+    position: relative;
+    top: -26px;
+    left: 346px;
+}
+
+</style>

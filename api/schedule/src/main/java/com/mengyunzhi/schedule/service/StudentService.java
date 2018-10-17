@@ -19,6 +19,12 @@ public interface StudentService {
      */
     Set<Student> findByCoursesIn(List<Course> courses);
 
+
+    /**
+     * 判断名字是否存在与学生中
+     */
+    boolean studentNameIsExist(String name);
+
     Student getById(Long id);
 
     Student update(Long id, Student student);
@@ -30,6 +36,6 @@ public interface StudentService {
      */
     Student changeState(Long id);
 
-
     void selectCourse(Long id, List<Course> courses);
+
 }

@@ -22,5 +22,20 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
      */
     List<Schedule> findBySemester(Semester semester);
 
+    /**
+     * 通过学期和周次获取行程并通过星期排序
+     * @param semester
+     * @param weekOrder
+     * @return
+     */
     List<Schedule> findBySemesterAndWeekOrderOrderByWeekAscNodeAsc(Semester semester, int weekOrder);
+
+    /**
+     * 通过学期和周次和星期获取行程 并按照节次排序
+     * @param semester
+     * @param weekOrder
+     * @param week
+     * @return
+     */
+    List<Schedule> findBySemesterAndWeekOrderAndWeekOrderByNodeAsc(Semester semester, int weekOrder, int week);
 }

@@ -36,6 +36,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public boolean studentNameIsExist(String name) {
+        List<Student> students = studentRepository.findByName(name);
+        if (students.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
     public Student getById(Long id) {
         return studentRepository.findOne(id);
     }

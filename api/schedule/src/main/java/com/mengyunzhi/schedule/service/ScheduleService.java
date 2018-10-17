@@ -1,6 +1,8 @@
 package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Schedule;
+import org.springframework.http.ResponseEntity;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,4 +28,9 @@ public interface ScheduleService {
      * @return
      */
     List<Schedule> getBySemesterAndWeekOrder(Long semesterId, int weekOrder);
+
+    /**
+     * 向钉钉发送课表信息
+     */
+    ResponseEntity<String> sendToDD();
 }
