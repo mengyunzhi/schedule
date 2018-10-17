@@ -33,6 +33,15 @@ public class StudentServiceImplTest extends ServiceTest {
     }
 
     @Test
+    public void studentNameIsExist() {
+        Student student1 = new Student();
+        student1.setName("studentTest");
+        studentRepository.save(student1);
+
+        boolean result = studentService.studentNameIsExist("studentTest");
+        assertThat(result).isTrue();
+        assertThat(studentService.studentNameIsExist("test")).isFalse();
+    }
     public void getAll() {
         logger.info("新建一个对象");
         Student student = new Student();
@@ -83,7 +92,6 @@ public class StudentServiceImplTest extends ServiceTest {
 
         Student student = studentService.changeState(wangwu.getId());
         assertThat(student.isState()).isNotEqualTo(wangwu);
-
     }
 
     @Test

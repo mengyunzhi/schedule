@@ -139,7 +139,7 @@ public class SemesterServiceImplTest extends ServiceTest{
         Semester testSemester = new Semester();
         Date date = new Date();
         Long nowTime = date.getTime();
-        Long endTime = nowTime + 222;
+        Long endTime = nowTime + Long.parseLong("339398828749");
         testSemester.setStatus(true);
         testSemester.setStartTime(Long.toString(nowTime));
         testSemester.setEndTime(Long.toString(endTime));
