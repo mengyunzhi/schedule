@@ -30,7 +30,7 @@ angular.module('scheduleApp')
                 });
         };
         self.init();
-        $scope.uniqueUrl = '/student/nameExist';
-        $scope.uniqueName = 'name';
+        $scope.githubUniqueUrl = '/student/githubExist';
+        $scope.githubUniqueName = 'github';
         $scope.submit = self.submit;
     });

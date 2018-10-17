@@ -51,6 +51,9 @@ public class StudentController {
         return studentService.studentNameIsExist(name);
     }
 
+    @GetMapping("/githubExist")
+    public boolean githubIsExist(@RequestParam String github) { return studentService.githubIsExist(github); }
+
     @GetMapping("/{id}")
     public Student getById(@PathVariable Long id) {
         return studentService.getById(id);
@@ -67,7 +70,7 @@ public class StudentController {
     public Student changeState(@PathVariable Long id){
         return studentService.changeState(id);
     }
-    
+
     //选课
     @PutMapping("/select/{id}")
     public void selectCourse(@PathVariable Long id, @RequestBody List<Course> courses) {

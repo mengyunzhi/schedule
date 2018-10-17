@@ -25,6 +25,13 @@ public interface StudentService {
      */
     boolean studentNameIsExist(String name);
 
+    /**
+     * 判断github名字是否存在学生之中
+     * @param github
+     * @return
+     */
+    boolean githubIsExist(String github);
+
     Student getById(Long id);
 
     Student update(Long id, Student student);

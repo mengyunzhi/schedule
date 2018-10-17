@@ -44,6 +44,15 @@ public class StudentServiceImpl implements StudentService {
         return true;
     }
 
+    @Override
+    public boolean githubIsExist(String github) {
+        Student student = studentRepository.findByGithub(github);
+        if (student != null) {
+            return true;
+        }
+        return false;
+    }
+
     public Student getById(Long id) {
         return studentRepository.findOne(id);
     }

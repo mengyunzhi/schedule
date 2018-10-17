@@ -5,8 +5,7 @@
                 <div class="form-group">
                     <label for="name" class="col-md-3 control-label">*学生姓名 :</label>
                     <div class="col-md-9" style="height:54px; ">
-                        <input type="text" ng-model="data.name" class="form-control" placeholder="name..." unique name="studentName" url="uniqueUrl" unique-name="uniqueName" required />
-                        <p class="text-danger Message" ng-show="studentAddForm.studentName.$touched && studentAddForm.studentName.$error.unique">名字已存在</p>
+                        <input type="text" ng-model="data.name" class="form-control" placeholder="name..."  name="studentName" required />
                         <p class="text-danger Message" ng-show="studentAddForm.studentName.$touched && studentAddForm.studentName.$error.required">请输入姓名</p>
                         <span ng-show="studentAddForm.studentName.$valid" class="Message glyphicon glyphicon-ok" ></span>
                     </div>
@@ -14,8 +13,9 @@
                 <div class="form-group" style="height:54px; ">
                     <label for="github" class="col-md-3 control-label">*github :</label>
                     <div class="col-md-9">
-                        <input type="text" ng-model="data.github" class="form-control" name="github" placeholder="github..." required />
+                        <input type="text" ng-model="data.github" class="form-control" name="github" placeholder="github..." unique url="githubUniqueUrl" unique-name="githubUniqueName" required />
                         <span ng-show="studentAddForm.github.$valid" class="Message glyphicon glyphicon-ok"></span>
+                        <p class="text-danger Message" ng-show="studentAddForm.github.$touched && studentAddForm.github.$error.unique">github名字已存在</p>
                         <p class="text-danger Message" ng-show="studentAddForm.github.$touched && studentAddForm.github.$error.required">请输入github名</p>
                     </div>
                 </div>
