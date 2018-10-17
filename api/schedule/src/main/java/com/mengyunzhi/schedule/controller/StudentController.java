@@ -46,6 +46,13 @@ public class StudentController {
         return studentService.findByCoursesIn(courses);
     }
 
+    @GetMapping("/nameExist")
+    public boolean nameIsExist(@RequestParam String name) {
+        return studentService.studentNameIsExist(name);
+    }
+
+    @GetMapping("/githubExist")
+    public boolean githubIsExist(@RequestParam String github) { return studentService.githubIsExist(github); }
 
     @GetMapping("/{id}")
     public Student getById(@PathVariable Long id) {
@@ -69,7 +76,6 @@ public class StudentController {
     public void selectCourse(@PathVariable Long id, @RequestBody List<Course> courses) {
         studentService.selectCourse(id, courses);
     }
-
 
 }
 

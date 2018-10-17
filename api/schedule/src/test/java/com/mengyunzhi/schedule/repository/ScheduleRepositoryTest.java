@@ -46,4 +46,28 @@ public class ScheduleRepositoryTest extends ScheduleApplicationTests {
             }
         }
     }
+
+    @Test
+    public void findBySemesterAndWeekOrderAndWeekOrderByNodeAsc() {
+        Semester semester = new Semester();
+        semester.setName("test1");
+        semester.setStartTime("1514739661000");
+        semester.setEndTime("1514739671000");
+        semesterService.add(semester);
+        Long id = semester.getId();
+
+        int weekOrder = 1;
+        int week = 2;
+        List<Schedule> schedules = scheduleRepository.findBySemesterAndWeekOrderAndWeekOrderByNodeAsc(semester, weekOrder, week);
+
+        int i = 0;
+        for (Schedule schedule :
+                schedules) {
+            i++;
+            assertThat(schedule.getWeek()).isEqualTo(2);
+            assertThat(schedule.getWeekOrder()).isEqualTo(1);
+            assertThat(schedule.getSemester()).isEqualTo(semester);
+            assertThat(schedule.getNode()).isEqualTo(i);
+        }
+    }
 }
