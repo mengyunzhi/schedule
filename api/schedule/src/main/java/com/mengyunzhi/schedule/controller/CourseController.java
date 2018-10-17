@@ -1,8 +1,12 @@
 package com.mengyunzhi.schedule.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mengyunzhi.schedule.JsonPage;
 import com.mengyunzhi.schedule.entity.Course;
+import com.mengyunzhi.schedule.jsonView.CourseJsonView;
 import com.mengyunzhi.schedule.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,10 +38,12 @@ public class CourseController {
     }
 
     // page?page=0&size=1
+    @JsonView(CourseJsonView.class)
     @GetMapping("/page")
     public Iterable<Course> page(@RequestParam int page, @RequestParam int size) {
         PageRequest pageRequest = new PageRequest(page, size);
-        return courseService.page(pageRequest);
+        Page<Course> coursePage = courseService.page(pageRequest);
+        return new JsonPage(coursePage.getContent(), pageRequest, coursePage.getSize());
     }
 
     // 获取单个课程

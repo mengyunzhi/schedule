@@ -150,23 +150,13 @@ public class StudentControllerTest extends ControllerTest {
         //将Josn对象转换成Json数组
         JSONArray jsonArray = JSONArray.fromObject(courseList);
 
-//        JSONObject jsonObject0 = JSONObject.fromObject(math);
-//        JSONObject jsonObject1 = JSONObject.fromObject(physics);
-//
-//        JSONArray jsonArray = new JSONArray();
-//        jsonArray.add(jsonObject0);
-//        jsonArray.add(jsonObject1);
-
-
         String putUrl = url + "/select/" + student.getId().toString();
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders.put(putUrl)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(jsonArray.toString()))
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(status().isOk());
-
-
     }
 }
