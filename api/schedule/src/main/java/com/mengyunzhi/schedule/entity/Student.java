@@ -22,6 +22,7 @@ public class Student {
     private float contributionValue;
 
     //贡献值系数
+    @JsonView(View.Student.class)
     private float contributionCoefficient;
 
     //一个学生多条贡献值
@@ -30,18 +31,20 @@ public class Student {
 
     //一个学生多门课
     @ManyToMany
+    @JsonView(View.Student.class)
     private List<Course> courseList;
-
-
 
     @JsonView({View.Schedule.class, View.Student.class})
     private String name;
 
+    @JsonView(View.Student.class)
     private String phoneNumber;
 
+    @JsonView(View.Student.class)
     private String github;
 
     //学生状态显示 默认为false
+    @JsonView(View.Student.class)
     private boolean state;
 
     public Long getId() {

@@ -1,5 +1,6 @@
 <div class="row">
     <div class="col-md-8">
+        <pre>{{data | json}}</pre>
         <form class="form-inline">
             <input class="form-control" type="text" name="CourseName" placeholder="课程名..." value="">
             <button type="submit" class="btn btn-default">
@@ -9,18 +10,18 @@
         </form>
     </div>
     <div class="col-md-4 text-right">
-        <button type="submit" class="btn btn-default">保存</button>
+        <button class="btn btn-default" ng-click="selectCourse()">保存</button>
     </div>
 </div>
 <br />
-<table class="table table-hover table-bordered" ng-submit="submit()">
+<table class="table table-hover table-bordered">
     <tr align="center" class="info">
-        <td><input type="checkbox" ng-model="allStatus" ng-click="selectAll(!allStatus)">全选{{allStatus}}</td>
+        <td><input type="checkbox" ng-model="" ng-click="selectAll(!allStatus)">全选</td>
         <td>序号</td>
         <td>课程名</td>
     </tr>
-    <tr align="center" ng-repeat="(key,_course) in data.content | orderBy: '-id'">
-        <td><input type="checkbox" ng-checked="allStatus" ng-true-value="{{_course.id}}" ng-false-value="{{null}}" ng-model="array[key]" /></td>
+    <tr align="center" ng-repeat="(key, _course) in data.content | orderBy: '-id'">
+        <td><input type="checkbox" ng-checked="_course._checked" ng-true-value="{{_course}}" ng-false-value="{{null}}" ng-model="_course._checked"/></td>
         <td>{{$index + 1}}</td>
         <td>{{_course.name}}</td>
     </tr>

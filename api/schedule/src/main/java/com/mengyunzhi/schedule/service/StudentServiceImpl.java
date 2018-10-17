@@ -81,6 +81,7 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(oldStudent);
     }
 
+    //选课
     @Override
     public void selectCourse(Long id, List<Course> courses) {
         Student student = studentRepository.findOne(id);

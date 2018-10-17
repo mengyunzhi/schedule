@@ -43,6 +43,7 @@ public interface StudentService {
      */
     Student changeState(Long id);
 
+    //选课
     void selectCourse(Long id, List<Course> courses);
 
 }
