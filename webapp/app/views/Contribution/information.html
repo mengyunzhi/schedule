@@ -14,7 +14,7 @@
         </tr>
         <tr align="center" ng-repeat="_contribution in contributionInformations |orderBy: '-id'">
             <td>{{$index + 1}}</td>
-            <td>{{_contribution.time}}</td>
+            <td>{{_contribution.time | timeFormat}}</td>
             <td>{{_contribution.title}}</td>
             <td ng-bind-html="_contribution.pullRequest | pullRequestFormat"></td>
             <td>{{_contribution.value}}</td>

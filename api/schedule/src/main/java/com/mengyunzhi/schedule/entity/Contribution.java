@@ -1,5 +1,8 @@
 package com.mengyunzhi.schedule.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mengyunzhi.schedule.config.View;
+
 import javax.persistence.*;
 
 /**
@@ -12,16 +15,20 @@ public class Contribution {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
+    @JsonView(View.Contribution.class)
     private float value;
 
     //备注
+    @JsonView(View.Contribution.class)
     private String remarks;
 
+    @JsonView(View.Contribution.class)
     private long time;
 
+    @JsonView(View.Contribution.class)
     private String title;
 
+    @JsonView(View.Contribution.class)
     private String pullRequest;
 
     public Contribution() {
@@ -29,7 +36,7 @@ public class Contribution {
 
     //多个贡献度对应一个学生
     @ManyToOne
-    Student student;
+    private Student student;
 
     public Long getId() {
         return id;

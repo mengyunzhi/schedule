@@ -39,6 +39,7 @@ angular.module('scheduleApp')
                 .then(function success(response) {
                     //用回调函数绑定数据到$scope
                     if (callback) {
+                        console.log(response.data);
                         callback(response);
                     }
                     console.log('success');

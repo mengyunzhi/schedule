@@ -9,7 +9,7 @@
  * Filter in the scheduleApp.
  */
 angular.module('scheduleApp')
-    .filter('pullRequestFormat', function ($scope) {
+    .filter('pullRequestFormat', function () {
         return function (input) {
             /**
              *
@@ -18,12 +18,11 @@ angular.module('scheduleApp')
              * @description:
              * 将收到的pullRequest转化为指定格式
              */
-            var test  = 'qweqw#123 www.coojf.com';
-            var titleAndOther = test.split('#');                 // pull request 对应的仓库
+            var titleAndOther = input.split('#');                 // pull request 对应的仓库
             var title = titleAndOther[0];
             var numberAndUrl = titleAndOther[1].split(' ');       // pull request 对应的编号和网址
             var number = numberAndUrl[0];
             var url = numberAndUrl[1];
-            return title + '<a href="' + url + '>#' + number + '</a>';
+            return title + '<a href="' + url + '">#' + number + '</a>';
         };
     });

@@ -13,4 +13,7 @@ public class View {
 
     //学生返回格式
     public interface Student {}
+
+    //贡献值返回格式
+    public interface Contribution{}
 }
