@@ -92,7 +92,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public ResponseEntity<String> sendToDD() {
         //学生信息
-        List<String> strings = new ArrayList<String>();
+        List<String> strings = new ArrayList<>();
 
         //获取今日行程(5个)
         Semester semester = semesterService.currentSemester();
@@ -112,14 +112,14 @@ public class ScheduleServiceImpl implements ScheduleService {
         ArrayList<HashSet<Student>> sets = new ArrayList<HashSet<Student>>();
         for (Schedule schedule :
                 schedules) {
-            HashSet<Student> hashSet = new HashSet<Student>();
+            HashSet<Student> hashSet = new HashSet<>();
             List<Course> courses = schedule.getCourseList();
             hashSet = (HashSet<Student>) studentService.findByCoursesIn(schedule.getCourseList());
             sets.add(hashSet);
         }
 
         //获得所有的学生
-        String tableHead = "                " + "第一节  " + "第二节  " + "第三节  " + "第四节  " + "第五节 " + "\n";
+        String tableHead = "                " + "  第一节    " + "第二节    " + "第三节    " + "第四节     " + "第五节   " + "\n";
         strings.add(tableHead);
         Iterable<Student> students = studentService.getAll();
         for (Student student :
@@ -128,9 +128,9 @@ public class ScheduleServiceImpl implements ScheduleService {
             for (HashSet<Student> set :
                     sets) {
                 if (set.contains(student)) {
-                    message += "有课      ";
+                    message += "  有课      ";
                 } else {
-                    message += "无课      ";
+                    message += "  无课      ";
                 }
             }
             message += "\n";
