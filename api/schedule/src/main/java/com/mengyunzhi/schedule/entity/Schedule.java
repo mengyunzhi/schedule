@@ -28,7 +28,7 @@ public class Schedule {
 
     @ManyToMany
     @JsonView({View.Schedule.class})
-    private List<Course> courseList;
+    private List<Course> courseList = new ArrayList<Course>();
 
     //星期
     @JsonView({View.Schedule.class, View.Semester.class})

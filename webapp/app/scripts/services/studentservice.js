@@ -26,9 +26,49 @@ angular.module('scheduleApp')
                 });
 
         };
-        
-        
+
+        //全选（选课）
+        self.checkAll = function(status, data) {
+            var idArray = [];
+            if (status === true) {
+                var j = 0;
+                for (var i = data.size - 1; i >= 0; i--, j++) {
+                    idArray[j] = data.content[i];
+                }
+            } else {
+                idArray.splice(0, idArray.length);
+            }
+            return idArray;
+        };
+
+        self.getStudentByCourse = function(id, callback) {
+            var url = '/student/' + id;
+            $http.get(url)
+                .then(function success(response) {
+                    if (callback) { callback(response.data); }
+                }, function error(response) {
+                    console.log('请求失败 ' + url, response);
+                });
+
+        };
+
+        //保存选择的课程
+        self.selectCourse = function(id, idArray, callback) {
+            var url = '/student/select/' + id;
+            $http.put(url, idArray)
+                .then(function success() {
+                    if (callback) {
+                        callback();
+                    }
+                }, function error() {
+                    console.log('error');
+                });
+        };
+
         return {
-            getAllStudent: self.getAllStudent
+            getAllStudent: self.getAllStudent,
+            selectCourse: self.selectCourse,
+            checkAll: self.checkAll,
+            getStudentByCourse: self.getStudentByCourse
         };
     });

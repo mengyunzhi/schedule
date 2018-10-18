@@ -36,6 +36,23 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public boolean studentNameIsExist(String name) {
+        List<Student> students = studentRepository.findByName(name);
+        if (students.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean githubIsExist(String github) {
+        Student student = studentRepository.findByGithub(github);
+        if (student != null) {
+            return true;
+        }
+        return false;
+    }
+
     public Student getById(Long id) {
         return studentRepository.findOne(id);
     }
@@ -64,6 +81,7 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.save(oldStudent);
     }
 
+    //选课
     @Override
     public void selectCourse(Long id, List<Course> courses) {
         Student student = studentRepository.findOne(id);

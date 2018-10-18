@@ -29,7 +29,8 @@ angular.module('scheduleApp')
                     console.log('增加失败');
                 });
         };
-
         self.init();
+        $scope.githubUniqueUrl = '/student/githubExist';
+        $scope.githubUniqueName = 'github';
         $scope.submit = self.submit;
     });
