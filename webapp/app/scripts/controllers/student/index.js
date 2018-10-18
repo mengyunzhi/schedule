@@ -19,6 +19,7 @@ angular.module('scheduleApp')
         self.reload = function(students) {
             studentService.getAllStudent(function(students) {
                 $scope.students = students;
+                console.log(students);
             });
         };
 

@@ -13,6 +13,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -98,7 +99,7 @@ public class ContributionControllerTest extends ControllerTest {
         this.mockMvc
                 .perform(get(getUrl)
                         .header("content-type", MediaType.APPLICATION_JSON_UTF8))
-                //.andDo(print())
+                .andDo(print())
                 .andExpect(status().isOk());
     }
 

@@ -1,5 +1,7 @@
 package com.mengyunzhi.schedule.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.Contribution;
 import com.mengyunzhi.schedule.other.PayLoad;
 import com.mengyunzhi.schedule.service.ContributionService;
@@ -49,6 +51,7 @@ public class ContributionController {
      * @description 得到贡献值的详细来源
      */
     @GetMapping("/information/{id}")
+    @JsonView(View.Contribution.class)
     public List<Contribution> getDetailedInformation(@PathVariable Long id) {
         return contributionService.getDetailedInformation(id);
     }

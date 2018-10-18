@@ -6,20 +6,17 @@
  * @description
  * # ContributionInformationCtrl
  * Controller of the scheduleApp
+ * 得到某个学生的贡献值的详细信息
  */
 angular.module('scheduleApp')
-  .controller('ContributionInformationCtrl', function ($scope, $http, contribution) {
+  .controller('ContributionInformationCtrl', function ($scope, $http, contribution, $stateParams) {
       var self = this;
+      var id = $stateParams.id;   //从路由获取到的id
+      
       self.init = function () {
-
-          //通过getById得到学生
-          
-          contribution.getDetailedInformation(function (data) {
-              //莫名其妙的错误，以后研究
+          contribution.getDetailedInformation(function (data){
               $scope.contributionInformations = data.data;
-
-              console.log($scope.contributionInformations);
-          });
+          }, id);
       };
       
       self.init();

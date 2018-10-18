@@ -27,13 +27,13 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    @JsonView(View.Student.class)
     public Iterable<Student> getAll(){
         Iterable<Student> students = studentService.getAll();
         return students;
     }
 
     //增加
+    @JsonView(View.Student.class)
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Student save(@RequestBody Student student) {

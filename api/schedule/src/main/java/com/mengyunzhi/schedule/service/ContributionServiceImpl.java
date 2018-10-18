@@ -33,9 +33,14 @@ public class ContributionServiceImpl implements ContributionService {
     public void modifyContribution(Contribution contribution, Long id) {
         Student student = studentRepository.findOne(id);
         student.setContributionValue(student.getContributionValue() + contribution.getValue());
-        studentRepository.save(student);
         contributionRepository.save(contribution);
+        List<Contribution> contributionList = student.getContributionList();
+        contributionList.add(contribution);
+        student.setContributionList(contributionList);
+        studentRepository.save(student);
     }
+
+
 
     @Override
     public List<Contribution> getDetailedInformation(Long id) {
