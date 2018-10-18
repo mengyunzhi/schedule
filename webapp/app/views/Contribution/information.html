@@ -16,7 +16,7 @@
             <td>{{$index + 1}}</td>
             <td>{{_contribution.time}}</td>
             <td>{{_contribution.title}}</td>
-            <td>{{_contribution.pullRequest}}</td>
+            <td ng-bind-html="_contribution.pullRequest | pullRequestFormat"></td>
             <td>{{_contribution.value}}</td>
             <td>{{_contribution.remarks}}</td>
         </tr>
