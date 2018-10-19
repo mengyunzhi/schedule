@@ -27,20 +27,7 @@ angular.module('scheduleApp')
 
         };
 
-        //全选（选课）
-        self.checkAll = function(status, data) {
-            var idArray = [];
-            if (status === true) {
-                var j = 0;
-                for (var i = data.size - 1; i >= 0; i--, j++) {
-                    idArray[j] = data.content[i];
-                }
-            } else {
-                idArray.splice(0, idArray.length);
-            }
-            return idArray;
-        };
-
+        //获取当前学生的课程
         self.getStudentByCourse = function(id, callback) {
             var url = '/student/' + id;
             $http.get(url)
@@ -65,10 +52,22 @@ angular.module('scheduleApp')
                 });
         };
 
+        //删除
+        self.delete = function(object, callback) {
+            var url = '/student/' + object.id;
+            $http.delete(url)
+                .then(function succsess(response) {
+                    if (callback) { callback(response.data); }
+                }, function error() {
+                    console.log('删除失败');
+                });
+        };
+
         return {
             getAllStudent: self.getAllStudent,
             selectCourse: self.selectCourse,
             checkAll: self.checkAll,
+            delete: self.delete,
             getStudentByCourse: self.getStudentByCourse
         };
     });
