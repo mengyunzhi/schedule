@@ -33,6 +33,25 @@ angular.module('scheduleApp')
                 });
         };
 
+        self.removeStudent = function(id) {
+            $scope.student = $scope.student.filter(function(_student) {
+                if (_student.id === id) {
+                    return false;
+                } else {
+                    return true;
+                }
+            });
+        };
+
+        //删除
+        self.delete = function(object) {
+            studentService.delete(object, function(){
+                self.removeStudent(object.id);
+                console.log(23132132)
+            });
+        };
+    
         self.init()
+        $scope.delete = self.delete;
         $scope.changeState = self.changeState;
     });

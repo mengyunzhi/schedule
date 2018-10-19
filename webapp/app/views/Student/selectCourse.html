@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-8">
-        <pre>{{data | json}}</pre>
+        <pre>{{ data.content | json }}</pre>
         <form class="form-inline">
             <input class="form-control" type="text" name="CourseName" placeholder="课程名..." value="">
             <button type="submit" class="btn btn-default">
@@ -16,15 +16,16 @@
 <br />
 <table class="table table-hover table-bordered">
     <tr align="center" class="info">
-        <td><input type="checkbox" ng-model="" ng-click="selectAll(!allStatus)">全选</td>
+        <td><input type="checkbox" ng-click="select()"></td>
         <td>序号</td>
         <td>课程名</td>
     </tr>
-    <tr align="center" ng-repeat="(key, _course) in data.content | orderBy: '-id'">
-        <td><input type="checkbox" ng-checked="_course._checked" ng-true-value="{{_course}}" ng-false-value="{{null}}" ng-model="_course._checked"/></td>
+    <tr align="center" ng-repeat="_course in data.content | orderBy: '-id'">
+        <td>
+            <input type="checkbox" ng-checked="_course._checked" ng-model="_course._checked" />
+        </td>
         <td>{{$index + 1}}</td>
         <td>{{_course.name}}</td>
     </tr>
 </table>
-<pre>{{array | json}}</pre>
 <yunzhi-page data-total-pages="data.totalPages" data-number="data.number" data-reload="reloadByPage"></yunzhi-page>

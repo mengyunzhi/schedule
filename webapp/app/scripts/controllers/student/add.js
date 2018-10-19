@@ -16,7 +16,8 @@ angular.module('scheduleApp')
                 name: '',
                 phoneNumber: '',
                 github: '',
-                contributionCoefficient: 1
+                contributionCoefficient: 1,
+                state:'true'
             };
         };
 
