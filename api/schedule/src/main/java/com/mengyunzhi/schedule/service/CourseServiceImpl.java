@@ -31,19 +31,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Page<Course> page(Pageable pageable) {
-        return courseRepository.findAll(pageable);
+    public void deleteAll(List<Course> courseList) {
+        courseRepository.delete(courseList);
     }
 
     @Override
-    public void deleteById(List<Long> ids) {
-        //批量删除
-        for (Long id: ids) {
-           Course deleteCourse = courseRepository.findOne(id);
-            if (!ObjectUtils.isEmpty(deleteCourse)) {
-                courseRepository.delete(id);
-            }
-        }
+    public Page<Course> page(Pageable pageable) {
+        return courseRepository.findAll(pageable);
     }
 
     @Override

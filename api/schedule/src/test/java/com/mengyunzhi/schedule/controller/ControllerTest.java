@@ -1,7 +1,9 @@
 package com.mengyunzhi.schedule.controller;
 
 import com.mengyunzhi.schedule.ScheduleApplicationTests;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.test.web.servlet.MockMvc;
 
 import javax.transaction.Transactional;
 
@@ -14,5 +16,6 @@ import javax.transaction.Transactional;
 @Transactional
 @AutoConfigureMockMvc
 public class ControllerTest extends ScheduleApplicationTests {
-
+    @Autowired
+    MockMvc mockMvc;
 }

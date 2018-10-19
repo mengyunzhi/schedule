@@ -46,31 +46,25 @@ public class CourseServiceImplTest extends ServiceTest {
         assertThat(courseList.size()).isNotZero();
     }
 
-    @Test
-    public void deleteByIdTest() {
-        //新建三个course实体
-        Course [] courses = {new Course(), new Course(), new Course()};
+   @Test
+   public void deleteAllTest() throws Exception {
+        logger.info("添加创建多个课程");
+        Course course1 = new Course();
+        Course course2 = new Course();
+        courseService.save(course1);
+        courseService.save(course2);
 
-        //批量保存
-        for (int i = 0;i < 3;i++) {
-            courseRepository.save(courses[i]);
-        }
+        logger.info("获取所有的课程，断言课程不为空");
+        List<Course> courseList = (List<Course>) courseRepository.findAll();
+        assertThat(courseList.size()).isEqualTo(2);
 
-        //将id存到数组中
-        Long [] idArray = new Long[3];
-        for (int i = 0;i < 3;i++) {
-            idArray[i] = courses[i].getId();
-        }
+        logger.info("批量删除");
+        courseService.deleteAll(courseList);
 
-        //将id数组封装成List接口类
-        List<Long> ids = new ArrayList<Long>(Arrays.asList(idArray));
-
-        //批量删除
-        courseService.deleteById(ids);
-
-        //断言删除成功
-        assertThat(courseRepository.findAllByIdIn(ids)).isEmpty();
-    }
+        logger.info("获取所有课程，断言课程为空");
+        courseList = (List<Course>) courseRepository.findAll();
+        assertThat(courseList.size()).isZero();
+   }
 
     @Test
     public void getByIdTest() {
