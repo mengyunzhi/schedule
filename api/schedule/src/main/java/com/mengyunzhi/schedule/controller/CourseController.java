@@ -60,9 +60,9 @@ public class CourseController {
     }
 
     // 批量删除课程
-    @DeleteMapping("/deleteAllById")
+    @DeleteMapping("/deleteAll")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@RequestParam("ids") List<Long> ids) {
-        courseService.deleteById(ids);
+    public void deleteAll(@RequestBody List<Course> courseList) {
+        courseService.deleteAll(courseList);
     }
 }
