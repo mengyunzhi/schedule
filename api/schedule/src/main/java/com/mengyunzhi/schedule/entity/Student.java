@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class Student {
     private Long id;
 
     //贡献值
+    @JsonView(View.Student.class)
     private float contributionValue;
 
     //贡献值系数
@@ -27,7 +29,8 @@ public class Student {
 
     //一个学生多条贡献值
     @OneToMany
-    private List<Contribution> contributionList;
+    @JsonView({View.Contribution.class, View.Student.class})
+    private List<Contribution> contributionList = new ArrayList<>();
 
     //一个学生多门课
     @ManyToMany

@@ -135,12 +135,12 @@ angular.module('scheduleApp')
         		var i = 0;
         		for (; i < students.length; i++) {
         			if (students[i].id == student.id) {
-        				students[i].state = true;
+        				students[i]._state = true;
         				break;
         			}
         		}
         		if (i == students.length) {
-        			students.push(Object.assign({state: false}, student));
+        			students.push(Object.assign({_state: false}, student));
         		}
         	});
         };
