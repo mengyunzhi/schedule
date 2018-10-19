@@ -16,10 +16,14 @@ public interface CourseService {
 
     Iterable<Course> getAll();
 
-    void deleteById(List<Long> ids);
+    /**
+     * 课程批量删除
+     * @param courseList
+     * @author poshichao
+     */
+    void deleteAll(List<Course> courseList);
 
     Page<Course> page(Pageable pageable);
-
 
     Course getById(Long id);
 
