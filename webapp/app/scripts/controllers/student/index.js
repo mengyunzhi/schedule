@@ -8,7 +8,7 @@
  * 学生管理 界面
  */
 angular.module('scheduleApp')
-    .controller('StudentIndexCtrl', function($scope, $http, studentService) {
+    .controller('StudentIndexCtrl', function($scope, $http, $state, studentService) {
         var self = this;
         self.init = function() {
 
@@ -19,7 +19,6 @@ angular.module('scheduleApp')
         self.reload = function(students) {
             studentService.getAllStudent(function(students) {
                 $scope.students = students;
-                console.log(students);
             });
         };
 
@@ -35,7 +34,7 @@ angular.module('scheduleApp')
         };
 
         self.removeStudent = function(id) {
-            $scope.student = $scope.student.filter(function(_student) {
+            $scope.studens = $scope.students.filter(function(_student) {
                 if (_student.id === id) {
                     return false;
                 } else {
@@ -46,12 +45,13 @@ angular.module('scheduleApp')
 
         //删除
         self.delete = function(object) {
-            studentService.delete(object, function(){
+            studentService.delete(object, function() {
                 self.removeStudent(object.id);
-                console.log(23132132)
+                $state.reload();
+
             });
         };
-    
+
         self.init()
         $scope.delete = self.delete;
         $scope.changeState = self.changeState;

@@ -13,9 +13,10 @@ angular.module('scheduleApp')
 
         // 初始化
         self.init = function() {
-            self.selectAllOrNot = true;
+            $scope.selectAllOrNot = false;
             $scope.params = { page: 0, size: 3 };
             self.load();
+            $scope.$watch('data.content', self.watchCourses, true);
         };
 
         // 加载数据
@@ -71,29 +72,25 @@ angular.module('scheduleApp')
             });
         };
 
-        //判断当前是否全选
+        // 全选
         self.select = function() {
-            if (self.selectAllOrNot) {
-                self.selectAll();
-            } else {
-                self.removeAll();
+            $scope.selectAllOrNot = !$scope.selectAllOrNot;
+            angular.forEach($scope.data.content, function(course) {
+                course._checked = $scope.selectAllOrNot;
+            });
+        };
+
+        //监听全部课程 _cheched 变化
+        self.watchCourses = function(newValue) {
+            if (newValue) {
+                var count = 0;
+                angular.forEach(newValue, function(value) {
+                    if (value._checked) {
+                        count++;
+                    }
+                });
+                $scope.selectAllOrNot = count === newValue.length;
             }
-            self.selectAllOrNot = !self.selectAllOrNot;
-        };
-
-        //全选
-        self.selectAll = function() {
-            angular.forEach($scope.data.content, function(_course) {
-                _course._checked = true;
-            });
-
-        };
-
-        //全不选
-        self.removeAll = function() {
-            angular.forEach($scope.data.content, function(_course) {
-                _course._checked = false;
-            });
         };
 
         $scope.select = self.select;
