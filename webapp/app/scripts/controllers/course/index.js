@@ -14,6 +14,7 @@ angular.module('scheduleApp')
 
         // 初始化
         self.init = function() {
+            self.selectAllOrNot = true;
             $scope.params = { page: 0, size: 3 };
             self.load();
         };
@@ -22,7 +23,12 @@ angular.module('scheduleApp')
         self.load = self.reload = function() {
             courseService.page($scope.params, function(data) {
                 $scope.data = data;
+                // 将所有课程状态初始化为false
+                angular.forEach($scope.data.content, function(_list) {
+                    _list._checked = false;
+                });
             });
+
         };
 
         // 分页时重新加载数据
@@ -36,26 +42,55 @@ angular.module('scheduleApp')
             $scope.params.size = size;
             self.load();
         };
-                       
-        self.selectAll = function(allStatus) {
-            $scope.array = courseService.dataIds(allStatus, $scope.data);
+
+        //判断当前是否全选
+        self.select = function() {
+            if (self.selectAllOrNot) {
+                self.selectAll();
+            } else {
+                self.removeAll();
+            }
+            self.selectAllOrNot = !self.selectAllOrNot;
+        };
+
+        //全选
+        self.selectAll = function() {
+            angular.forEach($scope.data.content, function(_list) {
+                _list._checked = true;
+            });
+
+        };
+
+        //全不选
+        self.removeAll = function() {
+            angular.forEach($scope.data.content, function(_list) {
+                _list._checked = false;
+            });
         };
 
         // 批量删除
         self.deleteMultiple = function() {
-            courseService.deleteMultiple($scope.array, function() {
+            var deleteList = $scope.data.content.filter(function(_list) {
+                return _list._checked;
+            });
+
+            angular.forEach(deleteList, function(deleteIems, key) {
+                delete deleteIems._checked;
+            });
+            courseService.deleteMultiple(deleteList, function() {
                 self.reload();
-                $scope.array.splice(0,$scope.array.length);  
+                $scope.deleteList.splice(0, $scope.deleteList.length);
             })
         };
-        
+
         self.init();
         $scope.allStatus = false;
         $scope.selectAll = self.selectAll;
-        $scope.array = [];
+        $scope.select = self.select;
+        $scope.deleteList = [];
         $scope.reloadByPage = self.reloadByPage;
         $scope.reloadBySize = self.reloadBySize;
         $scope.deleteMultiple = self.deleteMultiple;
-        
+
 
     });

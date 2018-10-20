@@ -102,13 +102,15 @@ angular.module('scheduleApp')
 
         /**
          * 批量删除
-         * param      {array} <idArray> { 要删除的对象的id数组 }
+         * param      {array} <deleteList> { 要删除的对象数组 }
          * @param     callback
          * @author    chenjie
          */
-        self.deleteMultiple = function(idArray, callback) {
-            var url = '/Course/deleteAllById';
-            $http.delete(url, { params: { ids: idArray } })
+        self.deleteMultiple = function(deleteList, callback) {
+            var url = '/Course/deleteAll';
+            console.log(deleteList);
+
+            $http.delete(url, {data: deleteList, headers: {'Content-type': 'application/json;charset=utf-8'}})
                 .then(function success() {
                     if (callback) { callback(); }
                     console.log("deleteSuccesss");
