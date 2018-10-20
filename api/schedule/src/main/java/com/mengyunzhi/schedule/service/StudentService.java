@@ -46,4 +46,6 @@ public interface StudentService {
     //选课
     void selectCourse(Long id, List<Course> courses);
 
+    //删除
+    void delete(Long id);
 }

@@ -77,5 +77,12 @@ public class StudentController {
         studentService.selectCourse(id, courses);
     }
 
+    //删除
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        studentService.delete(id);
+    }
+
 }
 
