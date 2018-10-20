@@ -18,6 +18,13 @@ angular.module('scheduleApp')
              * @description:
              * 将收到的pullRequest转化为指定格式
              */
+            
+            //当贡献值来自主动修改时，无pull request
+            if (input === '无')
+            {
+                return input;
+            }
+            
             var titleAndOther = input.split('#');                 // pull request 对应的仓库
             var title = titleAndOther[0];
             var numberAndUrl = titleAndOther[1].split(' ');       // pull request 对应的编号和网址
