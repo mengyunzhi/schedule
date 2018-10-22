@@ -67,7 +67,6 @@ angular.module('scheduleApp')
             var array = $scope.data.content.filter(function(_course) {
                 return _course._checked;
             });
-            console.log(array)
             studentService.selectCourse(id, array, function() {
                 $state.transitionTo('student', {}, { reload: true });
             });

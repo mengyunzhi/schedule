@@ -11,7 +11,8 @@ angular.module('scheduleApp')
     .controller('StudentIndexCtrl', function($scope, $http, $state, studentService) {
         var self = this;
         self.init = function() {
-
+            $scope.query = {};
+            $scope.query.name = '';
             self.reload();
         };
 
@@ -52,7 +53,19 @@ angular.module('scheduleApp')
             });
         };
 
+        // 按学生姓名查询 
+        self.findByName = function() {
+            if ($scope.query.name === '') {
+                self.reload();
+            } else {
+                studentService.findByName($scope.query.name, function(students) {
+                    $scope.students = students;
+                });
+            }
+        };
+
         self.init()
         $scope.delete = self.delete;
         $scope.changeState = self.changeState;
+        $scope.findByName = self.findByName;
     });

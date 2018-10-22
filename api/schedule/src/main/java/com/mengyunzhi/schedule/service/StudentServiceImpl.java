@@ -97,5 +97,11 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.delete(id);
     }
 
+    //按学生姓名查询
+    @Override
+    public List<Student> getByName(String name) {
+        return studentRepository.findByName(name);
+    }
+
 
 }

@@ -137,4 +137,20 @@ public class StudentServiceImplTest extends ServiceTest {
         Student newStudent = studentRepository.findOne(student.getId());
         assertThat(newStudent).isNull();
     }
+
+    // 按学生姓名查询 测试
+    @Test
+    public void getByName() {
+        // 新建一个学生
+        Student zhangsan = new Student();
+        zhangsan.setName("张三");
+        studentRepository.save(zhangsan);
+
+        // 调用getByName方法查找学生名称
+        studentService.getByName(zhangsan.getName());
+
+        // 断言成功
+        Student newStudent = studentRepository.findOne(zhangsan.getId());
+        assertThat(newStudent.getName()).isEqualTo(zhangsan.getName());
+    }
 }

@@ -3,6 +3,7 @@ package com.mengyunzhi.schedule.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.Course;
+import com.mengyunzhi.schedule.entity.Semester;
 import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import com.mengyunzhi.schedule.service.StudentService;
@@ -27,7 +28,7 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
-    public Iterable<Student> getAll(){
+    public Iterable<Student> getAll() {
         Iterable<Student> students = studentService.getAll();
         return students;
     }
@@ -52,7 +53,9 @@ public class StudentController {
     }
 
     @GetMapping("/githubExist")
-    public boolean githubIsExist(@RequestParam String github) { return studentService.githubIsExist(github); }
+    public boolean githubIsExist(@RequestParam String github) {
+        return studentService.githubIsExist(github);
+    }
 
     @GetMapping("/{id}")
     public Student getById(@PathVariable Long id) {
@@ -67,7 +70,7 @@ public class StudentController {
 
     //改变当前学生状态
     @PutMapping("/state/{id}")
-    public Student changeState(@PathVariable Long id){
+    public Student changeState(@PathVariable Long id) {
         return studentService.changeState(id);
     }
 
@@ -80,9 +83,15 @@ public class StudentController {
     //删除
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         studentService.delete(id);
     }
 
+    //按学生姓名查询
+    @GetMapping("/name/{name}")
+    @JsonView(View.Student.class)
+    public List<Student> getByName(@PathVariable String name) {
+        return studentService.getByName(name);
+    }
 }
 

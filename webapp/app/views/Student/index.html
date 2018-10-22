@@ -1,11 +1,12 @@
 <ui-view>
     <div class="row">
         <div class="col-md-6">
-            <form class="form-inline">
-                <div class="form-group">
-                    <input name="name" type="text" class="form-control" placeholder="姓名..." value="">
-                </div>
-                <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+            <form class="form-inline" ng-submit="findByName()">
+                <input name="studentName" type="text" class="form-control" placeholder="姓名..." ng-model="query.name">
+                <button type="submit" class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                    &nbsp;查询
+                </button>
             </form>
         </div>
         <div class="col-md-6 text-right">
@@ -32,11 +33,8 @@
             </td>
             <td>
                 <a class="btn btn-sm btn-primary glyphicon glyphicon-pencil" href="#!/student/edit/{{_student.id}}">&nbsp;编辑</a>
-
                 <a class="btn btn-sm btn-success glyphicon glyphicon-list-alt" href="#!/student/select/{{_student.id}}">&nbsp;选课</a>
-
                 <button type="button" ng-class="{true:'btn btn-sm btn-info glyphicon glyphicon glyphicon-ok-sign',false:'btn btn-sm btn-warning glyphicon glyphicon glyphicon-remove-sign'}[_student.state]" ng-click="changeState(_student)">&nbsp;{{_student.state | operateFilter}}</button>
-
                 <button class="btn btn-danger btn-sm glyphicon glyphicon-trash" ng-click="delete(_student)">&nbsp;删除</button>
             </td>
         </tr>

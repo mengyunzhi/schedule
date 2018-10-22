@@ -176,4 +176,22 @@ public class StudentControllerTest extends ControllerTest {
         Student newStudent = studentRepository.findOne(student.getId());
         assertThat(newStudent).isNull();
     }
+
+    // 按学生姓名查询   测试
+    @Test
+    public void getByNameTest() throws Exception {
+        // 新建一个学生
+        Student zhangsan = new Student();
+        zhangsan.setName("张三");
+        studentRepository.save(zhangsan);
+
+        String getUrl = url + "/name/" + zhangsan.getName();
+
+        // 断言成功
+        this.mockMvc
+                .perform(MockMvcRequestBuilders.get(getUrl)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }

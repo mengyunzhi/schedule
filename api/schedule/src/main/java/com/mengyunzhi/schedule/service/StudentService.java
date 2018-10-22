@@ -14,11 +14,11 @@ public interface StudentService {
 
     /**
      * 返回有关课程的所有学生
-     * @param courses   有关课程
-     * @return          所有的学生
+     *
+     * @param courses 有关课程
+     * @return 所有的学生
      */
     Set<Student> findByCoursesIn(List<Course> courses);
-
 
     /**
      * 判断名字是否存在与学生中
@@ -27,6 +27,7 @@ public interface StudentService {
 
     /**
      * 判断github名字是否存在学生之中
+     *
      * @param github
      * @return
      */
@@ -38,6 +39,7 @@ public interface StudentService {
 
     /**
      * 改变学生状态
+     *
      * @param id 该学生
      * @return 学生状态
      */
@@ -48,4 +50,7 @@ public interface StudentService {
 
     //删除
     void delete(Long id);
+
+    //按学生姓名查询
+    List<Student> getByName(String name);
 }
