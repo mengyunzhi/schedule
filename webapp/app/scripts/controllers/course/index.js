@@ -9,7 +9,7 @@
  * @author     chenjie
  */
 angular.module('scheduleApp')
-    .controller('CourseIndexCtrl', function($http, $scope, courseService) {
+    .controller('CourseIndexCtrl', function($http, $scope, courseService, semester, $filter) {
         var self = this;
 
         // 初始化
@@ -26,6 +26,12 @@ angular.module('scheduleApp')
                 // 将所有课程状态初始化为false
                 angular.forEach($scope.data.content, function(_list) {
                     _list._checked = false;
+                });
+
+                // 获取当前学期
+                semester.getAll(function(data) {
+                    var currentSemester = $filter('filter')(data, true, status);
+                    $scope.currentSemester = currentSemester[0];    
                 });
             });
 
@@ -79,15 +85,12 @@ angular.module('scheduleApp')
             });
             courseService.deleteMultiple(deleteList, function() {
                 self.reload();
-                $scope.deleteList.splice(0, $scope.deleteList.length);
             })
         };
 
         self.init();
-        $scope.allStatus = false;
         $scope.selectAll = self.selectAll;
         $scope.select = self.select;
-        $scope.deleteList = [];
         $scope.reloadByPage = self.reloadByPage;
         $scope.reloadBySize = self.reloadBySize;
         $scope.deleteMultiple = self.deleteMultiple;
