@@ -99,8 +99,8 @@ public class StudentServiceImpl implements StudentService {
 
     //按学生姓名查询
     @Override
-    public List<Student> getByName(String name) {
-        return studentRepository.findByName(name);
+    public List<Student> findByNameLike(String name) {
+        return studentRepository.findByNameLike("%" + name + "%");
     }
 
 

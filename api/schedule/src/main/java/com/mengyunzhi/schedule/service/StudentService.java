@@ -52,5 +52,5 @@ public interface StudentService {
     void delete(Long id);
 
     //按学生姓名查询
-    List<Student> getByName(String name);
+    List<Student> findByNameLike(String name);
 }

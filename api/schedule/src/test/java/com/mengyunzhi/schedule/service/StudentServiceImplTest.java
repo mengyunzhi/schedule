@@ -147,7 +147,7 @@ public class StudentServiceImplTest extends ServiceTest {
         studentRepository.save(zhangsan);
 
         // 调用getByName方法查找学生名称
-        studentService.getByName(zhangsan.getName());
+        studentService.findByNameLike(zhangsan.getName());
 
         // 断言成功
         Student newStudent = studentRepository.findOne(zhangsan.getId());

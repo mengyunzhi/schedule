@@ -90,8 +90,8 @@ public class StudentController {
     //按学生姓名查询
     @GetMapping("/name/{name}")
     @JsonView(View.Student.class)
-    public List<Student> getByName(@PathVariable String name) {
-        return studentService.getByName(name);
+    public List<Student> findByNameLike(@PathVariable String name) {
+        return studentService.findByNameLike("%" + name + "%");
     }
 }
 
