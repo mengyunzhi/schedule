@@ -91,5 +91,11 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.save(student);
     }
 
+    //删除
+    @Override
+    public void delete(Long id) {
+        studentRepository.delete(id);
+    }
+
 
 }

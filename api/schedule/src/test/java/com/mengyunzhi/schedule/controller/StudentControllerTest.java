@@ -122,6 +122,7 @@ public class StudentControllerTest extends ControllerTest {
 
     }
 
+    //选课 测试
     @Test
     public void selectCourseTest() throws Exception {
 
@@ -147,7 +148,7 @@ public class StudentControllerTest extends ControllerTest {
         //保存到数据表
         studentRepository.save(student);
 
-        //将Josn对象转换成Json数组
+        //将Json对象转换成Json数组
         JSONArray jsonArray = JSONArray.fromObject(courseList);
 
         String putUrl = url + "/select/" + student.getId().toString();
@@ -158,5 +159,21 @@ public class StudentControllerTest extends ControllerTest {
                         .content(jsonArray.toString()))
                 //.andDo(print())
                 .andExpect(status().isOk());
+    }
+
+    //删除 测试
+    @Test
+    public void deleteTest() throws Exception {
+        Student student = new Student();
+        studentRepository.save(student);
+        String deleteUrl = url + student.getId().toString();
+        this.mockMvc
+                .perform(MockMvcRequestBuilders.delete(deleteUrl)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andDo(print())
+                .andExpect(status().is(HttpStatus.NO_CONTENT.value()));
+        //断言删除成功
+        Student newStudent = studentRepository.findOne(student.getId());
+        assertThat(newStudent).isNull();
     }
 }

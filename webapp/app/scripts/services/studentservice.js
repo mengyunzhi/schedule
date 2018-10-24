@@ -63,6 +63,8 @@ angular.module('scheduleApp')
                 });
         };
 
+        
+        
         return {
             getAllStudent: self.getAllStudent,
             selectCourse: self.selectCourse,

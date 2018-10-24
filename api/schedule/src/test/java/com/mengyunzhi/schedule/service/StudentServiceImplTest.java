@@ -42,6 +42,7 @@ public class StudentServiceImplTest extends ServiceTest {
         assertThat(result).isTrue();
         assertThat(studentService.studentNameIsExist("test")).isFalse();
     }
+
     public void getAll() {
         logger.info("新建一个对象");
         Student student = new Student();
@@ -94,6 +95,7 @@ public class StudentServiceImplTest extends ServiceTest {
         assertThat(student.isState()).isNotEqualTo(wangwu);
     }
 
+    //选课   测试
     @Test
     public void selectCourse() {
         //新建一个数组链表
@@ -117,7 +119,22 @@ public class StudentServiceImplTest extends ServiceTest {
         studentService.selectCourse(zhangsan.getId(), courseList);
 
         //断言选课成功
-        Student newstudent = studentRepository.findOne(zhangsan.getId());
-        assertThat( newstudent.getCourseList()).isEqualTo(courseList);
+        Student newStudent = studentRepository.findOne(zhangsan.getId());
+        assertThat(newStudent.getCourseList()).isEqualTo(courseList);
+    }
+
+    // 删除 测试
+    @Test
+    public void delete() {
+        // 新建一个学生
+        Student student = new Student();
+        studentRepository.save(student);
+
+        // 调用delete方法删除
+        studentService.delete(student.getId());
+
+        // 断言删除成功
+        Student newStudent = studentRepository.findOne(student.getId());
+        assertThat(newStudent).isNull();
     }
 }
