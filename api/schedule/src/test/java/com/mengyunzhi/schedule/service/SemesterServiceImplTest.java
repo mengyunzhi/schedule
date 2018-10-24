@@ -156,4 +156,22 @@ public class SemesterServiceImplTest extends ServiceTest{
         Semester semester = semesterService.currentSemester();
         assertThat(semester).isEqualTo(testSemester);
     }
+
+    @Test
+    public void getSemesterTest() {
+        // 新增一个学期
+        Semester newSemester = new Semester();
+
+        // 将新增的学期置为激活状态
+        newSemester.setStatus(true);
+
+        // 持久化新增的学期
+        semesterRepository.save(newSemester);
+
+        // 调用service中的方法获取到激活的学期
+        Semester currentSemester = semesterService.getSemester();
+
+        // 断言获取到的学期就是新增的学期
+        assertThat(currentSemester).isEqualTo(newSemester);
+    }
 }
