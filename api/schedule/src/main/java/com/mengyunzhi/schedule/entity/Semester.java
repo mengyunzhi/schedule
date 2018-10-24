@@ -2,6 +2,7 @@ package com.mengyunzhi.schedule.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
+import com.mengyunzhi.schedule.jsonView.CourseJsonView;
 
 import javax.persistence.*;
 import java.util.List;
@@ -15,24 +16,28 @@ import java.util.List;
 public class Semester {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonView({View.Semester.class, CourseJsonView.class})
     private Long id;
 
     //本学期的终止时间
+    @JsonView(value = View.Semester.class)
     private String endTime;
 
+    @JsonView({CourseJsonView.class, View.Semester.class})
     private String name;
+
     //本学期的开始时间
+    @JsonView(value = View.Semester.class)
     private String startTime;
 
     //该学期所处的情况 默认为不激活
+    @JsonView(value = View.Semester.class)
     private boolean status;
 
-
-
     @OneToMany(mappedBy = "semester")
+    @JsonView(View.Semester.class)
     List<Schedule> schedules;
 
-    @JsonView(value = View.Semester.class)
     public Long getId() {
         return id;
     }
@@ -41,7 +46,6 @@ public class Semester {
         this.id = id;
     }
 
-    @JsonView(value = View.Semester.class)
     public String getEndTime() {
         return endTime;
     }
@@ -50,7 +54,6 @@ public class Semester {
         this.endTime = endTime;
     }
 
-    @JsonView(value = View.Semester.class)
     public String getName() {
         return name;
     }
@@ -59,7 +62,6 @@ public class Semester {
         this.name = name;
     }
 
-    @JsonView(value = View.Semester.class)
     public String getStartTime() {
         return startTime;
     }
@@ -68,7 +70,6 @@ public class Semester {
         this.startTime = startTime;
     }
 
-    @JsonView(value = View.Semester.class)
     public boolean isStatus() {
         return status;
     }
@@ -77,7 +78,6 @@ public class Semester {
         this.status = status;
     }
 
-    @JsonView(value = View.Semester.class)
     public List<Schedule> getSchedules() {
         return schedules;
     }

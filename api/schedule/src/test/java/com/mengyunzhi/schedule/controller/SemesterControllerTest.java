@@ -86,4 +86,19 @@ public class SemesterControllerTest extends ControllerTest {
                 .andExpect(status().isOk())
                 .andDo(print());
     }
+
+    @Test
+    public void getSemester() throws Exception {
+        // 请求路由
+        String getUrl = this.baseUrl + "getSemester";
+
+        // 新增一个激活的学期
+        Semester semester = new Semester();
+        semester.setStatus(true);
+
+        // 断言能获取到该学期
+        this.mockMvc.perform(get(getUrl))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }

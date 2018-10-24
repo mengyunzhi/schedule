@@ -12,6 +12,10 @@ angular.module('scheduleApp')
     .service('courseService', function($http) {
         var self = this;
 
+        self.currentSemester = {};
+
+
+
         /**
          * 分页
          * @param params 查询参数 {page:当前页， size: 每页大小}
@@ -45,6 +49,20 @@ angular.module('scheduleApp')
                 });
 
         };
+
+        /**
+         * 设置当前这个学期       
+         * @author    chenjie 
+         */
+        self.getCurrentSemester = function(callback) {
+            $http.get('/semester/getSemester')
+                .then(function success(response) {
+                    callback(response.data);
+                }, function error(response) {
+                    console.log('请求失败' + response);
+                });
+        };
+
 
         /**
          * 更新课程       
@@ -110,7 +128,7 @@ angular.module('scheduleApp')
             var url = '/Course/deleteAll';
             console.log(deleteList);
 
-            $http.delete(url, {data: deleteList, headers: {'Content-type': 'application/json;charset=utf-8'}})
+            $http.delete(url, { data: deleteList, headers: { 'Content-type': 'application/json;charset=utf-8' } })
                 .then(function success() {
                     if (callback) { callback(); }
                     console.log("deleteSuccesss");
@@ -126,6 +144,8 @@ angular.module('scheduleApp')
             dataIds: self.dataIds,
             getCourseById: self.getCourseById,
             update: self.update,
-            add: self.add
+            add: self.add,
+            getCurrentSemester: self.getCurrentSemester,
+            currentSemester: self.currentSemester
         };
     });

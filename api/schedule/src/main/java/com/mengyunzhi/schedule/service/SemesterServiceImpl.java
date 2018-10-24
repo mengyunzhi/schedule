@@ -129,6 +129,23 @@ public class SemesterServiceImpl implements SemesterService {
     }
 
     /**
+     * 返回当前的激活的学期
+     * @return  semester
+     * @author chenjie
+     */
+    @Override
+    public Semester getSemester() {
+        List<Semester> semesters = semesterRepository.findByStatus(true);
+        if (semesters.isEmpty()) {
+            return null;
+        } else {
+            Semester semester = semesters.get(0);
+            return semester;
+        }
+    }
+
+
+    /**
      * 获得所有的学期
      * @return
      */

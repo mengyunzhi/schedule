@@ -19,7 +19,7 @@ angular.module('scheduleApp')
             },
             templateUrl: 'views/directive/yunzhiPage.html',
             restrict: 'E',
-            link: function postLink(scope, element, attrs) {
+            link: function postLink(scope) {
                 var self = this;
                 self.maxPageCount = 5;
 
