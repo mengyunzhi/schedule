@@ -67,6 +67,7 @@ public class Course {
     }
 
     @ManyToOne
+    @JsonView( CourseJsonView.class)
     private Semester semester;
 
     @ManyToMany

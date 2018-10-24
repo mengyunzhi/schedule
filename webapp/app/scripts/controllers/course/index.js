@@ -9,26 +9,54 @@
  * @author     chenjie
  */
 angular.module('scheduleApp')
-    .controller('CourseIndexCtrl', function($http, $scope, courseService) {
+    .controller('CourseIndexCtrl', function($http, $scope, courseService, semester, $filter, schedule) {
         var self = this;
+        var courses = [];
 
         // 初始化
         self.init = function() {
             self.selectAllOrNot = true;
             $scope.params = { page: 0, size: 3 };
+            $scope.$watch('selectedSemester', self.handleData);
             self.load();
+
         };
 
         // 加载数据
         self.load = self.reload = function() {
             courseService.page($scope.params, function(data) {
-                $scope.data = data;
-                // 将所有课程状态初始化为false
-                angular.forEach($scope.data.content, function(_list) {
-                    _list._checked = false;
-                });
-            });
+                // 获取到所有的课程
+                courses = data.content;
 
+                // 将所有课程的选择状态初始化为false
+                angular.forEach(courses, function(course) {
+                    course._checked = false;
+                });
+
+                self.getCurrentSemester();         
+            });
+        };
+
+        // 获取当前学期
+        self.getCurrentSemester = function(callback) {
+            courseService.getCurrentSemester(function(currentSemester) {
+                courseService.currentSemester = currentSemester;
+                // 选择的学期默认为当前学期
+                $scope.selectedSemester = courseService.currentSemester;
+                if (callback) {callback(courses);}
+            });
+        };
+
+        self.change = function(selectSemester) {
+            $scope.selectSemester = selectSemester;
+        };
+
+        // 监听选择学期的变化
+        self.handleData = function(newValue) {
+            if (newValue && newValue.id) {
+                // 执行函数
+                console.log('xxx');
+            }            
         };
 
         // 分页时重新加载数据
@@ -79,15 +107,13 @@ angular.module('scheduleApp')
             });
             courseService.deleteMultiple(deleteList, function() {
                 self.reload();
-                $scope.deleteList.splice(0, $scope.deleteList.length);
             })
         };
 
+
         self.init();
-        $scope.allStatus = false;
         $scope.selectAll = self.selectAll;
         $scope.select = self.select;
-        $scope.deleteList = [];
         $scope.reloadByPage = self.reloadByPage;
         $scope.reloadBySize = self.reloadBySize;
         $scope.deleteMultiple = self.deleteMultiple;

@@ -3,6 +3,7 @@ package com.mengyunzhi.schedule.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.Semester;
+import com.mengyunzhi.schedule.jsonView.CourseJsonView;
 import com.mengyunzhi.schedule.service.SemesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -67,5 +68,16 @@ public class SemesterController {
     @JsonView(View.Semester.class)
     public Semester getCurrentSemester() {
         return semesterService.currentSemester();
+    }
+
+    /**
+     * 获取激活学期
+     * return {Semester}
+     * @author     chenjie
+     */
+    @GetMapping("/getSemester")
+    @JsonView(View.Semester.class)
+    public Semester getSemester() {
+        return semesterService.getSemester();
     }
 }

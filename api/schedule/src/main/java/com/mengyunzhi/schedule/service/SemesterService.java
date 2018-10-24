@@ -45,4 +45,8 @@ public interface SemesterService {
 
     //返回当前时间并激活的学期
     Semester currentSemester();
+
+    // 返回当前激活的学期
+    Semester getSemester();
+
 }
