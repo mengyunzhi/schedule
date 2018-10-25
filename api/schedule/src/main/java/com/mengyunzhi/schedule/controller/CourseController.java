@@ -47,6 +47,7 @@ public class CourseController {
     }
 
     // 获取单个课程
+    @JsonView(CourseJsonView.class)
     @GetMapping("/{id}")
     public Course getById(@PathVariable Long id) {
         return courseService.getById(id);
