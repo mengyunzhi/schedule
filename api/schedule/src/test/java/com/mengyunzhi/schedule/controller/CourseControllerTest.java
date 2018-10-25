@@ -1,10 +1,11 @@
 package com.mengyunzhi.schedule.controller;
 
-import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Schedule;
+import com.mengyunzhi.schedule.entity.Semester;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.ScheduleRepository;
+import com.mengyunzhi.schedule.repository.SemesterRepository;
 import com.mengyunzhi.schedule.service.CourseService;
 import net.sf.json.JSONArray;
 import org.junit.Test;
@@ -14,8 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,11 +28,12 @@ public class CourseControllerTest extends ControllerTest {
     private final String baseUrl = "/Course";
     @Autowired
     private CourseService courseService;        // 课程
-
+    @Autowired
+    private CourseRepository courseRepository;
+    @Autowired
+    SemesterRepository semesterRepository;
     @Autowired
     ScheduleRepository scheduleRepository;
-    @Autowired
-    CourseRepository courseRepository;
 
     @Test
     public void deleteAll() throws Exception {
@@ -57,7 +59,44 @@ public class CourseControllerTest extends ControllerTest {
                 .andExpect(status().is(HttpStatus.NO_CONTENT.value()));
     }
 
-    // 为课程选择时间  方法测试
+    /**
+     * @Param: []
+     * @return: void
+     * @Author: liyiheng
+     * @Date: 10/25/2018
+     * @Description: 测试findCourseByName
+     */
+    @Test
+    public void findCourseByName() throws Exception {
+        logger.info("新建并保存一个Course");
+        Course course = new Course();
+        courseRepository.save(course);
+        logger.info("拼接URL");
+        String queryUrl = baseUrl + "/query/name/" + course.getName();
+        logger.info("模拟请求并断言");
+        this.mockMvc
+                .perform(get(queryUrl))
+                .andExpect(status().isOk());
+    }
+
+    public void findCourseBySemesterId() throws Exception {
+        logger.info("实例化一个学期");
+        Semester semester = new Semester();
+        semesterRepository.save(semester);
+        logger.info("实例化一个课程");
+        Course course = new Course();
+        logger.info("课程的学期等于实例化的学期");
+        course.setSemester(semester);
+        courseRepository.save(course);
+        logger.info("拼接URL");
+        String queryUrl = baseUrl + "/query/semester/" + semester.getId();
+        logger.info("模拟访问并断言结果");
+        this.mockMvc
+                .perform(get(queryUrl))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
     @Test
     public void selectCourseByScheduleTest() throws Exception {
         // 创建多个行程并持久化
@@ -87,7 +126,5 @@ public class CourseControllerTest extends ControllerTest {
                         .content(jsonArray.toString()))
                 //.andDo(print())
                 .andExpect(status().isOk());
-
-
     }
 }

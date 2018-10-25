@@ -19,6 +19,7 @@ public interface CourseService {
 
     /**
      * 课程批量删除
+     *
      * @param courseList
      * @author poshichao
      */
@@ -30,11 +31,30 @@ public interface CourseService {
 
     /**
      * 更新
-     * @param id 更新实体的iD
+     *
+     * @param id     更新实体的iD
      * @param course 更新的内容
      * @author chenjie
      */
     void updateByIdAndCourse(long id, Course course);
+
+    /**
+     * @Param: [name]
+     * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
+     * @Author: liyiheng
+     * @Date: 10/25/2018
+     * @Description: 通过课程名找课程
+     */
+    List<Course> findCourseByName(String name);
+
+    /**
+     * @Param: [id]
+     * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
+     * @Author: liyiheng
+     * @Date: 10/25/2018
+     * @Description: 通过学期id，找到本学期的课程
+     */
+    List<Course> findCourseBySemesterId(Long id);
 
     // 为课程选择时间
     void selectCourseBySchedule(Long id, List<Schedule> schedules);
