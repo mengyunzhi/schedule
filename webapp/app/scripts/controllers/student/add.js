@@ -31,7 +31,7 @@ angular.module('scheduleApp')
                 });
         };
         self.init();
-        $scope.githubUniqueUrl = '/student/githubExist';
-        $scope.githubUniqueName = 'github';
+        $scope.githubUniqueUrl = '/student/githubExist';        //验重的后台地址
+        $scope.githubUniqueName = 'github';                     //验重的字段
         $scope.submit = self.submit;
     });
