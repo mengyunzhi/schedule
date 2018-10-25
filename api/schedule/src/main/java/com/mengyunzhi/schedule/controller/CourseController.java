@@ -65,4 +65,29 @@ public class CourseController {
     public void deleteAll(@RequestBody List<Course> courseList) {
         courseService.deleteAll(courseList);
     }
+
+    /**
+     * @Param: [name]
+     * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
+     * @Author: liyiheng
+     * @Date: 10/25/2018
+     * @Description: 通过课程名找课程
+     */
+    @GetMapping("query/name/{name}")
+    public List<Course> findCourseByName(@PathVariable String name) {
+        return courseService.findCourseByName(name);
+    }
+
+    /**
+     * @Param: [id]
+     * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
+     * @Author: liyiheng
+     * @Date: 10/25/2018
+     * @Description:
+     * 找到和学期有关的课程
+     */
+    @GetMapping("query/semester/{id}")
+    public List<Course> findCourseBySemesterId(@PathVariable Long id) {
+        return courseService.findCourseBySemesterId(id);
+    }
 }
