@@ -22,9 +22,20 @@ public class Course {
     @JsonView({View.Schedule.class, CourseJsonView.class, View.Student.class})
     private String name;
 
+    @ManyToOne
+    @JsonView(CourseJsonView.class)
+    private Semester semester;
+
+    @ManyToMany
+    private List<Schedule> scheduleList;
+
     @ManyToMany
     @JsonView({View.Schedule.class})
     private List<Student> studentList;
+
+    public Course() {
+    }
+
 
     public Long getId() {
         return id;
@@ -66,13 +77,4 @@ public class Course {
         this.scheduleList = scheduleList;
     }
 
-    @ManyToOne
-    @JsonView( CourseJsonView.class)
-    private Semester semester;
-
-    @ManyToMany
-    private List<Schedule> scheduleList;
-
-    public Course() {
-    }
 }

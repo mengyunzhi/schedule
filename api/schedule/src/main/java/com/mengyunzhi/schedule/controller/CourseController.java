@@ -2,7 +2,6 @@ package com.mengyunzhi.schedule.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.JsonPage;
-import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.jsonView.CourseJsonView;
@@ -68,6 +67,30 @@ public class CourseController {
         courseService.deleteAll(courseList);
     }
 
+    /**
+     * @Param: [name]
+     * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
+     * @Author: liyiheng
+     * @Date: 10/25/2018
+     * @Description: 通过课程名找课程
+     */
+    @GetMapping("query/name/{name}")
+    public List<Course> findCourseByName(@PathVariable String name) {
+        return courseService.findCourseByName(name);
+    }
+
+    /**
+     * @Param: [id]
+     * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
+     * @Author: liyiheng
+     * @Date: 10/25/2018
+     * @Description:
+     * 找到和学期有关的课程
+     */
+    @GetMapping("query/semester/{id}")
+    public List<Course> findCourseBySemesterId(@PathVariable Long id) {
+        return courseService.findCourseBySemesterId(id);
+    }
     // 为课程选择时间
     @PutMapping("/select/{id}")
     public void selectCourseBySchedule(@PathVariable Long id, @RequestBody List<Schedule> schedules) {
