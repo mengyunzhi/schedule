@@ -2,6 +2,7 @@ package com.mengyunzhi.schedule.service;
 
 
 import com.mengyunzhi.schedule.entity.Course;
+import com.mengyunzhi.schedule.entity.Schedule;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -54,4 +55,8 @@ public interface CourseService {
      * 通过学期id，找到本学期的课程
      */
     List<Course> findCourseBySemesterId(Long id);
+  
+    // 为课程选择时间
+    void selectCourseBySchedule(Long id, List<Schedule> schedules);
+
 }

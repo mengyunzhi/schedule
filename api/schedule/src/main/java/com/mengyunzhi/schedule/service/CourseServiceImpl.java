@@ -2,6 +2,7 @@ package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Semester;
+import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,7 +92,13 @@ public class CourseServiceImpl implements CourseService {
         Semester semester = semesterRepository.findOne(id);
         //找到相关课程
         return courseRepository.findBySemester(semester);
+
+    // 为课程选择时间
+    @Override
+    public void selectCourseBySchedule(Long id, List<Schedule> schedules) {
+        Course course = courseRepository.findOne(id);
+        course.setScheduleList(schedules);
+        courseRepository.save(course);
+
     }
-
-
 }
