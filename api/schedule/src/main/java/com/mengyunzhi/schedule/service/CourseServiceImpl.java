@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 /**
@@ -91,15 +90,11 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.findBySemester(semester);
     }
 
-
     // 为课程选择时间
     @Override
     public void selectCourseBySchedule(Long id, List<Schedule> schedules) {
         Course course = courseRepository.findOne(id);
         course.setScheduleList(schedules);
         courseRepository.save(course);
-
     }
-
-
 }

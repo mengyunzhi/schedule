@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -96,7 +95,6 @@ public class CourseControllerTest extends ControllerTest {
                 .perform(get(queryUrl))
                 .andDo(print())
                 .andExpect(status().isOk());
-        // 为课程选择时间  方法测试
     }
 
     @Test

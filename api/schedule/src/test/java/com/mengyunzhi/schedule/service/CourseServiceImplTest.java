@@ -8,7 +8,6 @@ import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,7 +23,8 @@ public class CourseServiceImplTest extends ServiceTest {
     CourseRepository courseRepository; // 课程
     @Autowired
     SemesterRepository semesterRepository;
-    @Autowired
+
+    @Autowired  
     ScheduleRepository scheduleRepository;
 
     @Test
