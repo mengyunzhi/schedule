@@ -1,3 +1,5 @@
 <!-- this is semesterList.html -->
 <label for="semesterId" control-label">学期</label>
-<select class="form-control" name="semesterId" id="semesterId" ng-options="_semester.name for _semester in semesters track by _semester.id" ng-model="selectObject"></select>
+<!-- <pre>{{ selectSemester | json }}</pre> -->
+<select class="form-control" ng-model="selectSemester" name="semesterId" id="semesterId" ng-options="_semester.name for _semester in semesters track by _semester.id" ng-change="updateModel(selectSemester)"></select>
+<!-- <pre>{{selectObject.name | json}}</pre> -->

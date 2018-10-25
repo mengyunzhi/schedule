@@ -15,9 +15,12 @@ angular.module('scheduleApp')
         // 获取当前页面数据
         self.init = function() {
             var id = $stateParams.id;
+            $scope.selectSemester = {};
             courseService.getCourseById(id, function(data) {
-                //绑定数据导V层
-                $scope.data = data;
+
+            //绑定数据导V层
+            $scope.data = data;
+            $scope.defaultOption = data.semester;
             });
         };
 

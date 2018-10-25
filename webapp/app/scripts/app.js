@@ -87,6 +87,31 @@ angular
               show: false
           }
         },
+        // course/selectSchedule
+        // @author chenjie
+        {
+          name: 'course.selectSchedule', 
+          url: '/selectSchedule/:id', 
+          templateUrl: 'views/course/selectSchedule.html',
+          controller: 'CourseSelectscheduleCtrl',
+          data: {
+              title: '选择时间',
+              show: false
+          }
+        },
+        // course/selectWeekOrder
+        // @author chenjie
+        {
+          name: 'course.selectWeekOrder', 
+          url: '/selectWeekOrder', 
+          templateUrl: 'views/course/selectWeekOrder.html',
+          controller: 'CourseSelectweekorderCtrl',
+          data: {
+              title: '选择周次',
+              show: false
+          },
+          params:{'args':{}}
+        },
         {
           name: 'semester',
           url: '/semester',

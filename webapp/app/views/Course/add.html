@@ -16,7 +16,7 @@
                 <p class="text-danger" ng-show="myForm.name.$touched && myForm.name.$error.required">请输入课程名</p>
             </div>
             <div class="form-group">
-                <semester-list required></semester-list>
+                <semester-list ng-model="data.semester"></semester-list>
             </div>
             <button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">保存</button>
         </form>
