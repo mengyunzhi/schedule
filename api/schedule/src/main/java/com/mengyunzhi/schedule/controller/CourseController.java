@@ -3,6 +3,7 @@ package com.mengyunzhi.schedule.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.JsonPage;
 import com.mengyunzhi.schedule.entity.Course;
+import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.jsonView.CourseJsonView;
 import com.mengyunzhi.schedule.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,5 +90,10 @@ public class CourseController {
     @GetMapping("query/semester/{id}")
     public List<Course> findCourseBySemesterId(@PathVariable Long id) {
         return courseService.findCourseBySemesterId(id);
+    }
+    // 为课程选择时间
+    @PutMapping("/select/{id}")
+    public void selectCourseBySchedule(@PathVariable Long id, @RequestBody List<Schedule> schedules) {
+        courseService.selectCourseBySchedule(id, schedules);
     }
 }

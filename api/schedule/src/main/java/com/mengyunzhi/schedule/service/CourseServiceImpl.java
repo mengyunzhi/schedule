@@ -1,6 +1,7 @@
 package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Course;
+import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.entity.Semester;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -69,12 +69,11 @@ public class CourseServiceImpl implements CourseService {
      * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
      * @Author: liyiheng
      * @Date: 10/25/2018
-     * @Description:
-     * 通过课程名找课程
+     * @Description: 通过课程名找课程
      */
     @Override
     public List<Course> findCourseByName(String name) {
-        return courseRepository.findByNameLike("%" + name  + "%");
+        return courseRepository.findByNameLike("%" + name + "%");
     }
 
     /**
@@ -82,8 +81,7 @@ public class CourseServiceImpl implements CourseService {
      * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
      * @Author: liyiheng
      * @Date: 10/25/2018
-     * @Description:
-     * 找到和学期有关的课程
+     * @Description: 找到和学期有关的课程
      */
     @Override
     public List<Course> findCourseBySemesterId(Long id) {
@@ -91,6 +89,16 @@ public class CourseServiceImpl implements CourseService {
         Semester semester = semesterRepository.findOne(id);
         //找到相关课程
         return courseRepository.findBySemester(semester);
+    }
+
+
+    // 为课程选择时间
+    @Override
+    public void selectCourseBySchedule(Long id, List<Schedule> schedules) {
+        Course course = courseRepository.findOne(id);
+        course.setScheduleList(schedules);
+        courseRepository.save(course);
+
     }
 
 
