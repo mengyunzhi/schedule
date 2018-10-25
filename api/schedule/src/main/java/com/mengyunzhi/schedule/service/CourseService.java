@@ -2,6 +2,7 @@ package com.mengyunzhi.schedule.service;
 
 
 import com.mengyunzhi.schedule.entity.Course;
+import com.mengyunzhi.schedule.entity.Schedule;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -35,4 +36,6 @@ public interface CourseService {
      */
     void updateByIdAndCourse(long id, Course course);
 
+    // 为课程选择时间
+    void selectCourseBySchedule(Long id, List<Schedule> schedules);
 }

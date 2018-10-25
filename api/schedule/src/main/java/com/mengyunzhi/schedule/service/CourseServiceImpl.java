@@ -1,6 +1,7 @@
 package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Course;
+import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -57,6 +58,14 @@ public class CourseServiceImpl implements CourseService {
             // 持久化更新的实体
             courseRepository.save(oldCourse);
         }
+    }
+
+    // 为课程选择时间
+    @Override
+    public void selectCourseBySchedule(Long id, List<Schedule> schedules) {
+        Course course = courseRepository.findOne(id);
+        course.setScheduleList(schedules);
+        courseRepository.save(course);
     }
 
 
