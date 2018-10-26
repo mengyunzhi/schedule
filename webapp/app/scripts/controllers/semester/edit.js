@@ -15,6 +15,7 @@ angular.module('scheduleApp')
     	var id = $state.params.id;
     	semester.getById(id, function(data) {
     		$scope.semester = data;
+            semester.changeSemesterTimeStampFormat($scope.semester);
     	});
     };
     self.submit = function() {
