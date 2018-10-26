@@ -22,14 +22,14 @@ angular.module('scheduleApp')
 
         self.toSelectWeekOrder = function(week, node) {
             var url = 'course.selectWeekOrder';
-            $state.go(url, {
+            $state.transitionTo(url, {
                 args: {
                     id: $scope.data.id,
                     week: week,
                     node: node,
                     semesterId: $scope.data.semester.id
-                }
-            });
+                },
+            }, { reload: true });
         };
 
         self.init();

@@ -15,9 +15,11 @@ angular.module('scheduleApp')
         // 初始化
         self.init = function() {
             self.selectAllOrNot = true;
-            $scope.params = { page: 0, size: 10 };
-            $scope.$watch('selectSemester', self.handleData);
-            $scope.selectSemester = {};
+            $scope.params = { page: 0, size: 10 };  
+            $scope.selectSemester = {
+                id: ''
+            };
+            $scope.queryCourseName = '';
             self.getCurrentSemester();
             self.load();
         };
@@ -44,14 +46,6 @@ angular.module('scheduleApp')
                 $scope.currentSemester = currentSemester;
             });
         };  
-
-        // 监听选择学期的变化
-        self.handleData = function(newValue) {
-            if (newValue && newValue.id) {
-                // 执行查询操作 
-                console.log('xxx');
-            }            
-        };
 
         // 分页时重新加载数据
         self.reloadByPage = function(page) {
@@ -104,6 +98,11 @@ angular.module('scheduleApp')
             })
         };
 
+        self.query = function() {
+            courseService.query(queryCourseName, selectSemester.id, function() {
+                self.reload();
+            });
+        };
 
         self.init();
         $scope.selectAll = self.selectAll;

@@ -40,7 +40,6 @@ angular.module('scheduleApp')
                  * @Author   chen_jie
                  * @DateTime 2018-10-25T20:16:06+0800
                  * @param    {}                 newValue [description]
-                 * @return   {[type]}                          [description]
                  */
                 self.watchNgModel = function(newValue) {
                     if (newValue && newValue.id) {

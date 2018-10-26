@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-md-12">
-    	<h2>添加课程时间:</h2>
-    	<hr>
-        <form class="form-horizontal" role="form">
+        <h2>添加课程时间:</h2>
+        <hr>
+        <form class="form-horizontal" role="form" ng-submit="submit()">
             <div class="form-group">
-                <label for="course" class="col-sm-2 control-label">课程名:</label>
+                <label for="course" class="col-sm-2 control-label">课程:</label>
                 <div class="col-sm-2">
                     <input type="text" class="form-control" id="course" ng-model="course.name" disabled>
                 </div>
-                <label for="semester" class="col-sm-1 ">学期名:</label>
+                <label for="semester" class="col-sm-1 control-label">学期:</label>
                 <div class="col-sm-2">
                     <input type="text" class="form-control" id="semester" ng-model="course.semester.name" disabled>
                 </div>
@@ -16,24 +16,24 @@
             <div class="form-group">
                 <label for="week" class="col-sm-2 control-label">星期:</label>
                 <div class="col-sm-2">
-                    <select name="" id="" class="btn btn-default">
-                        <option value="">一</option>
-                        <option value="">二</option>
-                        <option value="">三</option>
-                        <option value="">四</option>
-                        <option value="">五</option>
-                        <option value="">六</option>
-                        <option value="">日</option>
+                    <select name="week" id="" class="btn btn-default" ng-model="week">
+                        <option ng-value="1">星期一</option>
+                        <option ng-value="2">星期二</option>
+                        <option ng-value="3">星期三</option>
+                        <option ng-value="4">星期四</option>
+                        <option ng-value="5">星期五</option>
+                        <option ng-value="6">星期六</option>
+                        <option ng-value="7">星期日</option>
                     </select>
                 </div>
                 <label for="week" class="col-sm-1 control-label">节次:</label>
                 <div class="col-sm-1">
-                    <select name="" id="" class="btn btn-default">
-                         <option value="">一</option>
-                        <option value="">二</option>
-                        <option value="">三</option>
-                        <option value="">四</option>
-                        <option value="">五</option>
+                    <select name="" id="" class="btn btn-default" ng-model="node">
+                        <option ng-value="1">第一节</option>
+                        <option ng-value="2">第二节</option>
+                        <option ng-value="3">第三节</option>
+                        <option ng-value="4">第四节</option>
+                        <option ng-value="5">第五节</option>
                     </select>
                 </div>
             </div>
@@ -41,36 +41,17 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-7">
-					<label>周次：</label>
+                    <label>周次：</label>
                     <div class="checkbox">
-                    	<label><input type="checkbox">1</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<label><input type="checkbox">2</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<label><input type="checkbox">3</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<label><input type="checkbox">4</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<label><input type="checkbox">5</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<label><input type="checkbox">6</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<label><input type="checkbox">7</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<label><input type="checkbox">8</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<label><input type="checkbox">9</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<label><input type="checkbox">10</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    	<br><br>
-                    	<label><input type="checkbox">11</label>&nbsp;&nbsp;
-                    	<label><input type="checkbox">12</label>&nbsp;&nbsp;
-                    	<label><input type="checkbox">13</label>&nbsp;&nbsp;
-                    	<label><input type="checkbox">14</label>&nbsp;&nbsp;
-                    	<label><input type="checkbox">15</label>&nbsp;&nbsp;
-                    	<label><input type="checkbox">16</label>&nbsp;&nbsp;
-                    	<label><input type="checkbox">17</label>&nbsp;&nbsp;
-                    	<label><input type="checkbox">18</label>&nbsp;&nbsp;
-                    	<label><input type="checkbox">19</label>&nbsp;&nbsp;
-                    	<label><input type="checkbox">20</label>
-                    </div>                    
+                        <label ng-repeat="(key, weekOrder) in weekOrders">
+                            <input type="checkbox" ng-click="pushOrRemove(weekOrder, selectOrNot)" ng-model="selectOrNot">{{weekOrder}}{{selectOrNot}}&nbsp;&nbsp;&nbsp;&nbsp;
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
-            	<hr>
+                <hr>
                 <div class="col-sm-offset-7 col-sm-10">
-
                     <button type="submit" class="btn btn-default glyphicon glyphicon-ok">&nbsp;保存</button>
                 </div>
             </div>

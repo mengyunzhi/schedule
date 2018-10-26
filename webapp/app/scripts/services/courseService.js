@@ -137,6 +137,32 @@ angular.module('scheduleApp')
                 });
         };
 
+        /* 课程选择时间
+         * @Author   chen_jie
+         * @DateTime 2018-10-26T19:34:19+0800
+         * @param    {long}                 courseId         [要修改的课程id]
+         * @param    {int}                  week             [星期]
+         * @param    {int}                  node             [节次]
+         * @param    {array<int>}           selectWeekOrders [周次数组]
+         * @param    {long}                 semesterId       [学期id]
+         * @param    {Function}             callback         [description]
+         */
+        self.selectSchedule = function(courseId, week, node, selectWeekOrders, semesterId, callback) {
+            var url = '/Course/select/' + courseId;
+            var params = {
+                week: week,
+                node: node,
+                WeekOrders: selectWeekOrders,
+                semesterId: semesterId
+            };
+            $http.put(url, { params: params })
+                .then(function success() {
+                    if (callback) { callback(); }
+                }, function error(response) {
+                    console.log('选时成功' + url, response)
+                });
+        };
+
         return {
             delete: self.delete,
             page: self.page,

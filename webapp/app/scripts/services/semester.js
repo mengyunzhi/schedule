@@ -53,8 +53,6 @@ angular.module('scheduleApp')
     	$http.get(baseUrl + '/' + id)
     	.then(function(response) {
     		var data = response.data;
-    		data.startTime = new Date(parseInt(data.startTime));
-    		data.endTime = new Date(parseInt(data.endTime));
     		callBack(data);
     	}, function() {
     		console.log('false to get one semester');
