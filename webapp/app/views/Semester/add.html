@@ -1,34 +1,50 @@
 <style type="text/css">
-  .validSuccess {
-    top: -26px;
-    left: 320px;
+.Message {
     position: relative;
-    color: green;
-  }
+    top: -26px;
+    left: 267px;
+}
+.form-group-setting {
+    height:70px;
+}
+.from-header {
+    margin-top: 80px;
+}
 </style>
 <div class="row">
     <div class="col-md-4 col-md-offset-3">
-        <form ng-submit="add()" name="myForm">
-            <div class="form-group">
-                <label for="name">name</label>
-                <input type="text" class="form-control" name="name" placeholder="name" ng-model="semester.name" required>
-                <span ng-show="myForm.name.$valid" class="validSuccess glyphicon glyphicon-ok"></span>
-                <p class="text-danger" ng-show="myForm.name.$touched && myForm.name.$error.required">请输入学期名</p>
+        <form ng-submit="add()" name="myForm" class="form-horizontal from-header">
+            <div class="form-group form-group-setting">
+                <label for="name" class="col-md-4 control-label">学期名:</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="name" placeholder="name" ng-model="semester.name" required>
+                    <span ng-show="myForm.name.$valid" class="validSuccess glyphicon glyphicon-ok Message"></span>
+                    <p class="text-danger Message" ng-show="myForm.name.$dirty && myForm.name.$error.required">请输入学期名</p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="startDate">startDate</label>
-                <input type="date" class="form-control" name="startDate" ng-model="semester.startTime"  required />
-                <span ng-show="myForm.startDate.$valid" class="validSuccess glyphicon glyphicon-ok" ></span>
-                <p class="text-danger" ng-show="myForm.startDate.$touched && myForm.startDate.$error.required">请输入学期开始时间</p>
+            <div class="form-group form-group-setting">
+                <label for="startDate" class="col-md-4 control-label">学期开始时间:</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="startDate" ng-model="semester.startTime" required />
+                    <span ng-show="myForm.startDate.$valid" class="Message validSuccess glyphicon glyphicon-ok" ></span>
+                    <p class="Message text-danger" ng-show="myForm.startDate.$dirty && myForm.startDate.$error.required">请输入学期开始时间</p>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="endDate">endDate</label>
-                <input type="date" class="form-control" name="endDate" ng-model="semester.endTime"  compare="semester.startTime" required />
-                <span ng-show="myForm.endDate.$valid" class="validSuccess glyphicon glyphicon-ok" ></span>
-                <p class="text-danger" ng-show="myForm.endDate.$error.semester">结束时间不能比开始时间小</p>
-                <p class="text-danger" ng-show="myForm.endDate.$touched && myForm.endDate.$error.required">请输入学期结束时间</p>
+            <div class="form-group form-group-setting">
+                <label for="endDate" class="col-md-4 control-label">学期结束时间:</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="endDate" ng-model="semester.endTime" compare="semester.startTime" required />
+                    <span ng-show="myForm.endDate.$valid" class="Message validSuccess glyphicon glyphicon-ok" ></span>
+                    <p class="Message text-danger" ng-show="myForm.endDate.$error.semester">结束时间不能比开始时间小</p>
+                    <p class="Message text-danger" ng-show="myForm.endDate.$dirty && myForm.endDate.$error.required">请输入学期结束时间</p>
+                </div>
             </div>
-            <button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">add</button>
+            <div class="form-group form-group-setting">
+                <div class="col-md-12 col-md-push-9">
+                    <button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">添加学期</button>
+                </div>
+            </div>
+            </button>
         </form>
     </div>
 </div>

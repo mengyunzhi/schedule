@@ -35,7 +35,7 @@
             <th style="text-align: center;">第五节</th>
         </tr>
         <tr ng-repeat="(key, value) in schedules">
-            <td style="background-color: #fafafa;text-align: center;">星期{{key + 1}}</td>
+            <td style="background-color: #fafafa;text-align: center;">{{key + 1 | weekFiltration}}</td>
             <td ng-repeat="schedule in value track by $index" style="height: 1px;">
                 <p ng-class="{true: 'bg-success', false: 'bg-primary'}[student._state]" ng-repeat="student in schedule.students" style="text-align: center;width: 50%;margin-right: auto;margin-left: auto;">{{student.name}}</p>
             </td>

@@ -3,13 +3,14 @@ package com.mengyunzhi.schedule.service;
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.repository.CourseRepository;
+import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
 import com.sun.istack.internal.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ public class CourseServiceImpl implements CourseService {
 
     @Autowired
     CourseRepository courseRepository;  //课程
+    @Autowired
+    ScheduleRepository scheduleRepository;
 
     @Override
     public Course save(Course course) {
@@ -76,11 +79,23 @@ public class CourseServiceImpl implements CourseService {
         return courseRepository.findByNameLikeAndSemester("%" + name + "%", semesterRepository.findOne(id));
     }
 
-    // 为课程选择时间
     @Override
-    public void selectCourseBySchedule(Long id, List<Schedule> schedules) {
+    public void selectCourseBySchedule(Long id, int week, int node, List<Integer> weekOrders) {
+        //创建一个数组链表
+        List<Schedule> schedules = new ArrayList<>();
+        // 通过课程ID找到对应的课程
         Course course = courseRepository.findOne(id);
-        course.setScheduleList(schedules);
+        // 循环遍历周次
+        for (Integer weekOrder :
+                weekOrders) {
+            Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekOrder);
+
+            //判断如果行程中有schedule 保存到数组链表
+            if (scheduleRepository.equals(schedule)){
+                schedules.add(schedule);
+            }
+            course.setScheduleList(schedules);
+        }
         courseRepository.save(course);
     }
 }
