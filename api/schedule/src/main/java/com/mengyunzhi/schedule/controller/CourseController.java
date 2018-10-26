@@ -93,7 +93,7 @@ public class CourseController {
     }
     // 为课程选择时间
     @PutMapping("/select/{id}")
-    public void selectCourseBySchedule(@PathVariable Long id, @RequestBody List<Schedule> schedules) {
-        courseService.selectCourseBySchedule(id, schedules);
+    public void selectCourseBySchedule(@PathVariable Long id,@RequestParam int week, @RequestParam int node, @RequestParam List<Integer> weekOrders) {
+       courseService.selectCourseBySchedule(id, week, node, weekOrders);
     }
 }
