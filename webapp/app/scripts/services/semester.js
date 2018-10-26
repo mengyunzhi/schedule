@@ -79,4 +79,13 @@ angular.module('scheduleApp')
     		console.log('false to find semester by name');
     	});
     };
+
+    /**
+     * 将学期时间戳转换成date.tostring格式
+     * @param  {object} semester 学期对象
+     */
+    self.changeSemesterTimeStampFormat = function(semester) {
+        semester.startTime = new Date(parseInt(semester.startTime));
+        semester.endTime = new Date(parseInt(semester.endTime));
+    };
   });

@@ -15,6 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -99,31 +103,19 @@ public class CourseControllerTest extends ControllerTest {
 
     @Test
     public void selectCourseByScheduleTest() throws Exception {
-        // 创建多个行程并持久化
-        Schedule schedule1 = new Schedule();
-        Schedule schedule2 = new Schedule();
-        scheduleRepository.save(schedule1);
-        scheduleRepository.save(schedule2);
-
-        // 组建选课时间
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.add(schedule1);
-        jsonArray.add(schedule2);
-
-        // 新建课程并持久化
+        // 创建新的课程并持久化
         Course course = new Course();
-        courseRepository.save(course);
+        courseService.save(course);
 
-        // 为课程选择时间
-        course.setScheduleList(jsonArray);
-
-        String putUrl = baseUrl + "/select/" + course.getId().toString();
+        String putUrl = baseUrl + "/select/" + course.getId();
 
         // 模拟请求，并断言成功
         this.mockMvc
                 .perform(MockMvcRequestBuilders.put(putUrl)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .content(jsonArray.toString()))
+                        .param("week", "0")
+                        .param("weekOrders", "1", "2")
+                        .param("node", "2"))
                 //.andDo(print())
                 .andExpect(status().isOk());
     }

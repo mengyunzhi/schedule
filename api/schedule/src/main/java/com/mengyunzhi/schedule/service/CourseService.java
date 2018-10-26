@@ -57,5 +57,5 @@ public interface CourseService {
     List<Course> findCourseBySemesterId(Long id);
 
     // 为课程选择时间
-    void selectCourseBySchedule(Long id, List<Schedule> schedules);
+    void selectCourseBySchedule(Long id, int week, int node, List<Integer> weekOrders);
 }

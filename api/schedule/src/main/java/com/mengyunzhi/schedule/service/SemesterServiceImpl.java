@@ -17,14 +17,11 @@ import java.util.List;
  */
 @Service
 public class SemesterServiceImpl implements SemesterService {
-    //一周的毫秒数
-    final long aWeekStamp = 7 * 24 * 60 * 60 * 1000;
+    final long aWeekStamp = 7 * 24 * 60 * 60 * 1000;        //一周的毫秒数
 
-    //节次
-    static final int node = 5;
+    static final int node = 5;                              //节次
 
-    //周次
-    static final int week = 7;
+    static final int week = 7;                              //周次
 
     @Autowired
     ScheduleService scheduleService;
@@ -45,7 +42,7 @@ public class SemesterServiceImpl implements SemesterService {
         double startTime = Double.parseDouble(semester.getStartTime());
         double endTime  = Double.parseDouble(semester.getEndTime());
         double totalTime = endTime - startTime;
-        if (totalTime <= 0) {return null;}
+        if (totalTime < 0) {return null;}
         int totalWeek = (int) (totalTime / aWeekStamp) + 1;
         semesterRepository.save(semester);
         //根据总周次新建行程
