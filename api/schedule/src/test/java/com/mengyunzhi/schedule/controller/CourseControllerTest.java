@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -59,44 +60,6 @@ public class CourseControllerTest extends ControllerTest {
                 .andExpect(status().is(HttpStatus.NO_CONTENT.value()));
     }
 
-    /**
-     * @Param: []
-     * @return: void
-     * @Author: liyiheng
-     * @Date: 10/25/2018
-     * @Description: 测试findCourseByName
-     */
-    @Test
-    public void findCourseByName() throws Exception {
-        logger.info("新建并保存一个Course");
-        Course course = new Course();
-        courseRepository.save(course);
-        logger.info("拼接URL");
-        String queryUrl = baseUrl + "/query/name/" + course.getName();
-        logger.info("模拟请求并断言");
-        this.mockMvc
-                .perform(get(queryUrl))
-                .andExpect(status().isOk());
-    }
-
-    public void findCourseBySemesterId() throws Exception {
-        logger.info("实例化一个学期");
-        Semester semester = new Semester();
-        semesterRepository.save(semester);
-        logger.info("实例化一个课程");
-        Course course = new Course();
-        logger.info("课程的学期等于实例化的学期");
-        course.setSemester(semester);
-        courseRepository.save(course);
-        logger.info("拼接URL");
-        String queryUrl = baseUrl + "/query/semester/" + semester.getId();
-        logger.info("模拟访问并断言结果");
-        this.mockMvc
-                .perform(get(queryUrl))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
-
     @Test
     public void selectCourseByScheduleTest() throws Exception {
         // 创建多个行程并持久化
@@ -126,5 +89,41 @@ public class CourseControllerTest extends ControllerTest {
                         .content(jsonArray.toString()))
                 //.andDo(print())
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void findByCourseNameLikeAndSemesterIdTest() throws Exception {
+        logger.info("新建semester");
+        Semester semester = new Semester();
+        semesterRepository.save(semester);
+        logger.info("新建一个Course");
+        Course testCourse = new Course();
+        testCourse.setName("test");
+        courseRepository.save(testCourse);
+        logger.info("构造url模拟访问并断言");
+        String queryUrl = baseUrl + "/query";
+        logger.info("学期为空");
+        this.mockMvc
+                .perform(get(queryUrl)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .param("name", testCourse.getName()))
+                .andDo(print())
+                .andExpect(status().isOk());
+        logger.info("课程名为空");
+        this.mockMvc
+                .perform(get(queryUrl)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .param("id", String.valueOf(semester.getId())))
+                .andDo(print())
+                .andExpect(status().isOk());
+        logger.info("两个都不为空");
+        this.mockMvc
+                .perform(get(queryUrl)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .param("name", testCourse.getName())
+                        .param("id", String.valueOf(semester.getId())))
+                .andDo(print())
+                .andExpect(status().isOk());
+
     }
 }

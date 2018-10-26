@@ -2,13 +2,14 @@ package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Schedule;
-import com.mengyunzhi.schedule.entity.Semester;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
+import com.sun.istack.internal.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 /**
@@ -64,30 +65,15 @@ public class CourseServiceImpl implements CourseService {
     }
 
     /**
-     * @Param: [name]
-     * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
+     * @Param: [id, name]      接收学期id，查询的课程的名字
+     * @return: List<Course>   返回一个List<Course>
      * @Author: liyiheng
-     * @Date: 10/25/2018
-     * @Description: 通过课程名找课程
+     * @Date: 10/26/2018
+     * @Description: 通过学期和课程名查找课程
      */
     @Override
-    public List<Course> findCourseByName(String name) {
-        return courseRepository.findByNameLike("%" + name + "%");
-    }
-
-    /**
-     * @Param: [id]
-     * @return: java.util.List<com.mengyunzhi.schedule.entity.Course>
-     * @Author: liyiheng
-     * @Date: 10/25/2018
-     * @Description: 找到和学期有关的课程
-     */
-    @Override
-    public List<Course> findCourseBySemesterId(Long id) {
-        //找到查询学期
-        Semester semester = semesterRepository.findOne(id);
-        //找到相关课程
-        return courseRepository.findBySemester(semester);
+    public List<Course> findCourseByNameAndSemesterId(Long id, String name) {
+        return courseRepository.findByNameLikeAndSemester("%" + name + "%", semesterRepository.findOne(id));
     }
 
     // 为课程选择时间
