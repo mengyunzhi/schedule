@@ -26,7 +26,7 @@ public class Schedule {
     @ManyToOne
     private Semester semester;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "scheduleList")
     @JsonView({View.Schedule.class})
     private List<Course> courseList = new ArrayList<Course>();
 
