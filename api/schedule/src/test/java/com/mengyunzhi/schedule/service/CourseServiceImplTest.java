@@ -8,6 +8,7 @@ import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -24,7 +25,7 @@ public class CourseServiceImplTest extends ServiceTest {
     @Autowired
     SemesterRepository semesterRepository;
 
-    @Autowired  
+    @Autowired
     ScheduleRepository scheduleRepository;
 
     @Test
@@ -133,24 +134,44 @@ public class CourseServiceImplTest extends ServiceTest {
     public void selectCourseByScheduleTest() {
         // 创建多个行程，并持久化
         Schedule schedule1 = new Schedule();
+        schedule1.setWeek(1);
+        schedule1.setNode(1);
+        schedule1.setWeekOrder(1);
         Schedule schedule2 = new Schedule();
+        schedule2.setWeek(1);
+        schedule2.setNode(1);
+        schedule2.setWeekOrder(2);
         scheduleRepository.save(schedule1);
         scheduleRepository.save(schedule2);
 
-        // 创建选择行程的数据
-        List<Schedule> scheduleList = new ArrayList<>();
-        scheduleList.add(schedule1);
-        scheduleList.add(schedule2);
-
         // 创建新的课程并持久化
         Course course = new Course();
-        courseRepository.save(course);
+        courseService.save(course);
+
+        // 创建一个数组链表
+        List<Schedule> schedules = new ArrayList<>();
+
+        // 选择的行程
+        int week = 1;
+        int node = 1;
+        List<Integer> weekorders = new ArrayList<>();
+        weekorders.add(1);
+        weekorders.add(2);
+
+        // 循环遍历weekorders
+        for (Integer weekorder :
+                weekorders) {
+            Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekorder);
+            if (scheduleRepository.equals(schedule)) {
+                schedules.add(schedule);
+            }
+        }
 
         // 调用selectCourseBySchedule方法 选择时间
-        courseService.selectCourseBySchedule(course.getId(), scheduleList);
+        courseService.selectCourseBySchedule(course.getId(), week, node, weekorders);
 
         // 断言成功
         Course newCourse = courseRepository.findOne(course.getId());
-        assertThat(newCourse.getScheduleList()).isEqualTo(scheduleList);
+        assertThat(newCourse.getScheduleList()).isEqualTo(schedules);
     }
 }
