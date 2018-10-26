@@ -20,6 +20,7 @@ angular.module('scheduleApp')
             $http.get(url)
                 .then(function success(response) {
                     $scope.data = response.data;
+                    $scope.outside = $scope.data.github;    //验重时忽略初始值
                 }, function error() {
                     console.log('error');
                 });
@@ -39,4 +40,6 @@ angular.module('scheduleApp')
 
         self.init();
         $scope.submit = self.submit;
+        $scope.githubUniqueUrl = '/student/githubExist';        //验重的后台地址
+        $scope.githubUniqueName = 'github';                     //验重的字段
     });

@@ -1,18 +1,50 @@
-<form ng-submit="submit()">
-    <div class="form-group">
-        <label for="name">name</label>
-        <input type="text" class="form-control" id="name" placeholder="name" ng-model="semester.name">
+<div class="row">
+    <div class="col-md-4 col-md-offset-3">
+        <form ng-submit="submit()" name="myForm" class="form-horizontal from-header">
+            <div class="form-group form-group-setting">
+                <label for="name" class="col-md-4 control-label">学期名:</label>
+                <div class="col-md-8">
+                    <input type="text" class="form-control" name="name" placeholder="name" ng-model="semester.name" required>
+                    <span ng-show="myForm.name.$valid && myForm.name.$dirty" class="validSuccess glyphicon glyphicon-ok Message"></span>
+                    <p class="text-danger Message" ng-show="myForm.name.$dirty && myForm.name.$error.required">请输入学期名</p>
+                </div>
+            </div>
+            <div class="form-group form-group-setting">
+                <label for="startDate" class="col-md-4 control-label">学期开始时间:</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="startDate" ng-model="semester.startTime" required />
+                    <span ng-show="myForm.startDate.$valid && myForm.startDate.$dirty" class="Message validSuccess glyphicon glyphicon-ok" ></span>
+                    <p class="Message text-danger" ng-show="myForm.startDate.$dirty && myForm.startDate.$error.required">请输入学期开始时间</p>
+                </div>
+            </div>
+            <div class="form-group form-group-setting">
+                <label for="endDate" class="col-md-4 control-label">学期结束时间:</label>
+                <div class="col-md-8">
+                    <input type="date" class="form-control" name="endDate" ng-model="semester.endTime" compare="semester.startTime" required />
+                    <span ng-show="myForm.endDate.$valid && myForm.endDate.$dirty" class="Message validSuccess glyphicon glyphicon-ok" ></span>
+                    <p class="Message text-danger" ng-show="myForm.endDate.$error.semester">结束时间不能比开始时间小</p>
+                    <p class="Message text-danger" ng-show="myForm.endDate.$dirty && myForm.endDate.$error.required">请输入学期结束时间</p>
+                </div>
+            </div>
+            <div class="form-group form-group-setting">
+                <div class="col-md-2 col-md-push-8">
+                    <button type="submit" class="btn btn-default" ng-disabled="myForm.$invalid">更新学期信息</button>
+                </div>
+            </div>
+            </button>
+        </form>
     </div>
-    <div class="form-group">
-        <label for="startDate">startDate</label>
-        <input type="date" class="form-control" id="startDate" ng-model="semester.startTime" required />
-    </div>
-    <div class="form-group">
-        <label for="endDate">endDate</label>
-        <input type="date" class="form-control" id="endDate" ng-model="semester.endTime" required />
-    </div>
-    <div class="form-group" style="float: right;">
-        <a ng-href="#!/semester" class="btn btn-default" role="button">close</a>
-        <button type="submit" class="btn btn-default">update</button>
-    </div>
-</form>
+</div>
+<style type="text/css">
+.Message {
+    position: relative;
+    top: -26px;
+    left: 267px;
+}
+.form-group-setting {
+    height:70px;
+}
+.from-header {
+    margin-top: 80px;
+}
+</style>
