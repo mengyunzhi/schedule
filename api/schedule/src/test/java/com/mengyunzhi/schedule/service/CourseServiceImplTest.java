@@ -75,60 +75,6 @@ public class CourseServiceImplTest extends ServiceTest {
         assertThat(courseList.size()).isZero();
     }
 
-    @Test
-    public void getByIdTest() {
-    }
-
-    @Test
-    public void updateByIdAndCourseTest() {
-    }
-
-
-    /**
-     * @Param: []
-     * @return: void
-     * @Author: liyiheng
-     * @Date: 10/25/2018
-     * @Description: 测试findCourseByName
-     */
-    @Test
-    public void findCourseByName() {
-        logger.info("新建并保存一个对象");
-        Course testCourse = new Course();
-        courseRepository.save(testCourse);
-        logger.info("用测试方法查找出对象");
-        List<Course> courseList = courseService.findCourseByName(testCourse.getName());
-        logger.info("断言两个对象的名字是一样的");
-        for (Course course : courseList) {
-            assertThat(course.getName()).isEqualTo(testCourse.getName());
-        }
-    }
-
-    /**
-     * @Param: []
-     * @return: void
-     * @Author: liyiheng
-     * @Date: 10/25/2018
-     * @Description: 测试findCourseBySemester
-     */
-    @Test
-    public void findCourseBySemesterId() {
-        logger.info("实例化一个学期");
-        Semester semester = new Semester();
-        semesterRepository.save(semester);
-        logger.info("实例化一个课程");
-        Course course = new Course();
-        logger.info("课程的学期等于实例化的学期");
-        course.setSemester(semester);
-        courseRepository.save(course);
-        logger.info("调用测试方法");
-        List<Course> courseList = courseService.findCourseBySemesterId(semester.getId());
-        logger.info("断言结果");
-        for (Course course1 : courseList) {
-            assertThat(course1.getSemester()).isEqualTo(semester);
-        }
-    }
-
     // 为课程选择时间 方法测试
     @Test
     public void selectCourseByScheduleTest() {
@@ -174,4 +120,31 @@ public class CourseServiceImplTest extends ServiceTest {
         Course newCourse = courseRepository.findOne(course.getId());
         assertThat(newCourse.getScheduleList()).isEqualTo(schedules);
     }
+
+    @Test
+    public void findByCourseNameLikeAndSemesterIdTest() {
+        logger.info("新建semester");
+        Semester semester = new Semester();
+        semesterRepository.save(semester);
+        logger.info("新建一个Course");
+        Course testCourse = new Course();
+        testCourse.setName("test");
+        courseRepository.save(testCourse);
+        logger.info("通过测试方法查询");
+        logger.info("名字为空的情况");
+        List<Course> courseList = courseService.findCourseByNameAndSemesterId(semester.getId(), "");
+        logger.info("断言结果");
+        for (Course course : courseList) {
+            assertThat(course.getName()).isEqualTo(testCourse.getName());
+            assertThat(course.getSemester()).isEqualTo(semester);
+        }
+        logger.info("名字不为空");
+        List<Course> courseList1 = courseService.findCourseByNameAndSemesterId(semester.getId(), testCourse.getName());
+        logger.info("断言结果");
+        for (Course course : courseList) {
+            assertThat(course.getName()).isEqualTo(testCourse.getName());
+            assertThat(course.getSemester()).isEqualTo(semester);
+        }
+    }
+
 }
