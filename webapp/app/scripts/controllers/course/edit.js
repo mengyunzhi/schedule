@@ -15,9 +15,12 @@ angular.module('scheduleApp')
         // 获取当前页面数据
         self.init = function() {
             var id = $stateParams.id;
+            $scope.selectSemester = {};
             courseService.getCourseById(id, function(data) {
+
                 //绑定数据导V层
                 $scope.data = data;
+                $scope.defaultOption = data.semester;
             });
         };
 
@@ -25,9 +28,9 @@ angular.module('scheduleApp')
         self.submit = function() {
             var id = $stateParams.id;
             courseService.update(id, $scope.data, function() {
-              // 提交成功，进行跳转
-               $state.transitionTo('course', {}, { reload: true });
-            });                             
+                // 提交成功，进行跳转
+                $state.transitionTo('course', {}, { reload: true });
+            });
         };
 
         self.init();

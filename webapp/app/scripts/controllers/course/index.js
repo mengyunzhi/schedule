@@ -11,53 +11,41 @@
 angular.module('scheduleApp')
     .controller('CourseIndexCtrl', function($http, $scope, courseService, semester, $filter, schedule) {
         var self = this;
-        var courses = [];
 
         // 初始化
         self.init = function() {
             self.selectAllOrNot = true;
-            $scope.params = { page: 0, size: 3 };
-            $scope.$watch('selectedSemester', self.handleData);
+            $scope.params = { page: 0, size: 10 };  
+            $scope.selectSemester = {
+                id: ''
+            };
+            $scope.queryCourseName = '';
+            self.getCurrentSemester();
             self.load();
-
         };
 
         // 加载数据
         self.load = self.reload = function() {
             courseService.page($scope.params, function(data) {
                 // 获取到所有的课程
-                courses = data.content;
+                $scope.data = data.content;
 
                 // 将所有课程的选择状态初始化为false
-                angular.forEach(courses, function(course) {
+                angular.forEach($scope.data, function(course) {
                     course._checked = false;
                 });
-
-                self.getCurrentSemester();         
             });
         };
 
         // 获取当前学期
-        self.getCurrentSemester = function(callback) {
+        self.getCurrentSemester = function() {
             courseService.getCurrentSemester(function(currentSemester) {
+                // 将当前学期存到服务中去
                 courseService.currentSemester = currentSemester;
-                // 选择的学期默认为当前学期
-                $scope.selectedSemester = courseService.currentSemester;
-                if (callback) {callback(courses);}
+                // 将当前学期传给页面
+                $scope.currentSemester = currentSemester;
             });
-        };
-
-        self.change = function(selectSemester) {
-            $scope.selectSemester = selectSemester;
-        };
-
-        // 监听选择学期的变化
-        self.handleData = function(newValue) {
-            if (newValue && newValue.id) {
-                // 执行函数
-                console.log('xxx');
-            }            
-        };
+        };  
 
         // 分页时重新加载数据
         self.reloadByPage = function(page) {
@@ -83,7 +71,7 @@ angular.module('scheduleApp')
 
         //全选
         self.selectAll = function() {
-            angular.forEach($scope.data.content, function(_list) {
+            angular.forEach($scope.data, function(_list) {
                 _list._checked = true;
             });
 
@@ -91,14 +79,14 @@ angular.module('scheduleApp')
 
         //全不选
         self.removeAll = function() {
-            angular.forEach($scope.data.content, function(_list) {
+            angular.forEach($scope.data, function(_list) {
                 _list._checked = false;
             });
         };
 
         // 批量删除
         self.deleteMultiple = function() {
-            var deleteList = $scope.data.content.filter(function(_list) {
+            var deleteList = $scope.data.filter(function(_list) {
                 return _list._checked;
             });
 
@@ -110,6 +98,11 @@ angular.module('scheduleApp')
             })
         };
 
+        self.query = function() {
+            courseService.query(queryCourseName, selectSemester.id, function() {
+                self.reload();
+            });
+        };
 
         self.init();
         $scope.selectAll = self.selectAll;

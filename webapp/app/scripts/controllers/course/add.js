@@ -14,19 +14,17 @@ angular.module('scheduleApp')
 
         //初始化
         self.init = function() {
-            $scope.data = {
-                name: '',
-                semester: ''
-            };
+                $scope.data = {
+                    name: '',
+                    semester: {}
+                };
         };
 
         //提交add信息
         self.submit = function() {
-            $scope.data.semester = courseService.currentSemester;
-            console.log($scope.data);
             courseService.add($scope.data, function() {
                 $state.transitionTo('course', {}, { reload: true });
-            })
+            });
         };
 
         self.init();
