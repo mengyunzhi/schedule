@@ -103,14 +103,14 @@ angular
         // @author chenjie
         {
           name: 'course.selectWeekOrder', 
-          url: '/selectWeekOrder', 
+          url: '/selectWeekOrder?courseId&semesterId&week&node', 
           templateUrl: 'views/course/selectWeekOrder.html',
           controller: 'CourseSelectweekorderCtrl',
           data: {
               title: '选择周次',
               show: false
           },
-          params:{'args':{}}
+          // params:{'args':{}}
         },
         {
           name: 'semester',

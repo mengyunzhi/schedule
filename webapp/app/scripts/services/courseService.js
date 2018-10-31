@@ -140,26 +140,48 @@ angular.module('scheduleApp')
         /* 课程选择时间
          * @Author   chen_jie
          * @DateTime 2018-10-26T19:34:19+0800
+         * @param    {long}                 semesterId       [学期id]
          * @param    {long}                 courseId         [要修改的课程id]
          * @param    {int}                  week             [星期]
          * @param    {int}                  node             [节次]
          * @param    {array<int>}           selectWeekOrders [周次数组]
-         * @param    {long}                 semesterId       [学期id]
          * @param    {Function}             callback         [description]
          */
-        self.selectSchedule = function(courseId, week, node, selectWeekOrders, semesterId, callback) {
-            var url = '/Course/select/' + courseId;
+        self.selectSchedule = function(courseId, semesterId, week, node, selectWeekOrders, callback) {
+            var url = '/Course/select/' + courseId + '/';
             var params = {
+                semesterId: semesterId,
                 week: week,
                 node: node,
-                WeekOrders: selectWeekOrders,
-                semesterId: semesterId
+                weekOrders: selectWeekOrders
             };
-            $http.put(url, { params: params })
+            $http.put(url, {}, { params: params })
                 .then(function success() {
+                    console.log('success');
                     if (callback) { callback(); }
                 }, function error(response) {
-                    console.log('选时成功' + url, response)
+                    console.log('选时失败' + url, response);
+                });
+        };
+
+        /* 根据学期ID和课程名查询
+         * @Author   chen_jie
+         * @DateTime 2018-10-27T10:31:13+0800
+         * @param    {[long]}                 semesterId [学期ID]
+         * @param    {[string]}               courseName [课程名称]
+         * @param    {Function}               callback   [description]
+         */
+        self.query = function(semesterId, courseName, callback) {
+            var url = '/Course/query';
+            var params = {
+                id: semesterId,
+                name: courseName
+            };
+            $http.get(url, { params: params })
+                .then(function success(response) {
+                    if (callback) { callback(response.data); }
+                }, function error(response) {
+                    console.log('查询失败' + url, response);
                 });
         };
 
@@ -172,6 +194,8 @@ angular.module('scheduleApp')
             update: self.update,
             add: self.add,
             getCurrentSemester: self.getCurrentSemester,
-            currentSemester: self.currentSemester
+            currentSemester: self.currentSemester,
+            selectSchedule: self.selectSchedule,
+            query: self.query
         };
     });

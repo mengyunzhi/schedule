@@ -12,28 +12,30 @@ angular.module('scheduleApp')
     .controller('CourseIndexCtrl', function($http, $scope, courseService, semester, $filter, schedule) {
         var self = this;
 
+
         // 初始化
         self.init = function() {
             self.selectAllOrNot = true;
-            $scope.params = { page: 0, size: 10 };  
-            $scope.selectSemester = {
-                id: ''
-            };
-            $scope.queryCourseName = '';
-            self.getCurrentSemester();
+            $scope.params = { page: 0, size: 10 };
+            $scope.query = {};
+            $scope.query.name = '';
+            $scope.query.selectSemester = {};
             self.load();
+            self.getCurrentSemester();
         };
 
         // 加载数据
         self.load = self.reload = function() {
             courseService.page($scope.params, function(data) {
                 // 获取到所有的课程
-                $scope.data = data.content;
+                $scope.data = data;     
+            });
+        };
 
-                // 将所有课程的选择状态初始化为false
-                angular.forEach($scope.data, function(course) {
-                    course._checked = false;
-                });
+        // 将所有课程的选择状态初始化为false
+        self.initSelect = function(data) {
+            angular.forEach(data, function(course) {
+                course._checked = false;
             });
         };
 
@@ -42,10 +44,22 @@ angular.module('scheduleApp')
             courseService.getCurrentSemester(function(currentSemester) {
                 // 将当前学期存到服务中去
                 courseService.currentSemester = currentSemester;
+
                 // 将当前学期传给页面
                 $scope.currentSemester = currentSemester;
+                // 获取当前学期的课程
+                self.findCurrentSemesterCourse();
             });
-        };  
+        };
+
+        self.findCurrentSemesterCourse = function() {
+            var id = courseService.currentSemester.id;
+            var name = '';
+            courseService.query(id, name, function(data) {
+                $scope.data.content = data;
+                self.initSelect($scope.data.content);
+            });
+        };
 
         // 分页时重新加载数据
         self.reloadByPage = function(page) {
@@ -71,7 +85,7 @@ angular.module('scheduleApp')
 
         //全选
         self.selectAll = function() {
-            angular.forEach($scope.data, function(_list) {
+            angular.forEach($scope.data.content, function(_list) {
                 _list._checked = true;
             });
 
@@ -79,14 +93,14 @@ angular.module('scheduleApp')
 
         //全不选
         self.removeAll = function() {
-            angular.forEach($scope.data, function(_list) {
+            angular.forEach($scope.data.content, function(_list) {
                 _list._checked = false;
             });
         };
 
         // 批量删除
         self.deleteMultiple = function() {
-            var deleteList = $scope.data.filter(function(_list) {
+            var deleteList = $scope.data.content.filter(function(_list) {
                 return _list._checked;
             });
 
@@ -98,9 +112,15 @@ angular.module('scheduleApp')
             })
         };
 
-        self.query = function() {
-            courseService.query(queryCourseName, selectSemester.id, function() {
-                self.reload();
+        // 根据学期ID和课程名查询
+        self.findBySemesterIdAndName = function() {
+            console.log($scope.query.selectSemester);
+            console.log($scope.query.name);
+            var semesterId = $scope.query.selectSemester.id;
+            var courseName = $scope.query.name;
+            courseService.query(semesterId, courseName, function(data) {
+                $scope.data.content = data;
+                self.initSelect($scope.data.content);
             });
         };
 
@@ -110,6 +130,6 @@ angular.module('scheduleApp')
         $scope.reloadByPage = self.reloadByPage;
         $scope.reloadBySize = self.reloadBySize;
         $scope.deleteMultiple = self.deleteMultiple;
-
+        $scope.findBySemesterIdAndName = self.findBySemesterIdAndName;
 
     });
