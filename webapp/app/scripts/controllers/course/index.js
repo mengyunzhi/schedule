@@ -12,7 +12,6 @@ angular.module('scheduleApp')
     .controller('CourseIndexCtrl', function($http, $scope, courseService, semester, $filter, schedule) {
         var self = this;
 
-
         // 初始化
         self.init = function() {
             self.selectAllOrNot = true;
@@ -85,7 +84,7 @@ angular.module('scheduleApp')
 
         //全选
         self.selectAll = function() {
-            angular.forEach($scope.data.content, function(_list) {
+            angular.forEach($scope.data, function(_list) {
                 _list._checked = true;
             });
 
@@ -93,14 +92,14 @@ angular.module('scheduleApp')
 
         //全不选
         self.removeAll = function() {
-            angular.forEach($scope.data.content, function(_list) {
+            angular.forEach($scope.data, function(_list) {
                 _list._checked = false;
             });
         };
 
         // 批量删除
         self.deleteMultiple = function() {
-            var deleteList = $scope.data.content.filter(function(_list) {
+            var deleteList = $scope.data.filter(function(_list) {
                 return _list._checked;
             });
 

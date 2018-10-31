@@ -110,7 +110,6 @@ angular
               title: '选择周次',
               show: false
           },
-          // params:{'args':{}}
         },
         {
           name: 'semester',
