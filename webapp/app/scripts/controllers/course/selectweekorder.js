@@ -8,7 +8,7 @@
  * Controller of the scheduleApp
  */
 angular.module('scheduleApp')
-    .controller('CourseSelectweekorderCtrl', function($scope, courseService, $stateParams, semester, schedule) {
+    .controller('CourseSelectweekorderCtrl', function($scope, courseService, $stateParams, semester, schedule, $state) {
         var self = this;
         $scope.weekOrders = [];
         $scope.selectOrNot = false;
@@ -16,10 +16,11 @@ angular.module('scheduleApp')
 
         // 获取数据
         self.init = function() {
-            self.courseId = $stateParams.args.id;
-            self.week = $stateParams.args.week;
-            self.node = $stateParams.args.node;
-            self.semesterId = $stateParams.args.semesterId;
+            console.log($stateParams);
+            self.courseId = $stateParams.courseId;
+            self.week = $stateParams.week;
+            self.node = $stateParams.node;
+            self.semesterId = $stateParams.semesterId;
             self.getCourse();
             self.getSemester();
 
@@ -77,12 +78,17 @@ angular.module('scheduleApp')
 
         // 提交数据
         self.submit = function() {
+            console.log(self.courseId);
+            console.log(self.week);
+            console.log(self.node);
+            console.log(self.selectWeekOrders);
+            console.log(self.semesterId);
             courseService.selectSchedule(
                 self.courseId,
+                self.semesterId,
                 self.week,
                 self.node,
                 self.selectWeekOrders,
-                self.semesterId,
                 function() {
                     // 提交成功，进行跳转
                     $state.transitionTo('course', {}, { reload: true });

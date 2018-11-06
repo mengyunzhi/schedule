@@ -20,18 +20,6 @@ angular.module('scheduleApp')
             });
         };
 
-        self.toSelectWeekOrder = function(week, node) {
-            var url = 'course.selectWeekOrder';
-            $state.transitionTo(url, {
-                args: {
-                    id: $scope.data.id,
-                    week: week,
-                    node: node,
-                    semesterId: $scope.data.semester.id
-                },
-            }, { reload: true });
-        };
-
         self.init();
         $scope.toSelectWeekOrder = self.toSelectWeekOrder;
     });
