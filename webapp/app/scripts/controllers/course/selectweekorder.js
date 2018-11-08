@@ -16,7 +16,6 @@ angular.module('scheduleApp')
 
         // 获取数据
         self.init = function() {
-            console.log($stateParams);
             self.courseId = $stateParams.courseId;
             self.week = $stateParams.week;
             self.node = $stateParams.node;
@@ -31,6 +30,7 @@ angular.module('scheduleApp')
             courseService.getCourseById(self.courseId, function(data) {
                 // 绑定数据到V层
                 $scope.course = data;
+                console.log(data);
             });
         };
 
@@ -78,11 +78,6 @@ angular.module('scheduleApp')
 
         // 提交数据
         self.submit = function() {
-            console.log(self.courseId);
-            console.log(self.week);
-            console.log(self.node);
-            console.log(self.selectWeekOrders);
-            console.log(self.semesterId);
             courseService.selectSchedule(
                 self.courseId,
                 self.semesterId,

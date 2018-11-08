@@ -86,11 +86,12 @@ public class CourseServiceImplTest extends ServiceTest {
         schedule1.setNode(1);
         schedule1.setWeekOrder(1);
         schedule1.setSemester(semester);
+
         Schedule schedule2 = new Schedule();
         schedule2.setWeek(1);
         schedule2.setNode(1);
         schedule2.setWeekOrder(2);
-        schedule2.setSemester(semester);
+
         scheduleRepository.save(schedule1);
         scheduleRepository.save(schedule2);
 
@@ -98,8 +99,13 @@ public class CourseServiceImplTest extends ServiceTest {
         Course course = new Course();
         courseService.save(course);
 
-        // 创建一个数组链表
-        List<Schedule> schedules = new ArrayList<>();
+        // 为课程添加一个行程
+        List<Schedule> existSchedule = new ArrayList<>();
+        existSchedule.add(schedule1);
+        course.setScheduleList(existSchedule);
+
+        // 获取课程中的行程列表
+        List<Schedule> schedules = course.getScheduleList();
 
         // 选择的行程
         int week = 1;
@@ -113,17 +119,21 @@ public class CourseServiceImplTest extends ServiceTest {
         for (Integer weekorder :
                 weekorders) {
             Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrderAndSemesterId(week, node, weekorder, semesterId);
+            // 判断数据库里是否存在选择的行程
             if (scheduleRepository.equals(schedule)) {
-                schedules.add(schedule);
+                // 判断课程的行程列表里是否存在选择的行程
+                if (!schedules.contains(schedule)) {
+                    schedules.add(schedule);
+                }
             }
         }
 
         // 调用selectCourseBySchedule方法 选择时间
         courseService.selectCourseBySchedule(course.getId(), week, node, semesterId, weekorders);
 
-        // 断言成功
+        // 断言更新后的课程的行程列表有两项
         Course newCourse = courseRepository.findOne(course.getId());
-        assertThat(newCourse.getScheduleList()).isEqualTo(schedules);
+        assertThat(newCourse.getScheduleList().size()).isEqualTo(2);
     }
 
     @Test
