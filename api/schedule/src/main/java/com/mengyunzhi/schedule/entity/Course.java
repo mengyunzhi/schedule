@@ -27,6 +27,7 @@ public class Course {
     private Semester semester;
 
     @ManyToMany
+    @JsonView(CourseJsonView.class)
     private List<Schedule> scheduleList;
 
     @ManyToMany

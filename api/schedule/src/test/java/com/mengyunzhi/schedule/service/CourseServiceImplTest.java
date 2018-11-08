@@ -78,15 +78,19 @@ public class CourseServiceImplTest extends ServiceTest {
     // 为课程选择时间 方法测试
     @Test
     public void selectCourseByScheduleTest() {
+        Semester semester = new Semester();
+        semesterRepository.save(semester);
         // 创建多个行程，并持久化
         Schedule schedule1 = new Schedule();
         schedule1.setWeek(1);
         schedule1.setNode(1);
         schedule1.setWeekOrder(1);
+        schedule1.setSemester(semester);
         Schedule schedule2 = new Schedule();
         schedule2.setWeek(1);
         schedule2.setNode(1);
         schedule2.setWeekOrder(2);
+        schedule2.setSemester(semester);
         scheduleRepository.save(schedule1);
         scheduleRepository.save(schedule2);
 
@@ -100,6 +104,7 @@ public class CourseServiceImplTest extends ServiceTest {
         // 选择的行程
         int week = 1;
         int node = 1;
+        Long semesterId = 1L;
         List<Integer> weekorders = new ArrayList<>();
         weekorders.add(1);
         weekorders.add(2);
@@ -107,14 +112,14 @@ public class CourseServiceImplTest extends ServiceTest {
         // 循环遍历weekorders
         for (Integer weekorder :
                 weekorders) {
-            Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekorder);
+            Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrderAndSemesterId(week, node, weekorder, semesterId);
             if (scheduleRepository.equals(schedule)) {
                 schedules.add(schedule);
             }
         }
 
         // 调用selectCourseBySchedule方法 选择时间
-        courseService.selectCourseBySchedule(course.getId(), week, node, weekorders);
+        courseService.selectCourseBySchedule(course.getId(), week, node, semesterId, weekorders);
 
         // 断言成功
         Course newCourse = courseRepository.findOne(course.getId());
