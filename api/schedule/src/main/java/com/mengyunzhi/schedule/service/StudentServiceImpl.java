@@ -103,5 +103,8 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findByNameLike("%" + name + "%");
     }
 
-
+    @Override
+    public List<Student> getActiveStudent() {
+        return studentRepository.findByState(true);
+    }
 }

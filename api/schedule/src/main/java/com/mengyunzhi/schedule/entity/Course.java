@@ -5,6 +5,7 @@ import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.jsonView.CourseJsonView;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,9 +29,9 @@ public class Course {
 
     @ManyToMany
     @JsonView(CourseJsonView.class)
-    private List<Schedule> scheduleList;
+    private List<Schedule> scheduleList = new ArrayList<>();;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "courseList")
     @JsonView({View.Schedule.class})
     private List<Student> studentList;
 

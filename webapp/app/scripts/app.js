@@ -68,7 +68,7 @@ angular
         {
           name: 'course.add', 
           url: '/add', 
-          templateUrl: 'views/course/add.html',
+          templateUrl: 'views/Course/add.html',
           controller: 'CourseAddCtrl',
           data: {
               title: '增加',
@@ -80,7 +80,7 @@ angular
         {
           name: 'course.edit', 
           url: '/edit/:id', 
-          templateUrl: 'views/course/edit.html',
+          templateUrl: 'views/Course/edit.html',
           controller: 'CourseEditCtrl',
           data: {
               title: '编辑',
@@ -92,7 +92,7 @@ angular
         {
           name: 'course.selectSchedule', 
           url: '/selectSchedule/:id', 
-          templateUrl: 'views/course/selectSchedule.html',
+          templateUrl: 'views/Course/selectSchedule.html',
           controller: 'CourseSelectscheduleCtrl',
           data: {
               title: '选择时间',
@@ -104,7 +104,7 @@ angular
         {
           name: 'course.selectWeekOrder', 
           url: '/selectWeekOrder?courseId&semesterId&week&node', 
-          templateUrl: 'views/course/selectWeekOrder.html',
+          templateUrl: 'views/Course/selectWeekOrder.html',
           controller: 'CourseSelectweekorderCtrl',
           data: {
               title: '选择周次',

@@ -53,4 +53,10 @@ public interface StudentService {
 
     //按学生姓名查询
     List<Student> findByNameLike(String name);
+
+    /**
+     * 获得激活状态的学生
+     * @return
+     */
+    List<Student> getActiveStudent();
 }

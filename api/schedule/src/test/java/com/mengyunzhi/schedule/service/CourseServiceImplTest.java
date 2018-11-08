@@ -118,14 +118,8 @@ public class CourseServiceImplTest extends ServiceTest {
         // 循环遍历weekorders
         for (Integer weekorder :
                 weekorders) {
-            Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrderAndSemesterId(week, node, weekorder, semesterId);
-            // 判断数据库里是否存在选择的行程
-            if (scheduleRepository.equals(schedule)) {
-                // 判断课程的行程列表里是否存在选择的行程
-                if (!schedules.contains(schedule)) {
-                    schedules.add(schedule);
-                }
-            }
+            Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekorder);
+                schedules.add(schedule);
         }
 
         // 调用selectCourseBySchedule方法 选择时间
@@ -133,7 +127,9 @@ public class CourseServiceImplTest extends ServiceTest {
 
         // 断言更新后的课程的行程列表有两项
         Course newCourse = courseRepository.findOne(course.getId());
-        assertThat(newCourse.getScheduleList().size()).isEqualTo(2);
+        for (int i = 0; i < schedules.size(); i ++) {
+            assertThat(newCourse.getScheduleList().get(i)).isEqualTo(schedules.get(i));
+        }
     }
 
     @Test
