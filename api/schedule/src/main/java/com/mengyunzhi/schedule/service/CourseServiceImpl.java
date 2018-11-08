@@ -81,20 +81,16 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void selectCourseBySchedule(Long id, int week, int node, List<Integer> weekOrders) {
-        //创建一个数组链表
-        List<Schedule> schedules = new ArrayList<>();
-        // 通过课程ID找到对应的课程
+        //首先 获取与星期周次关联的行程
+        List<Schedule> schedules = scheduleRepository.findByWeekAndNode(week, node);
+        //删除与行程集合关联的课程
         Course course = courseRepository.findOne(id);
+        course.getScheduleList().removeAll(schedules);
         // 循环遍历周次
         for (Integer weekOrder :
                 weekOrders) {
             Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekOrder);
-
-            //判断如果行程中有schedule 保存到数组链表
-            if (scheduleRepository.equals(schedule)){
-                schedules.add(schedule);
-            }
-            course.setScheduleList(schedules);
+            course.getScheduleList().add(schedule);
         }
         courseRepository.save(course);
     }

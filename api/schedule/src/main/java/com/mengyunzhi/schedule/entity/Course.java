@@ -29,7 +29,7 @@ public class Course {
     @ManyToMany
     private List<Schedule> scheduleList;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "courseList")
     @JsonView({View.Schedule.class})
     private List<Student> studentList;
 
