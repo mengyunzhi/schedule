@@ -42,9 +42,10 @@
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-7">
                     <label>周次：</label>
+                    <button type="button" class="btn btn-default" ng-click="select()">全选/全不选</button>
                     <div class="checkbox">
                         <label ng-repeat="(key, weekOrder) in weekOrders">
-                            <input type="checkbox" ng-click="pushOrRemove(weekOrder, selectOrNot)" ng-model="selectOrNot">{{weekOrder}}&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="checkbox" ng-model="weekOrder._checked">{{weekOrder.value}}&nbsp;&nbsp;&nbsp;&nbsp;
                         </label>
                     </div>
                 </div>
