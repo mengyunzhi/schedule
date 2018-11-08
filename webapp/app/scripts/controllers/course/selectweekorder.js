@@ -38,7 +38,6 @@ angular.module('scheduleApp')
         self.getSemester = function() {
             semester.getById(self.semesterId, function(data) {
                 $scope.semester = data;
-                console.log($scope.semester);
                 self.getWeekOrders();
             });
         };
@@ -92,7 +91,7 @@ angular.module('scheduleApp')
                 self.selectWeekOrders,
                 function() {
                     // 提交成功，进行跳转
-                    // $state.transitionTo('course', {}, { reload: true });
+                    $state.transitionTo('course', {}, { reload: true });
                 });
         };
 
