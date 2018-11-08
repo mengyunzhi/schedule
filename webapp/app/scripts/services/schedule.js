@@ -105,7 +105,7 @@ angular.module('scheduleApp')
          * @param {array} schedules 	行程集合
          */
         self.addScheduleMessage = function(schedules) {
-        		$http.get('/student')
+        		$http.get('/student/getActiveStudents')
         		.then(function(response) {
         			var allStudent = response.data;
         			angular.forEach(schedules, function(schedule) {

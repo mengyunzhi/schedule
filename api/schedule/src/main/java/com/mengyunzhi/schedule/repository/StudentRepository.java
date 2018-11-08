@@ -39,4 +39,10 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
      */
     List<Student> findByNameLike(String name);
 
+    /**
+     * 通过学生的状态来返回学生
+     * @param state
+     * @return
+     */
+    List<Student> findByState(boolean state);
 }

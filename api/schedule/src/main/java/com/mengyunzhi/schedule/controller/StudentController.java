@@ -28,6 +28,7 @@ public class StudentController {
     StudentService studentService;
 
     @GetMapping
+    @JsonView(View.Student.class)
     public Iterable<Student> getAll() {
         Iterable<Student> students = studentService.getAll();
         return students;
@@ -92,6 +93,17 @@ public class StudentController {
     @JsonView(View.Student.class)
     public List<Student> findByNameLike(@PathVariable String name) {
         return studentService.findByNameLike("%" + name + "%");
+    }
+
+    /**
+     * 获得激活的学生
+     * @return
+     */
+    @GetMapping("/getActiveStudents")
+    @JsonView(View.Student.class)
+    public List<Student> getActiveStudents()
+    {
+        return studentService.getActiveStudent();
     }
 }
 
