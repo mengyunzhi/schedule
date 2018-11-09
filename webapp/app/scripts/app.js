@@ -69,6 +69,7 @@ angular
           name: 'course.add',
           url: '/add',
           templateUrl: 'views/course/add.html',
+
           controller: 'CourseAddCtrl',
           data: {
               title: '增加',
@@ -78,9 +79,10 @@ angular
         // course/edit
         // @author chenjie
         {
-          name: 'course.edit',
-          url: '/edit/:id',
-          templateUrl: 'views/course/edit.html',
+
+          name: 'course.edit', 
+          url: '/edit/:id', 
+          templateUrl: 'views/Course/edit.html',
           controller: 'CourseEditCtrl',
           data: {
               title: '编辑',
@@ -90,9 +92,10 @@ angular
         // course/selectSchedule
         // @author chenjie
         {
-          name: 'course.selectSchedule',
-          url: '/selectSchedule/:id',
-          templateUrl: 'views/course/selectSchedule.html',
+
+          name: 'course.selectSchedule', 
+          url: '/selectSchedule/:id', 
+          templateUrl: 'views/Course/selectSchedule.html',
           controller: 'CourseSelectscheduleCtrl',
           data: {
               title: '选择时间',
@@ -102,9 +105,9 @@ angular
         // course/selectWeekOrder
         // @author chenjie
         {
-          name: 'course.selectWeekOrder',
-          url: '/selectWeekOrder?courseId&semesterId&week&node',
-          templateUrl: 'views/course/selectWeekOrder.html',
+          name: 'course.selectWeekOrder', 
+          url: '/selectWeekOrder?courseId&semesterId&week&node', 
+          templateUrl: 'views/Course/selectWeekOrder.html',
           controller: 'CourseSelectweekorderCtrl',
           data: {
               title: '选择周次',

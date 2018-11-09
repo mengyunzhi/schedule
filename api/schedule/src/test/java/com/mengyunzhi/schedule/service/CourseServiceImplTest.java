@@ -108,9 +108,7 @@ public class CourseServiceImplTest extends ServiceTest {
         for (Integer weekorder :
                 weekorders) {
             Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekorder);
-            if (scheduleRepository.equals(schedule)) {
                 schedules.add(schedule);
-            }
         }
 
         // 调用selectCourseBySchedule方法 选择时间
@@ -118,7 +116,9 @@ public class CourseServiceImplTest extends ServiceTest {
 
         // 断言成功
         Course newCourse = courseRepository.findOne(course.getId());
-        assertThat(newCourse.getScheduleList()).isEqualTo(schedules);
+        for (int i = 0; i < schedules.size(); i ++) {
+            assertThat(newCourse.getScheduleList().get(i)).isEqualTo(schedules.get(i));
+        }
     }
 
     @Test
