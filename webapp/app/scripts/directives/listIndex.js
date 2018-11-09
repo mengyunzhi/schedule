@@ -7,7 +7,7 @@
  * # listindex
  */
 angular.module('scheduleApp')
-  .directive('listIndex', function ($state, routers) {
+  .directive('listIndex', function ($state, routers, user, $location) {
     return {
       templateUrl: 'views/directives/listIndex.html',
       restrict: 'E',
@@ -37,9 +37,21 @@ angular.module('scheduleApp')
             }
           }
         };
+        
+        // 注销
+        self.logout = function() {
+         user.logout(function () {
+             console.log("234124312412412");
+             $location.url('/login');
+             }
+         );
+        };
+        
         self.init();
         $scope.isActive = self.isActive;
         $scope.routers = routers;
+          $scope.logout = self.logout;
+    
       }
     };
   });

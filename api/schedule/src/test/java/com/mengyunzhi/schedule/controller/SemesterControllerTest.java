@@ -25,7 +25,8 @@ public class SemesterControllerTest extends ControllerTest {
         String postUrl = this.baseUrl;
         this.mockMvc
                 .perform(post(postUrl)
-                .contentType(MediaType.APPLICATION_JSON_UTF8).content("{\"startTime\":\"2\",\"endTime\":\"34\"}"))
+                        .cookie(this.cookie)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8).content("{\"startTime\":\"2\",\"endTime\":\"34\"}"))
                 .andExpect(status().is(201));
     }
 
@@ -37,15 +38,17 @@ public class SemesterControllerTest extends ControllerTest {
         semesterRepository.save(semester);
         Long id = semester.getId();
         String deleteUrl = this.baseUrl + id.toString();
-        this.mockMvc.perform(MockMvcRequestBuilders.delete(deleteUrl))
+        this.mockMvc.perform(MockMvcRequestBuilders.delete(deleteUrl)
+                .cookie(this.cookie))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void getAll() throws Exception {
         String getUrl = this.baseUrl;
-        this.mockMvc.perform(get(getUrl))
-                .andDo(print())
+        this.mockMvc.perform(get(getUrl)
+                .cookie(this.cookie))
+                //.andDo(print())
                 .andExpect(status().isOk());
     }
 
@@ -56,7 +59,8 @@ public class SemesterControllerTest extends ControllerTest {
         semesterRepository.save(semester);
 
         String putUrl = this.baseUrl + "active/" + semester.getId().toString();
-        this.mockMvc.perform(put(putUrl))
+        this.mockMvc.perform(put(putUrl)
+                .cookie(this.cookie))
                 .andExpect(status().isOk());
     }
 
@@ -69,7 +73,9 @@ public class SemesterControllerTest extends ControllerTest {
 
         String updateUrl = this.baseUrl + newSemester.getId().toString();
         this.mockMvc.perform(
-                put(updateUrl).contentType(MediaType.APPLICATION_JSON_UTF8)
+                put(updateUrl)
+                        .cookie(this.cookie)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content("{\"startTime\":\"2\",\"endTime\":\"34\"}")
         ).andExpect(status().isOk());
     }
@@ -82,9 +88,11 @@ public class SemesterControllerTest extends ControllerTest {
         semesterRepository.save(semester);
         String nameUrl = this.baseUrl + "name/" + semester.getName();
 
-        this.mockMvc.perform(get(nameUrl))
-                .andExpect(status().isOk())
-                .andDo(print());
+        this.mockMvc.perform(get(nameUrl)
+                .cookie(this.cookie)
+        )
+                .andExpect(status().isOk());
+                //.andDo(print());
     }
 
     @Test
@@ -97,8 +105,10 @@ public class SemesterControllerTest extends ControllerTest {
         semester.setStatus(true);
 
         // 断言能获取到该学期
-        this.mockMvc.perform(get(getUrl))
-                .andDo(print())
+        this.mockMvc.perform(get(getUrl)
+                .cookie(this.cookie)
+        )
+                //.andDo(print())
                 .andExpect(status().isOk());
     }
 }

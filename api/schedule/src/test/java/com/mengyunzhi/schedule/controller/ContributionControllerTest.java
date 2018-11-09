@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import javax.servlet.http.HttpSession;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -31,6 +33,8 @@ public class ContributionControllerTest extends ControllerTest {
     MockMvc mockMvc;
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    HttpSession httpSession;
 
     @Test
     public void getById() throws Exception {
@@ -45,6 +49,7 @@ public class ContributionControllerTest extends ControllerTest {
 
         this.mockMvc
                 .perform(get(getUrl)
+                        .cookie(this.cookie)
                         .header("content-type", MediaType.APPLICATION_JSON_UTF8))
                 //.andDo(print())
                 .andExpect(status().isOk())
@@ -70,6 +75,7 @@ public class ContributionControllerTest extends ControllerTest {
 
         this.mockMvc
                 .perform(put(getUrl)
+                        .cookie(this.cookie)
                         .content(jsonObject.toString())
                         .header("content-type", MediaType.APPLICATION_JSON_UTF8))
                 //.andDo(print())
@@ -98,6 +104,7 @@ public class ContributionControllerTest extends ControllerTest {
 
         this.mockMvc
                 .perform(get(getUrl)
+                        .cookie(this.cookie)
                         .header("content-type", MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isOk());

@@ -28,7 +28,9 @@ public class ScheduleControllerTest extends ControllerTest{
         semesterService.add(semester);
 
         String getUrl = this.baseUrl + "getnowschedule/" + semester.getId().toString() + "/1";
-        this.mockMvc.perform(get(getUrl))
-                .andDo(print()).andExpect(status().isOk());
+        this.mockMvc.perform(get(getUrl)
+                .cookie(this.cookie))
+               // .andDo(print())
+                .andExpect(status().isOk());
     }
 }
