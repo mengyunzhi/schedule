@@ -86,11 +86,13 @@ public class CourseServiceImpl implements CourseService {
         //删除与行程集合关联的课程
         Course course = courseRepository.findOne(id);
         course.getScheduleList().removeAll(schedules);
-        // 循环遍历周次
-        for (Integer weekOrder :
-                weekOrders) {
-            Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekOrder);
-            course.getScheduleList().add(schedule);
+        if(weekOrders != null) {
+            // 循环遍历周次
+            for (Integer weekOrder :
+                    weekOrders) {
+                Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekOrder);
+                course.getScheduleList().add(schedule);
+            }
         }
         courseRepository.save(course);
     }
