@@ -73,10 +73,10 @@ public class CourseControllerTest extends ControllerTest {
         this.mockMvc
                 .perform(MockMvcRequestBuilders.put(putUrl)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
+                        .param("semesterId", "0")
                         .param("week", "0")
                         .param("weekOrders", "1", "2")
                         .param("node", "2"))
-                //.andDo(print())
                 .andExpect(status().isOk());
     }
 

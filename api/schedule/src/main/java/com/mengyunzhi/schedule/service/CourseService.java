@@ -48,5 +48,5 @@ public interface CourseService {
     List<Course> findCourseByNameAndSemesterId(Long id, String name);
 
     // 为课程选择时间
-    void selectCourseBySchedule(Long id, int week, int node, List<Integer> weekOrders);
+    void selectCourseBySchedule(Long id, int week, int node,Long semesterId, List<Integer> weekOrders);
 }

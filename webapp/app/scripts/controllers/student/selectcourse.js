@@ -89,7 +89,9 @@ angular.module('scheduleApp')
                         count++;
                     }
                 });
-                $scope.selectAllOrNot = count === newValue.length;
+                if (count != 0) {
+                    $scope.selectAllOrNot = count === newValue.length;
+                }
             }
         };
 

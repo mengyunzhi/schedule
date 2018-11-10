@@ -40,12 +40,14 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
     List<Schedule> findBySemesterAndWeekOrderAndWeekOrderByNodeAsc(Semester semester, int weekOrder, int week);
 
     /**
-     * 通过星期、节次、周次获取行程
+     * 通过星期、节次、周次、学期ID 获取行程
      * @param week 星期
-     * @param node 节
+     * @param node 节次
      * @param weekOrder 周次
+     * @param semesterId 学期ID
      * @return
      */
+    Schedule findByWeekAndNodeAndWeekOrderAndSemesterId(int week, int node, Integer weekOrder, Long semesterId);
     Schedule findByWeekAndNodeAndWeekOrder(int week, int node, Integer weekOrder);
 
     /**
