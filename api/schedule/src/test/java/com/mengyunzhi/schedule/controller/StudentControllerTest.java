@@ -37,6 +37,7 @@ public class StudentControllerTest extends ControllerTest {
     public void getAllTest() throws Exception {
         this.mockMvc
                 .perform(get(url)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content("{}"))
                 //.andDo(print())
@@ -47,6 +48,7 @@ public class StudentControllerTest extends ControllerTest {
     public void saveTest() throws Exception {
         this.mockMvc
                 .perform(post(url)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content("{}"))
                 //.andDo(print())
@@ -70,6 +72,7 @@ public class StudentControllerTest extends ControllerTest {
 
         this.mockMvc
                 .perform(get(getUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 //.andDo(print())
                 .andExpect(status().isOk())
@@ -91,6 +94,7 @@ public class StudentControllerTest extends ControllerTest {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders.put(putUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content("{\"name\":\"" + newName + "\" }"))
                 //.andDo(print())
@@ -111,6 +115,7 @@ public class StudentControllerTest extends ControllerTest {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders.put(putUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content("{}"))
                 //.andDo(print())
@@ -155,6 +160,7 @@ public class StudentControllerTest extends ControllerTest {
 
         this.mockMvc
                 .perform(MockMvcRequestBuilders.put(putUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(jsonArray.toString()))
                 //.andDo(print())
@@ -169,8 +175,9 @@ public class StudentControllerTest extends ControllerTest {
         String deleteUrl = url + student.getId().toString();
         this.mockMvc
                 .perform(MockMvcRequestBuilders.delete(deleteUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(status().is(HttpStatus.NO_CONTENT.value()));
         //断言删除成功
         Student newStudent = studentRepository.findOne(student.getId());
@@ -190,6 +197,7 @@ public class StudentControllerTest extends ControllerTest {
         // 断言成功
         this.mockMvc
                 .perform(MockMvcRequestBuilders.get(getUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andDo(print())
                 .andExpect(status().isOk());

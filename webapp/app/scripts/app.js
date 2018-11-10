@@ -66,9 +66,10 @@ angular
         // course/add
         // @author chenjie
         {
-          name: 'course.add', 
-          url: '/add', 
-          templateUrl: 'views/Course/add.html',
+          name: 'course.add',
+          url: '/add',
+          templateUrl: 'views/course/add.html',
+
           controller: 'CourseAddCtrl',
           data: {
               title: '增加',
@@ -78,6 +79,7 @@ angular
         // course/edit
         // @author chenjie
         {
+
           name: 'course.edit', 
           url: '/edit/:id', 
           templateUrl: 'views/Course/edit.html',
@@ -90,6 +92,7 @@ angular
         // course/selectSchedule
         // @author chenjie
         {
+
           name: 'course.selectSchedule', 
           url: '/selectSchedule/:id', 
           templateUrl: 'views/Course/selectSchedule.html',
@@ -158,6 +161,16 @@ angular
                 title: '编辑信息',
                 show: false
             }
+        },
+        {
+            name: 'login',
+            url: '/login',
+            controller: "LoginCtrl",
+            templateUrl: 'views/login.html',
+            data: {
+                title: '用户登录',
+                show: false
+            }
         }
       ]);
   })
@@ -168,18 +181,29 @@ angular
     });
     $urlRouterProvider.otherwise('/');
 
-    $provide.factory('myHttpInterceptor', function() {
+    $provide.factory('myHttpInterceptor', function($q, $location) {
             return {
                 //拦截请求信息
                 'request': function(config) {
                     //如果以html结尾，那么就不进行URL改写，否则就进行改写
                     var suffix = config.url.split('.').pop();
-                    if (suffix !== 'html') {
-                        config.url = 'http://127.0.0.1:8080' + config.url;
+                    if (suffix !== 'html'  ) {
+                        config.url = '/api' + config.url;
                     }
-
                     return config;
                 },
+               
+                // 判断是否登录
+                'responseError': function (rejection) {
+                    console.log(rejection);
+    
+                    if (rejection.status === 401 && rejection.data.url !== '/api/User/login') {
+                        console.log("用户认证失败");
+                        $location.url('/login');
+                    }
+                  
+                    return $q.reject(rejection);
+                }
             };
         });
 
