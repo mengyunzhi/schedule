@@ -74,6 +74,7 @@ public class CourseController {
      * @Date: 10/26/2018
      * @Description: 通过学期和课程名查找课程
      */
+    @JsonView(CourseJsonView.class)
     @GetMapping("query")
     public List<Course> findCourseByNameAndSemesterId(@RequestParam(required = false) Long id, @RequestParam(required = false) String name) {
 
@@ -85,8 +86,8 @@ public class CourseController {
 
     // 为课程选择时间
     @PutMapping("/select/{id}")
-    public void selectCourseBySchedule(@PathVariable Long id,@RequestParam int week, @RequestParam int node, @RequestParam List<Integer> weekOrders) {
-       courseService.selectCourseBySchedule(id, week, node, weekOrders);
+    public void selectCourseBySchedule(@PathVariable Long id,@RequestParam Long semesterId, @RequestParam int week, @RequestParam int node, @RequestParam(name = "weekOrders", required = false) List<Integer> weekOrders) {
+        courseService.selectCourseBySchedule(id, week, node,semesterId, weekOrders);
     }
 
 }

@@ -2,6 +2,8 @@ package com.mengyunzhi.schedule.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
+import com.mengyunzhi.schedule.jsonView.CourseJsonView;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +18,11 @@ public class Schedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView({View.Schedule.class, View.Semester.class})
+    @JsonView({View.Schedule.class, View.Semester.class, CourseJsonView.class})
     private Long id;
 
     //第几节课
-    @JsonView({View.Schedule.class, View.Semester.class})
+    @JsonView({View.Schedule.class, View.Semester.class, CourseJsonView.class})
     private int node;
 
     @ManyToOne
@@ -31,11 +33,11 @@ public class Schedule {
     private List<Course> courseList = new ArrayList<Course>();
 
     //星期
-    @JsonView({View.Schedule.class, View.Semester.class})
+    @JsonView({View.Schedule.class, View.Semester.class, CourseJsonView.class})
     private int week;
 
     //周次
-    @JsonView({View.Schedule.class, View.Semester.class})
+    @JsonView({View.Schedule.class, View.Semester.class, CourseJsonView.class})
     private int weekOrder;
 
     public Schedule() {
