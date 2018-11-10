@@ -56,6 +56,7 @@ public class CourseControllerTest extends ControllerTest {
         logger.info("模拟请求，并断言请求成功");
         this.mockMvc
                 .perform(delete(deleteUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(jsonArray.toString()))
                 .andExpect(status().is(HttpStatus.NO_CONTENT.value()));
@@ -72,6 +73,7 @@ public class CourseControllerTest extends ControllerTest {
         // 模拟请求，并断言成功
         this.mockMvc
                 .perform(MockMvcRequestBuilders.put(putUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .param("semesterId", "0")
                         .param("week", "0")
@@ -94,24 +96,27 @@ public class CourseControllerTest extends ControllerTest {
         logger.info("学期为空");
         this.mockMvc
                 .perform(get(queryUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .param("name", testCourse.getName()))
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(status().isOk());
         logger.info("课程名为空");
         this.mockMvc
                 .perform(get(queryUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .param("id", String.valueOf(semester.getId())))
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(status().isOk());
         logger.info("两个都不为空");
         this.mockMvc
                 .perform(get(queryUrl)
+                        .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .param("name", testCourse.getName())
                         .param("id", String.valueOf(semester.getId())))
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(status().isOk());
 
     }
