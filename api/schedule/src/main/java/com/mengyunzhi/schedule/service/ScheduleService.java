@@ -4,6 +4,7 @@ import com.mengyunzhi.schedule.entity.Schedule;
 import org.springframework.http.ResponseEntity;
 
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,4 +34,21 @@ public interface ScheduleService {
      * 向钉钉发送课表信息
      */
     ResponseEntity<String> sendToDD();
+
+    /**
+     * 向钉钉发送课表消息
+     * @author chenjie
+     */
+    ResponseEntity<String> postToDD(String message);
+
+    /**
+     * 获取当前日期为当年第几周
+     * @author chenjie
+     */
+    int week_of_year() throws ParseException;
+
+    /**
+     * 向钉钉发送随机汇报人
+     */
+    ResponseEntity<String> randomPush() throws ParseException;
 }

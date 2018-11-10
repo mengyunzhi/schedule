@@ -68,6 +68,7 @@ public class StudentServiceImpl implements StudentService {
             oldStudent.setPhoneNumber(student.getPhoneNumber());
             oldStudent.setGithub(student.getGithub());
             oldStudent.setContributionCoefficient(student.getContributionCoefficient());
+            oldStudent.setGroups(student.getGroups());
         }
         return studentRepository.save(oldStudent);
     }

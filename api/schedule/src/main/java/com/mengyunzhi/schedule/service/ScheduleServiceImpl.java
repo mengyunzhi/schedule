@@ -19,6 +19,8 @@ import sun.net.www.http.HttpClient;
 
 
 import java.awt.geom.Ellipse2D;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -160,5 +162,61 @@ public class ScheduleServiceImpl implements ScheduleService {
         HttpEntity<String> request = new HttpEntity<>(testMsg, headers);
         ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
         return  response;
+    }
+
+    /**
+     * 获取当前日期为当年第几周
+     * @author chenjie
+     */
+    @Override
+    public int week_of_year() throws ParseException {
+        // 获取当前日期
+        int year, month, day;
+        Calendar cal = Calendar.getInstance();
+        year = cal.get(Calendar.YEAR);
+        month = cal.get(Calendar.MONTH) + 1;
+        day = cal.get(Calendar.DATE);
+        String today = String.valueOf(year) + "-" + String.valueOf(month) + "-" + String.valueOf(day);
+        // 获取当前周次
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = format.parse(today);
+        cal.setFirstDayOfWeek(Calendar.MONDAY);
+        cal.setTime(date);
+        return cal.get(Calendar.WEEK_OF_YEAR);
+    }
+
+    /**
+     * 随机推送每周汇报人
+     */
+    public ResponseEntity<String> randomPush() throws ParseException {
+        // 将学生分组
+        List<Student> allStudent = studentService.getActiveStudent();
+        List<Student> group1 = new ArrayList<Student>();
+        List<Student> group2 = new ArrayList<Student>();
+
+        for (Student student : allStudent
+        ) {
+            String s = student.getGroups();
+            if (student.getGroups() .equals("groupPo") && !student.getName().equals("朴世超")) {
+                group1.add(student);
+            } else if (student.getGroups().equals("groupZhang") && !student.getName().equals("张喜硕")) {
+                group2.add(student);
+            }
+        }
+        Random random = new Random();
+        Student unLuckGuy = new Student();
+        // 如果是单周，则从朴世超小组随机抽取一个人
+        int weekOfYear = this.week_of_year();
+        if (weekOfYear % 2 != 0) {
+            int index = random.nextInt(group1.size());
+            unLuckGuy = group1.get(index);
+        } else {
+            int index = random.nextInt(group2.size());
+            unLuckGuy = group1.get(index);
+        }
+
+        // 向钉钉发送消息
+        String message = "第" + String.valueOf(weekOfYear) + "周随机汇报人是：" + unLuckGuy.getName();
+        return postToDD(message);
     }
 }

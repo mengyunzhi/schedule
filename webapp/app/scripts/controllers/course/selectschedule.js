@@ -17,9 +17,7 @@ angular.module('scheduleApp')
             courseService.getCourseById(id, function(data) {
                 //绑定数据导V层
                 $scope.data = data;
-                console.log(data.scheduleList);
                 self.createForm(data.scheduleList);
-                console.log($scope.form[0][0]);
             });
         };
 
