@@ -50,5 +50,5 @@ public interface ScheduleService {
     /**
      * 向钉钉发送随机汇报人
      */
-    ResponseEntity<String> randomPush() throws ParseException;
+    ResponseEntity<String> randomPush();
 }

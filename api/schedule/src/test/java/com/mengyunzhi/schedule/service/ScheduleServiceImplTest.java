@@ -53,25 +53,25 @@ public class ScheduleServiceImplTest extends ServiceTest {
      * @author chenjie
      */
     @Test
-    public void randomPush() throws IOException, ParseException {
+    public void randomPush() throws IOException {
         // 添加学生
         Student student1 = new Student();
         Student student2 = new Student();
         Student student3 = new Student();
         Student student4 = new Student();
-        student1.setGroups("朴世超小组");
+        student1.setGroups("groupPo");
         student1.setState(true);
         student1.setName("黄庭祥");
 
-        student2.setGroups("张喜硕小组");
+        student2.setGroups("groupZhang");
         student2.setState(true);
         student2.setName("吴闯");
 
-        student3.setGroups("朴世超小组");
+        student3.setGroups("groupPo");
         student3.setState(true);
         student3.setName("潘佳琦");
 
-        student4.setGroups("张喜硕小组");
+        student4.setGroups("groupZhang");
         student4.setState(true);
         student4.setName("董浩天");
 
@@ -82,6 +82,7 @@ public class ScheduleServiceImplTest extends ServiceTest {
         studentRepository.save(student4);
 
         // 向钉钉发送消息
+
         ResponseEntity<String> stringResponseEntity = scheduleService.randomPush();
 
         // 断言返回状态

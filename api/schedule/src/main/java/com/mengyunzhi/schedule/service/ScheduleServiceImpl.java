@@ -169,7 +169,7 @@ public class ScheduleServiceImpl implements ScheduleService {
      * @author chenjie
      */
     @Override
-    public int week_of_year() throws ParseException {
+    public int week_of_year() {
         // 获取当前日期
         int year, month, day;
         Calendar cal = Calendar.getInstance();
@@ -179,7 +179,12 @@ public class ScheduleServiceImpl implements ScheduleService {
         String today = String.valueOf(year) + "-" + String.valueOf(month) + "-" + String.valueOf(day);
         // 获取当前周次
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = format.parse(today);
+        Date date = null;
+        try {
+            date = format.parse(today);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         cal.setFirstDayOfWeek(Calendar.MONDAY);
         cal.setTime(date);
         return cal.get(Calendar.WEEK_OF_YEAR);
@@ -188,7 +193,7 @@ public class ScheduleServiceImpl implements ScheduleService {
     /**
      * 随机推送每周汇报人
      */
-    public ResponseEntity<String> randomPush() throws ParseException {
+    public ResponseEntity<String> randomPush() {
         // 将学生分组
         List<Student> allStudent = studentService.getActiveStudent();
         List<Student> group1 = new ArrayList<Student>();
