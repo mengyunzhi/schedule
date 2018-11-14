@@ -64,6 +64,7 @@ public class StudentServiceImplTest extends ServiceTest {
         zhangsan.setPhoneNumber("123456789");
         zhangsan.setContributionCoefficient('1');
         zhangsan.setGithub("zhangsan");
+        zhangsan.setGroups("朴世超小组");
         studentRepository.save(zhangsan);
 
         //新建一个李四学生
@@ -72,6 +73,7 @@ public class StudentServiceImplTest extends ServiceTest {
         lisi.setPhoneNumber("789456123");
         lisi.setContributionCoefficient('2');
         lisi.setGithub("lisi");
+        lisi.setGroups("张喜硕小组");
 
         //用李四的信息更新张三的信息
         studentService.update(zhangsan.getId(), lisi);
@@ -82,6 +84,7 @@ public class StudentServiceImplTest extends ServiceTest {
         assertThat(newStudent.getPhoneNumber()).isEqualTo("789456123");
         assertThat(newStudent.getContributionCoefficient()).isEqualTo('2');
         assertThat(newStudent.getGithub()).isEqualTo("lisi");
+        assertThat(newStudent.getGroups()).isEqualTo("张喜硕小组");
     }
 
     //学生状态方法测试

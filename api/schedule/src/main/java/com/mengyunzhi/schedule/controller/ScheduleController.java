@@ -12,6 +12,7 @@ import com.mengyunzhi.schedule.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,5 +100,10 @@ public class ScheduleController {
         schedule.setCourseList(courses);
         scheduleRepository.save(schedule);
         return;
+    }
+
+    @GetMapping("/randomPush")
+    public void randomPush() throws ParseException {
+        scheduleService.randomPush();
     }
 }

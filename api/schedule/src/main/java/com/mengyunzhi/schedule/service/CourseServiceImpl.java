@@ -61,7 +61,7 @@ public class CourseServiceImpl implements CourseService {
         //更新实体的内容
         if (oldCourse != null) {
             oldCourse.setName(newCourse.getName());
-
+            oldCourse.setSemester((newCourse.getSemester()));
             // 持久化更新的实体
             courseRepository.save(oldCourse);
         }

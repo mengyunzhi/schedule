@@ -126,7 +126,6 @@ angular.module('scheduleApp')
          */
         self.deleteMultiple = function(deleteList, callback) {
             var url = '/Course/deleteAll';
-            console.log(deleteList);
 
             $http.delete(url, { data: deleteList, headers: { 'Content-type': 'application/json;charset=utf-8' } })
                 .then(function success() {

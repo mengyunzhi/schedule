@@ -50,6 +50,13 @@ public class Student {
     @JsonView(View.Student.class)
     private boolean state;
 
+    // 学生属于的小组
+    @JsonView(View.Student.class)
+    private String groups;
+
+    public Student() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -122,4 +129,12 @@ public class Student {
         this.courseList = courseList;
     }
 
+
+    public String getGroups() {
+        return groups;
+    }
+
+    public void setGroups(String groups) {
+        this.groups = groups;
+    }
 }

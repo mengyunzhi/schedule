@@ -21,7 +21,7 @@ angular.module('scheduleApp')
             self.load();
             self.getCurrentSemester();
             $scope.selectAllOrNot = false;
-            $scope.$watch('data.content', self.watchCourse, true);
+            $scope.$watch('data.content', self.watchCourse);
         };
 
         // 加载数据
@@ -113,8 +113,6 @@ angular.module('scheduleApp')
 
         // 根据学期ID和课程名查询
         self.findBySemesterIdAndName = function() {
-            console.log($scope.query.selectSemester);
-            console.log($scope.query.name);
             var semesterId = $scope.query.selectSemester.id;
             var courseName = $scope.query.name;
             courseService.query(semesterId, courseName, function(data) {
