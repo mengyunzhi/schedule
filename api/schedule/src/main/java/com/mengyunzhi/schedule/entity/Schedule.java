@@ -25,6 +25,7 @@ public class Schedule {
     @JsonView({View.Schedule.class, View.Semester.class, CourseJsonView.class})
     private int node;
 
+    @JsonView({View.Student.class})
     @ManyToOne
     private Semester semester;
 

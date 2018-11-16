@@ -16,9 +16,9 @@
                     ui-sref="{{router.name}}">{{router.data.title}}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown" ng-show="true">
+                <li class="dropdown" ng-show="data.CurrentLoginUser.id">
                     <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">欢迎您 {{data.currentLoginTeacher.name}}<span
+                       aria-haspopup="true" aria-expanded="false">欢迎您 {{data.CurrentLoginUser.username}}<span
                         class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li role="separator" class="divider"></li>

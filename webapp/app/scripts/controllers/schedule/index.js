@@ -44,7 +44,7 @@ angular.module('scheduleApp')
         self.reload = function() {
             if ($scope.semester != null) {
                 if ($scope.query.weekOrder == null) {
-                    $scope.query.weekOrder = schedule.getWeekOder($scope.semester.startTime);
+                $scope.query.weekOrder = schedule.getWeekOder($scope.semester.startTime);
                 }
                 //从后台获取行程集合
                 schedule.getnowschedules($scope.semester.id, $scope.query.weekOrder, function(data) {
