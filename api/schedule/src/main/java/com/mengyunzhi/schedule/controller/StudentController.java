@@ -27,6 +27,7 @@ public class StudentController {
     @Autowired
     StudentService studentService;
 
+    @JsonView(View.Student.class)
     @GetMapping
     public Iterable<Student> getAll() {
         Iterable<Student> students = studentService.getAll();
@@ -57,12 +58,14 @@ public class StudentController {
         return studentService.githubIsExist(github);
     }
 
+    @JsonView(View.Student.class)
     @GetMapping("/{id}")
     public Student getById(@PathVariable Long id) {
         return studentService.getById(id);
     }
 
     //编辑
+    @JsonView(View.Student.class)
     @PutMapping("/{id}")
     public Student update(@PathVariable Long id, @RequestBody Student student) {
         return studentService.update(id, student);
@@ -75,6 +78,7 @@ public class StudentController {
     }
 
     //选课
+    @JsonView({View.Student.class})
     @PutMapping("/select/{id}")
     public void selectCourse(@PathVariable Long id, @RequestBody List<Course> courses) {
         studentService.selectCourse(id, courses);
@@ -92,6 +96,17 @@ public class StudentController {
     @JsonView(View.Student.class)
     public List<Student> findByNameLike(@PathVariable String name) {
         return studentService.findByNameLike("%" + name + "%");
+    }
+
+    /**
+     * 获得激活的学生
+     * @return
+     */
+    @GetMapping("/getActiveStudents")
+    @JsonView(View.Student.class)
+    public List<Student> getActiveStudents()
+    {
+        return studentService.getActiveStudent();
     }
 }
 

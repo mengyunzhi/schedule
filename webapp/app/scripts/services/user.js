@@ -28,9 +28,9 @@ angular.module('scheduleApp')
         };
         
         // 出版
-        self.notifyObserver = function (currentLoginTeacher) {
+        self.notifyObserver = function (CurrentLoginUser) {
             angular.forEach(self.observerCallbacks, function (callback) {
-                callback(currentLoginTeacher);
+                callback(CurrentLoginUser);
             });
         };
         
@@ -62,7 +62,6 @@ angular.module('scheduleApp')
             var url = '/User/logout';
             $http.post(url)
                 .then(function success(response) {
-                    console.log("qeqeqweqweqw");
                     self.notifyObserver({});
                     if (callback) {
                         callback(response);
@@ -73,5 +72,6 @@ angular.module('scheduleApp')
         };
         
         self.init();
+
         
     });
