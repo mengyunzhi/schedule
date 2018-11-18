@@ -31,35 +31,35 @@ angular
         {
           name: 'student',
           url: '/student',
-          templateUrl: 'views/Student/index.html',
+          templateUrl: 'views/student/index.html',
           controller: 'StudentIndexCtrl',
           data: { title: '学生管理', show: true }
         },
         {
           name: 'student.add',
           url: '/add',
-          templateUrl: 'views/Student/add.html',
+          templateUrl: 'views/student/add.html',
           controller: 'StudentAddCtrl',
           data: { title: '增加', show: false }
         },
         {
           name: 'student.edit',
           url: '/edit/:id',
-          templateUrl: 'views/Student/edit.html',
+          templateUrl: 'views/student/edit.html',
           controller: 'StudentEditCtrl',
           data: { title: '编辑', show: false }
         },
         {
           name: 'student.select',
           url: '/select/:id',
-          templateUrl: 'views/Student/selectCourse.html',
+          templateUrl: 'views/student/selectCourse.html',
           controller: 'StudentSelectcourseCtrl',
           data: { title: '选课', show: false }
         },
         {
           name: 'course',
           url: '/course',
-          templateUrl: 'views/Course/index.html',
+          templateUrl: 'views/course/index.html',
           controller: 'CourseIndexCtrl',
           data: { title: '课程管理', show: true }
         },
@@ -82,7 +82,7 @@ angular
 
           name: 'course.edit', 
           url: '/edit/:id', 
-          templateUrl: 'views/Course/edit.html',
+          templateUrl: 'views/course/edit.html',
           controller: 'CourseEditCtrl',
           data: {
               title: '编辑',
@@ -95,7 +95,7 @@ angular
 
           name: 'course.selectSchedule', 
           url: '/selectSchedule/:id', 
-          templateUrl: 'views/Course/selectSchedule.html',
+          templateUrl: 'views/course/selectSchedule.html',
           controller: 'CourseSelectscheduleCtrl',
           data: {
               title: '选择时间',
@@ -107,7 +107,7 @@ angular
         {
           name: 'course.selectWeekOrder', 
           url: '/selectWeekOrder?courseId&semesterId&week&node', 
-          templateUrl: 'views/Course/selectWeekOrder.html',
+          templateUrl: 'views/course/selectWeekOrder.html',
           controller: 'CourseSelectweekorderCtrl',
           data: {
               title: '选择周次',
@@ -117,35 +117,35 @@ angular
         {
           name: 'semester',
           url: '/semester',
-          templateUrl: 'views/Semester/index.html',
+          templateUrl: 'views/semester/index.html',
           controller: 'SemesterIndexCtrl',
           data: { title: '学期管理', show: true }
         },
         {
           name: 'semester.add',
           url: '/add',
-          templateUrl: 'views/Semester/add.html',
+          templateUrl: 'views/semester/add.html',
           controller: 'SemesterAddCtrl',
           data: {title: 'semesterAdd', show: false}
         },
         {
           name: 'semester.edit',
           url: '/edit/:id',
-          templateUrl: 'views/Semester/edit.html',
+          templateUrl: 'views/semester/edit.html',
           controller: 'SemesterEditCtrl',
           data: {title: 'semesterEdit', show: false}
         },
         {
           name: 'contribution',
           url: '/contribution',
-          templateUrl: 'views/Contribution/index.html',
+          templateUrl: 'views/contribution/index.html',
           controller: 'ContributionIndexCtrl',
           data: { title: '贡献值管理', show: true }
         },
         {
             name: 'contribution.information',
             url: '/information/:id',
-            templateUrl: 'views/Contribution/information.html',
+            templateUrl: 'views/contribution/information.html',
             controller: 'ContributionInformationCtrl',
             data: {
                 title: '详细信息',
@@ -155,7 +155,7 @@ angular
         {
             name: 'contribution.edit',
             url: '/edit/:id',
-            templateUrl: 'views/Contribution/edit.html',
+            templateUrl: 'views/contribution/edit.html',
             controller: 'ContributionEditCtrl',
             data: {
                 title: '编辑信息',
