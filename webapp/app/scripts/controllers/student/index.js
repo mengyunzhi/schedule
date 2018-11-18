@@ -64,7 +64,7 @@ angular.module('scheduleApp')
             }
         };
 
-        self.init()
+        self.init();
         $scope.delete = self.delete;
         $scope.changeState = self.changeState;
         $scope.findByName = self.findByName;
