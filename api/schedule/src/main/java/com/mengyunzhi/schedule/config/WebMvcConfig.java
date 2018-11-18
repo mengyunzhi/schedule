@@ -31,7 +31,7 @@ public class WebMvcConfig {
             // 拦截器
             public void addInterceptors(InterceptorRegistry registry) {
                 registry.addInterceptor(authInterceptor)
-                        .excludePathPatterns("/User/login");
+                        .excludePathPatterns("/User/login").excludePathPatterns("/error");
             }
 
         };
