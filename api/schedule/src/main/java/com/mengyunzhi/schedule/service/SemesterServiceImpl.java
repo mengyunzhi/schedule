@@ -2,6 +2,7 @@ package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.entity.Semester;
+import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class SemesterServiceImpl implements SemesterService {
 
     @Autowired
     ScheduleRepository scheduleRepository;
+
+    @Autowired
+    CourseRepository courseRepository;
 
     /**
      * 增加学期 同时生成绑定学期的行程
@@ -152,7 +156,7 @@ public class SemesterServiceImpl implements SemesterService {
     }
 
     /**
-     * 根据id删除学期 并删除学期绑定的行程
+     * 根据id删除学期 并删除学期绑定的行程 并删除绑定学期的课程
      * @param id 学期的id
      */
     @Override
@@ -162,6 +166,7 @@ public class SemesterServiceImpl implements SemesterService {
         if (schedules != null) {
             scheduleService.delteAll(schedules);
         }
+        courseRepository.delete(courseRepository.findBySemester(semester));
         semesterRepository.delete(id);
         return;
     }

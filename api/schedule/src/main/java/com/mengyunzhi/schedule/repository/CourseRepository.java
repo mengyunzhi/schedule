@@ -14,4 +14,11 @@ import java.util.List;
  */
 public interface CourseRepository extends PagingAndSortingRepository<Course, Long> {
     List<Course> findByNameLikeAndSemester(String name, Semester semester);
+
+    /**
+     * 获得与学期有关的所有课程
+     * @param semester
+     * @return
+     */
+    List<Course> findBySemester(Semester semester);
 }
