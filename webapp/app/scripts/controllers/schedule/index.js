@@ -20,17 +20,19 @@ angular.module('scheduleApp')
 
             $scope.error = false; //当学期获取失败显示错误信息
 
-            $scope.query = {}; //查询条件
+            $scope.query = {maxWeekOrder: 1, weekOrder: 1, weekOrders: []}; //查询条件
 
             //当获取学期为空时显示错误信息
             //否则加载行程集合 更新查询条件
             schedule.getCurrentSemester(function(data) {
                 if (data == null) {
                     $scope.error = true;
+                    self.initWeekOrders();
                 } else {
                     $scope.semester = data;
                     $scope.query.maxWeekOrder = schedule.getWeekOder($scope.semester.startTime, $scope.semester.endTime);
                     $scope.query.weekOrder = schedule.getWeekOder($scope.semester.startTime);
+                    self.initWeekOrders();
                     self.reload();
                 }
             });
@@ -58,6 +60,16 @@ angular.module('scheduleApp')
                         $scope.schedules = schedule.initSechedules();
                     }
                 });
+            }
+        };
+
+        /**
+         * 初始化周次数组
+         */
+        self.initWeekOrders = function() {
+            for (var i = 1; i <= $scope.query.maxWeekOrder; i ++) {
+                var weekOrderDetail = {name: '第' + i + '周', weekOrder: i};
+                $scope.query.weekOrders.push(weekOrderDetail);
             }
         };
 
