@@ -12,7 +12,7 @@ angular.module('scheduleApp')
     .controller('LoginCtrl', function($scope, user, $location) {
 
         var self = this;
-
+        
         // 初始化
         self.init = function() {
             $scope.user = {

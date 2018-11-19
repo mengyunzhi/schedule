@@ -2,39 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c7259373-0408-4e18-8723-e9ef67eb0ad5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/interceptor/AuthInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/service/UserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/UserControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/interceptor/AuthInterceptorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/repository/UserRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/service/UserServiceImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/config/WebMvcConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/java/com/mengyunzhi/schedule/config/WebMvcConfigurer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ContributionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ContributionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/CourseControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/CourseControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ScheduleControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/ScheduleControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/SemesterControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/SemesterControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/StudentControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api/schedule/src/test/java/com/mengyunzhi/schedule/controller/StudentControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/scripts/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/controllers/student/add.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/controllers/student/add.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/controllers/student/edit.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/controllers/student/edit.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/scripts/controllers/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/controllers/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/scripts/controllers/student/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/controllers/student/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/directives/listIndex.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/directives/listIndex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/services/contribution.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/contribution.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/services/courseService.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/courseService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/services/schedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/schedule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/services/semester.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/semester.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scripts/services/studentservice.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/scripts/services/studentservice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/directives/listIndex.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/directives/listIndex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/login.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -49,8 +24,8 @@
     <session id="1987706583">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
-          <entry key="project.open.time.1" value="1" />
+          <entry key="project.closed" value="8" />
+          <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.17" value="2" />
@@ -64,39 +39,54 @@
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.37" value="1" />
           <entry key="project.open.time.39" value="1" />
-          <entry key="project.open.time.40" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.40" value="2" />
           <entry key="project.open.time.42" value="1" />
           <entry key="project.open.time.47" value="1" />
           <entry key="project.open.time.50" value="1" />
-          <entry key="project.opened" value="19" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
+          <entry key="css" value="1" />
           <entry key="gitignore" value="3" />
-          <entry key="html" value="57" />
-          <entry key="js" value="207" />
+          <entry key="html" value="62" />
+          <entry key="js" value="214" />
+          <entry key="jshintrc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="57" />
-          <entry key="JavaScript" value="207" />
+          <entry key="CSS" value="1" />
+          <entry key="HTML" value="62" />
+          <entry key="JSHint" value="1" />
+          <entry key="JavaScript" value="214" />
           <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="8" />
-          <entry key="html" value="1240" />
-          <entry key="js" value="7881" />
+          <entry key="html" value="1382" />
+          <entry key="js" value="8035" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1240" />
-          <entry key="JavaScript" value="7881" />
+          <entry key="HTML" value="1382" />
+          <entry key="JavaScript" value="8035" />
           <entry key="PLAIN_TEXT" value="8" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="726069043">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
     </session>
@@ -106,26 +96,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="187" column="56" lean-forward="true" selection-start-line="187" selection-start-column="56" selection-end-line="187" selection-end-column="56" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/login.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-78">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="4997">
+              <caret line="158" column="55" selection-start-line="158" selection-start-column="55" selection-end-line="158" selection-end-column="55" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/scripts/directives/listIndex.js">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/login.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+            <state relative-caret-position="62">
+              <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -139,6 +120,11 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>console.log</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -157,19 +143,19 @@
         <option value="$PROJECT_DIR$/app/scripts/controllers/contribution/edit.js" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/student/add.js" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/student/edit.js" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/student/index.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/contribution.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/courseService.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/schedule.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/semester.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/studentservice.js" />
-        <option value="$PROJECT_DIR$/app/index.html" />
-        <option value="$PROJECT_DIR$/app/views/login.html" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/login.js" />
-        <option value="$PROJECT_DIR$/app/scripts/app.js" />
-        <option value="$PROJECT_DIR$/app/views/directives/listIndex.html" />
         <option value="$PROJECT_DIR$/app/scripts/services/user.js" />
         <option value="$PROJECT_DIR$/app/scripts/directives/listIndex.js" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/student/index.js" />
+        <option value="$PROJECT_DIR$/app/views/directives/listIndex.html" />
+        <option value="$PROJECT_DIR$/app/views/login.html" />
+        <option value="$PROJECT_DIR$/app/index.html" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/login.js" />
+        <option value="$PROJECT_DIR$/app/scripts/app.js" />
       </list>
     </option>
   </component>
@@ -234,9 +220,9 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="305" />
-    <option name="y" value="110" />
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-2" />
+    <option name="y" value="140" />
     <option name="width" value="1920" />
     <option name="height" value="890" />
   </component>
@@ -246,7 +232,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -258,6 +243,12 @@
               <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
@@ -276,26 +267,13 @@
               <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="scripts" type="462c0819:PsiDirectoryNode" />
-              <item name="directives" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="webapp" type="b2602c69:ProjectViewProjectNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="directives" type="462c0819:PsiDirectoryNode" />
+              <item name="styles" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -304,11 +282,17 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.buildTools.grunt.grunt-cli.package" value="$USER_HOME$/AppData/Roaming/npm/node_modules/grunt-cli" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/AngularJS-SpringMVC-guide/webApp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editing.templates" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\project\schedule\webapp\app\images\login" />
+      <recent name="D:\project\schedule\webapp\app\styles\login" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -372,14 +356,19 @@
       <workItem from="1541678456864" duration="2964000" />
       <workItem from="1541724315848" duration="3764000" />
       <workItem from="1541768126013" duration="6533000" />
+      <workItem from="1542443121029" duration="501000" />
+      <workItem from="1542445308426" duration="1358000" />
+      <workItem from="1542465301455" duration="599000" />
+      <workItem from="1542502216025" duration="758000" />
+      <workItem from="1542502988494" duration="5813000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100167000" />
+    <option name="totallyTimeSpent" value="109196000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49361703" visible="true" weight="0.19365498" />
@@ -431,30 +420,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/Contribution/edit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Student/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/Course/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/filters/pullrequestformat.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="26" column="12" lean-forward="true" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -509,23 +474,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="35">
           <caret line="5" column="9" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/student/edit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/student/selectcourse.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/student/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
         </state>
       </provider>
     </entry>
@@ -605,13 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" lean-forward="true" selection-start-column="7" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/services/courseService.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1610">
@@ -620,13 +561,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/directives/yunzhiSize.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#2#8#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/directives/yunzhiPage.html">
       <provider selected="true" editor-type-id="text-editor" />
@@ -638,13 +573,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="9" lean-forward="true" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
@@ -674,40 +602,96 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/directives/listIndex.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="24" column="71" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/about.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/main.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/angular/angular.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="35270" selection-start-line="35270" selection-end-line="35270" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/styles/login/style.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/directives/listIndex.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/directives/listIndex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="70">
+          <caret line="2" column="35" lean-forward="true" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/student/selectcourse.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-630">
+          <caret line="37" column="17" lean-forward="true" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/student/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="66" column="20" selection-start-line="66" selection-start-column="20" selection-end-line="66" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/student/edit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-70">
+          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/Student/selectCourse.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="8" column="73" selection-start-line="8" selection-start-column="73" selection-end-line="8" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/.jshintrc">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="5" selection-start-column="5" selection-end-column="5" />
+          <folding>
+            <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="187" column="56" lean-forward="true" selection-start-line="187" selection-start-column="56" selection-end-line="187" selection-end-column="56" />
+        <state relative-caret-position="4997">
+          <caret line="158" column="55" selection-start-line="158" selection-start-column="55" selection-end-line="158" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/login.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-78">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/directives/listIndex.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        <state relative-caret-position="62">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
         </state>
       </provider>
     </entry>

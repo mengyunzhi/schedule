@@ -1,13 +1,19 @@
 package com.mengyunzhi.schedule.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mengyunzhi.schedule.interceptor.AuthInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.util.List;
 
 @Component
 public class WebMvcConfig {
@@ -27,6 +33,13 @@ public class WebMvcConfig {
                 registry.addMapping("/**").allowedOrigins("http://localhost:8200")
                         .allowedMethods("OPTIONS", "GET", "PUT", "POST", "PATCH", "DELETE");
             }
+
+            @Override
+            public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+                ObjectMapper mapper = Jackson2ObjectMapperBuilder.json().defaultViewInclusion(true).build();
+                converters.add(new MappingJackson2HttpMessageConverter(mapper));
+            }
+
 
             // 拦截器
             public void addInterceptors(InterceptorRegistry registry) {

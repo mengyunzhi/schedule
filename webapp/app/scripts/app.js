@@ -182,30 +182,31 @@ angular
     $urlRouterProvider.otherwise('/');
 
     $provide.factory('myHttpInterceptor', function($q, $location) {
+
             return {
                 //拦截请求信息
-                'request': function(config) {
+                'request': function (config) {
                     //如果以html结尾，那么就不进行URL改写，否则就进行改写
                     var suffix = config.url.split('.').pop();
-                    if (suffix !== 'html'  ) {
+                    if (suffix !== 'html') {
                         config.url = '/api' + config.url;
                     }
                     return config;
                 },
-               
+                
                 // 判断是否登录
                 'responseError': function (rejection) {
                     console.log(rejection);
-    
+                    
                     if (rejection.status === 401 && rejection.data.url !== '/api/User/login') {
                         console.log("用户认证失败");
                         $location.url('/login');
                     }
-                  
+                    
                     return $q.reject(rejection);
                 }
             };
         });
-
+        
         $httpProvider.interceptors.push('myHttpInterceptor');
-  });
+    });
