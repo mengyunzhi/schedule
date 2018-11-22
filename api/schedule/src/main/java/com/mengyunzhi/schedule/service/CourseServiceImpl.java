@@ -2,6 +2,7 @@ package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Schedule;
+import com.mengyunzhi.schedule.entity.Semester;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
@@ -95,5 +96,18 @@ public class CourseServiceImpl implements CourseService {
             }
         }
         courseRepository.save(course);
+    }
+
+    // 获取当前激活学期的课程
+    @Override
+    public List<Course> getActiveSemesterByCourse() {
+        List<Semester> semesters = semesterRepository.findByStatus(true);
+        if (semesters.isEmpty()) {
+            return null;
+        } else {
+            Semester semester = semesters.get(0);
+            List<Course> courses = courseRepository.findBySemester(semester);
+            return  courses;
+        }
     }
 }

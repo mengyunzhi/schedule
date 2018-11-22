@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.JsonPage;
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.jsonView.CourseJsonView;
+import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -88,6 +89,13 @@ public class CourseController {
     @PutMapping("/select/{id}")
     public void selectCourseBySchedule(@PathVariable Long id,@RequestParam Long semesterId, @RequestParam int week, @RequestParam int node, @RequestParam(name = "weekOrders", required = false) List<Integer> weekOrders) {
         courseService.selectCourseBySchedule(id, week, node,semesterId, weekOrders);
+    }
+
+    // 获取当前激活学期的课程
+    @JsonView(CourseJsonView.class)
+    @GetMapping("getActiveSemesterByCourse")
+    public List<Course> getActiveSemesterByCourse() {
+        return courseService.getActiveSemesterByCourse();
     }
 
 }

@@ -11,6 +11,7 @@ angular.module('scheduleApp')
         return {
             templateUrl: 'views/directives/listIndex.html',
             restrict: 'E',
+            scope: {},
 
             link: function postLink($scope) {
                 var self = this;

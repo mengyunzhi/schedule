@@ -184,6 +184,17 @@ angular.module('scheduleApp')
                 });
         };
 
+        // 获取当前激活学期的课程
+        self.getActiveSemesterByCourse = function(callback) {
+            $http.get('/Course/getActiveSemesterByCourse')
+                .then(function success(response) {
+                    if (callback) { callback(response.data) }
+                }, function error(response) {
+                    console.log('获取失败' + response);
+                });
+        }
+
+
         return {
             delete: self.delete,
             page: self.page,
@@ -195,6 +206,7 @@ angular.module('scheduleApp')
             getCurrentSemester: self.getCurrentSemester,
             currentSemester: self.currentSemester,
             selectSchedule: self.selectSchedule,
-            query: self.query
+            query: self.query,
+            getActiveSemesterByCourse: self.getActiveSemesterByCourse
         };
     });
