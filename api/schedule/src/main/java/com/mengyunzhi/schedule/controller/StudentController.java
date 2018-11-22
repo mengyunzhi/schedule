@@ -73,6 +73,7 @@ public class StudentController {
 
     //改变当前学生状态
     @PutMapping("/state/{id}")
+    @JsonView(View.Student.class)
     public Student changeState(@PathVariable Long id) {
         return studentService.changeState(id);
     }
