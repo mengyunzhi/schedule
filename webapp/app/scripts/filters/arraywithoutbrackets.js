@@ -11,9 +11,9 @@
  * Filter in the scheduleApp.
  */
 angular.module('scheduleApp')
-  .filter('arrayWithoutBrackets', function () {
-    return function (input) {
-    	var output = input.join();
-      return output;
-    };
-  });
+    .filter('arrayWithoutBrackets', function() {
+        return function(input) {
+        	var output = input.join();
+            return output;
+        };
+    });

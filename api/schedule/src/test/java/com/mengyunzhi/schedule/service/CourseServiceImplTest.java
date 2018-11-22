@@ -118,7 +118,7 @@ public class CourseServiceImplTest extends ServiceTest {
         // 循环遍历weekorders
         for (Integer weekorder :
                 weekorders) {
-            Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekorder);
+            Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrderAndSemesterId(week, node, weekorder, semesterId);
                 schedules.add(schedule);
         }
 

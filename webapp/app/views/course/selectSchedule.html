@@ -1,7 +1,7 @@
 <h2 class="text-center">{{data.name}}</h2>
 <hr>
 <table class="table table-bordered table-hover table-striped">
-    <tr align="center" class="info">
+    <tr align="center" class="default">
         <td>星期\节次</td>
         <td>第一节</td>
         <td>第二节</td>
@@ -10,9 +10,9 @@
         <td>第五节</td>
     </tr>
     <tr ng-repeat="(key1, week) in form">
-        <td class="text-center">{{key1 + 1 | weekFiltration}}</td>
-        <td ng-repeat="(key2, node) in week" class="text-center">
-            <a ng-class="{0:'btn btn-success glyphicon glyphicon-plus'}[node.length]" class="btn btn-default" href="#!/course/selectWeekOrder?courseId={{data.id}}&semesterId={{data.semester.id}}&week={{key1 + 1}}&node={{key2 + 1}}">{{node | arrayWithoutBrackets}}</a>
+        <td class="text-center default">{{key1 + 1 | weekFiltration}}</td>
+        <td ng-repeat="(key2, node) in week" class="text-center default">
+            <a ng-class="{0:'btn btn-info glyphicon glyphicon-plus'}[node.length]" class="btn btn-default glyphicon glyphicon-ok" href="#!/course/selectWeekOrder?courseId={{data.id}}&semesterId={{data.semester.id}}&week={{key1 + 1}}&node={{key2 + 1}}">&nbsp;选择周次</a><p style="word-break:break-all;width: 165px;height: 50px;">{{node | arrayWithoutBrackets}}</p>
         </td>
     </tr>
 </table>

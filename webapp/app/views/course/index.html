@@ -28,7 +28,7 @@
         </tr>
         <tr align="center" ng-repeat="(key,_list) in data.content | orderBy: '-id'" >
             <td><input type="checkbox" ng-model="_list._checked" /></td>
-            <td>{{_list.id}}</td>
+            <td>{{key + 1}}</td>
             <td>{{_list.name}}</td>
             <td>
                 <a class="btn btn-sm btn-primary glyphicon glyphicon-time" href="#!/course/selectSchedule/{{_list.id}}">&nbsp;选时</a>

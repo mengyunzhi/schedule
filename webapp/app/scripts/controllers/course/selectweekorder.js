@@ -126,7 +126,9 @@ angular.module('scheduleApp')
                 selectWeekOrders,
                 function() {
                     // 提交成功，进行跳转
-                    $state.transitionTo('course', {}, { reload: true });
+                    var url = 'course.selectSchedule';
+                    console.log(url);
+                    $state.transitionTo(url, {id: self.courseId}, { reload: true });
                 });
         };
 
