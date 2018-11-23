@@ -2,6 +2,8 @@ package com.mengyunzhi.schedule.repository;
 
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Semester;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -21,5 +23,7 @@ public interface CourseRepository extends PagingAndSortingRepository<Course, Lon
      * @return
      */
     List<Course> findBySemester(Semester semester);
+
+    Page<Course> findAllBySemesterId(Long id, Pageable pageable);
 
 }
