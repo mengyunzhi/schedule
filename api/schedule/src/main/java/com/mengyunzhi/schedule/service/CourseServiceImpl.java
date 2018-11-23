@@ -82,7 +82,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void selectCourseBySchedule(Long id, int week, int node, Long semesterId, List<Integer> weekOrders) {
         //首先 获取与星期周次关联的行程
-        List<Schedule> schedules = scheduleRepository.findByWeekAndNode(week, node);
+        List<Schedule> schedules = scheduleRepository.findByWeekAndNodeAndSemesterId(week, node, semesterId);
         //删除与行程集合关联的课程
         Course course = courseRepository.findOne(id);
         course.getScheduleList().removeAll(schedules);
@@ -90,7 +90,7 @@ public class CourseServiceImpl implements CourseService {
             // 循环遍历周次
             for (Integer weekOrder :
                     weekOrders) {
-                Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekOrder);
+                Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrderAndSemesterId(week, node, weekOrder, semesterId);
                 course.getScheduleList().add(schedule);
             }
         }
