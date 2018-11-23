@@ -1,5 +1,7 @@
 package com.mengyunzhi.schedule.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.User;
 import com.mengyunzhi.schedule.repository.UserRepository;
 import com.mengyunzhi.schedule.service.UserService;
@@ -52,11 +54,13 @@ public class UserController {
      * @Description: 得到当前用户
      */
     @GetMapping("/me")
+    @JsonView(View.Student.class)
     public User me(HttpServletResponse httpServletResponse) {
         return userService.me();
     }
 
     @GetMapping("/getCurrentLoginUser")
+    @JsonView(User.class)
     public User getCurrentLoginTeacher(HttpServletResponse httpServletResponse) {
         return this.me(httpServletResponse);
     }

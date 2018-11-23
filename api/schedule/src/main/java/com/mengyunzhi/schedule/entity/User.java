@@ -1,5 +1,8 @@
 package com.mengyunzhi.schedule.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.mengyunzhi.schedule.config.View;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +21,7 @@ public class User {
 
     private String username;
 
+    @JsonView(View.NoJsonView.class)
     private String password;
 
     public User() {
