@@ -107,10 +107,12 @@ angular.module('scheduleApp')
         self.addScheduleMessage = function(schedules) {
         		$http.get('/student/getActiveStudents')
         		.then(function(response) {
+                    console.log(response.data, 'frist');
         			var allStudent = response.data;
         			angular.forEach(schedules, function(schedule) {
                         $http.post('/student/getStudentByCourse', schedule.courseList)
                             .then(function(response) {
+                                console.log(response.data, 'second');
                                 var students = response.data;
                                 if (students) {
                                 	self.mergeStudent(students, allStudent);

@@ -42,7 +42,7 @@ public class StudentRepositoryTest extends ScheduleApplicationTests {
         studentRepository.save(student2);
         studentRepository.save(studentRepository.save(new Student()));
 
-        Set<Student> students = studentRepository.findByCourseListIn(courses);
+        Set<Student> students = studentRepository.findByStateAndCourseListIn( true,courses);
 
         assertThat(students.contains(student)).isTrue();
         assertThat(students.contains(student2)).isTrue();
