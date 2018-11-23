@@ -23,7 +23,7 @@ angular.module('scheduleApp')
          * @author     chenjie
          */
         self.page = function(params, callback) {
-            var url = '/Course/page';
+            var url = '/Course/pageAndSemesterId';
             // 使用参数发起get请求
             $http.get(url, { params: params })
                 .then(function success(response) {

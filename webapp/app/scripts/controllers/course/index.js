@@ -11,14 +11,12 @@
 angular.module('scheduleApp')
     .controller('CourseIndexCtrl', function($http, $scope, courseService, semester, $filter, schedule) {
         var self = this;
-
         // 初始化
         self.init = function() {
-            $scope.params = { page: 0, size: 10 };
+            $scope.params = { page: 0, size: 3 };
             $scope.query = {};
             $scope.query.name = '';
             $scope.query.selectSemester = {};
-            self.load();
             self.getCurrentSemester();
             $scope.selectAllOrNot = false;
             $scope.$watch('data.content', self.watchCourse);
@@ -47,17 +45,10 @@ angular.module('scheduleApp')
 
                 // 将当前学期传给页面
                 $scope.currentSemester = currentSemester;
-                // 获取当前学期的课程
-                self.findCurrentSemesterCourse();
-            });
-        };
 
-        self.findCurrentSemesterCourse = function() {
-            var id = courseService.currentSemester.id;
-            var name = '';
-            courseService.query(id, name, function(data) {
-                $scope.data.content = data;
-                self.initSelect($scope.data.content);
+                $scope.params.semesterId = currentSemester.id;
+
+                self.load();
             });
         };
 

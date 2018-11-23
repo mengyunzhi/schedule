@@ -50,6 +50,11 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    public Page<Course> getSemesterIdAndPage(Long semesterId, Pageable pageable) {
+        return courseRepository.findAllBySemesterId(semesterId, pageable);
+    }
+
+    @Override
     public Course getById(Long id) {
         return courseRepository.findOne(id);
     }

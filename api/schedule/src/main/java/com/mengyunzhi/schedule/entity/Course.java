@@ -17,14 +17,14 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonView({View.Schedule.class, CourseJsonView.class, View.Student.class})
+    @JsonView({View.Schedule.class, CourseJsonView.class, View.Student.class, View.CoursePageJsonView.class})
     private Long id;
 
-    @JsonView({View.Schedule.class, CourseJsonView.class, View.Student.class})
+    @JsonView({View.Schedule.class, CourseJsonView.class, View.Student.class, View.CoursePageJsonView.class})
     private String name;
 
     @ManyToOne
-    @JsonView(CourseJsonView.class)
+    @JsonView({CourseJsonView.class})
     private Semester semester;
 
     @ManyToMany
