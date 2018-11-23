@@ -83,7 +83,7 @@ angular.module('scheduleApp')
                 }
             });
             courseService.deleteMultiple(deleteList, function() {
-                self.reload();
+                self.findBySemesterIdAndName();
                 $scope.selectAllOrNot = false;
             })
         };

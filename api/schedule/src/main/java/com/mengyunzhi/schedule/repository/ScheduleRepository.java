@@ -48,7 +48,7 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
      * @return
      */
     Schedule findByWeekAndNodeAndWeekOrderAndSemesterId(int week, int node, Integer weekOrder, Long semesterId);
-    Schedule findByWeekAndNodeAndWeekOrder(int week, int node, Integer weekOrder);
+    //Schedule findByWeekAndNodeAndWeekOrder(int week, int node, Integer weekOrder);
 
     /**
      * 通过星期和节次获取行程
@@ -57,4 +57,6 @@ public interface ScheduleRepository extends CrudRepository<Schedule, Long> {
      * @return
      */
     List<Schedule> findByWeekAndNode(int week, int node);
+
+    List<Schedule> findByWeekAndNodeAndSemesterId(int week, int node, Long semesterId);
 }

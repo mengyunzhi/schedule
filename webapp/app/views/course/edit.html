@@ -1,7 +1,7 @@
 <style type="text/css">
   .validSuccess {
     top: -26px;
-    left: 320px;
+    left: 416px;
     position: relative;
     color: green;
   }
@@ -13,7 +13,7 @@
             <div class="form-group">
                 <label for="name">课程名字</label>
                 <input type="text" class="form-control" name="name" placeholder="name" ng-model="data.name" required>
-                <span ng-show="myForm.name.$valid" class="validSuccess glyphicon glyphicon-ok"></span>
+                <span ng-show="myForm.name.$valid && myForm.name.$touched" class="validSuccess glyphicon glyphicon-ok"></span>
                 <p class="text-danger" ng-show="myForm.name.$touched && myForm.name.$error.required">请输入课程名</p>
             </div>
             <div class="form-group">
