@@ -27,6 +27,8 @@ public interface CourseService {
 
     Page<Course> page(Pageable pageable);
 
+    Page<Course> getSemesterIdAndPage(Long semesterId, Pageable pageable);
+
     Course getById(Long id);
 
     /**

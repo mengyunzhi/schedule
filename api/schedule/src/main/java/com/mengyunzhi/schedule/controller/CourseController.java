@@ -1,10 +1,9 @@
 package com.mengyunzhi.schedule.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.mengyunzhi.schedule.JsonPage;
+import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.jsonView.CourseJsonView;
-import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -39,12 +38,20 @@ public class CourseController {
     }
 
     // page?page=0&size=1
-    @JsonView(CourseJsonView.class)
     @GetMapping("/page")
-    public Iterable<Course> page(@RequestParam int page, @RequestParam int size) {
+    @JsonView(View.CoursePageJsonView.class)
+    public Page<Course> page(@RequestParam int page, @RequestParam int size) {
         PageRequest pageRequest = new PageRequest(page, size);
         Page<Course> coursePage = courseService.page(pageRequest);
-        return new JsonPage(coursePage.getContent(), pageRequest, coursePage.getSize());
+        return coursePage;
+    }
+
+    @GetMapping("/pageAndSemesterId")
+    @JsonView(View.CoursePageJsonView.class)
+    public Page<Course> pageAndSemesterId(@RequestParam Long semesterId ,@RequestParam int page, @RequestParam int size) {
+        PageRequest pageRequest = new PageRequest(page, size);
+        Page<Course> coursePage = courseService.getSemesterIdAndPage(semesterId ,pageRequest);
+        return coursePage;
     }
 
     // 获取单个课程
