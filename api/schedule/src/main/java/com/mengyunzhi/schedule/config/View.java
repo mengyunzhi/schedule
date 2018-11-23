@@ -16,4 +16,6 @@ public class View {
 
     //贡献值返回格式
     public interface Contribution{}
+
+    public interface NoJsonView {}
 }
