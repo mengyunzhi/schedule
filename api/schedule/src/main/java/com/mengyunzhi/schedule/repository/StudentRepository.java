@@ -18,12 +18,12 @@ public interface StudentRepository extends PagingAndSortingRepository<Student, L
     Student findByGithub(String github);
 
     /**
-     * 返回有关课程的所有学生
+     * 返回有关课程的所有激活学生
      *
      * @param courses 有关课程
-     * @return 有关课程的所有学生
+     * @return 有关课程的所有激活学生
      */
-    Set<Student> findByCourseListIn(List<Course> courses);
+    Set<Student> findByStateAndCourseListIn(boolean state ,List<Course> courses);
 
     /**
      * 通过名字找到学生

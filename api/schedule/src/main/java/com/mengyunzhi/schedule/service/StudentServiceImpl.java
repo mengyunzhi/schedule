@@ -36,7 +36,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public Set<Student> findByCoursesIn(List<Course> courses) {
-        return studentRepository.findByCourseListIn(courses);
+        return studentRepository.findByStateAndCourseListIn(true ,courses);
     }
 
     @Override
