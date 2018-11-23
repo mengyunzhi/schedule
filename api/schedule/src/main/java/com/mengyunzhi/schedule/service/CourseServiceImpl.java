@@ -2,6 +2,7 @@ package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Schedule;
+import com.mengyunzhi.schedule.entity.Semester;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
@@ -82,7 +83,7 @@ public class CourseServiceImpl implements CourseService {
     @Override
     public void selectCourseBySchedule(Long id, int week, int node, Long semesterId, List<Integer> weekOrders) {
         //首先 获取与星期周次关联的行程
-        List<Schedule> schedules = scheduleRepository.findByWeekAndNode(week, node);
+        List<Schedule> schedules = scheduleRepository.findByWeekAndNodeAndSemesterId(week, node, semesterId);
         //删除与行程集合关联的课程
         Course course = courseRepository.findOne(id);
         course.getScheduleList().removeAll(schedules);
@@ -90,10 +91,23 @@ public class CourseServiceImpl implements CourseService {
             // 循环遍历周次
             for (Integer weekOrder :
                     weekOrders) {
-                Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrder(week, node, weekOrder);
+                Schedule schedule = scheduleRepository.findByWeekAndNodeAndWeekOrderAndSemesterId(week, node, weekOrder, semesterId);
                 course.getScheduleList().add(schedule);
             }
         }
         courseRepository.save(course);
+    }
+
+    // 获取当前激活学期的课程
+    @Override
+    public List<Course> getActiveSemesterByCourse() {
+        List<Semester> semesters = semesterRepository.findByStatus(true);
+        if (semesters.isEmpty()) {
+            return null;
+        } else {
+            Semester semester = semesters.get(0);
+            List<Course> courses = courseRepository.findBySemester(semester);
+            return  courses;
+        }
     }
 }

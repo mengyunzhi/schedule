@@ -49,4 +49,8 @@ public interface CourseService {
 
     // 为课程选择时间
     void selectCourseBySchedule(Long id, int week, int node,Long semesterId, List<Integer> weekOrders);
+
+    // 获取当前激活学期的课程
+    List<Course> getActiveSemesterByCourse();
+
 }
