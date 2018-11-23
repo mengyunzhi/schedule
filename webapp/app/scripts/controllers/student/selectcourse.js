@@ -10,21 +10,20 @@
 angular.module('scheduleApp')
     .controller('StudentSelectcourseCtrl', function($http, $state, $scope, $stateParams, courseService, studentService) {
         var self = this;
-
         // 初始化
         self.init = function() {
             $scope.selectAllOrNot = false;
             $scope.params = { page: 0, size: 3 };
             self.load();
-            $scope.$watch('data.content', self.watchCourses, true);
+            $scope.$watch('data', self.watchCourses, true);
         };
 
         // 加载数据
         self.load = self.reload = function() {
-            courseService.page($scope.params, function(data) {
+            courseService.getActiveSemesterByCourse(function(data) {
                 $scope.data = data;
                 // 将所有课程状态初始化为false
-                angular.forEach($scope.data.content, function(course) {
+                angular.forEach($scope.data, function(course) {
                     course._checked = false;
                 });
                 self.selectActive();
@@ -36,7 +35,7 @@ angular.module('scheduleApp')
             var id = $stateParams.id;
             studentService.getStudentByCourse(id, function(data) {
                 // 循环所有课程
-                angular.forEach($scope.data.content, function(course) {
+                angular.forEach($scope.data, function(course) {
                     // 循环当前学生所选的课程
                     angular.forEach(data.courseList, function(checkedCourse) {
                         // 判断当前学生课程与所有课程中相同的课程
@@ -64,7 +63,7 @@ angular.module('scheduleApp')
         // 选课
         self.selectCourse = function() {
             var id = $stateParams.id;
-            var array = $scope.data.content.filter(function(_course) {
+            var array = $scope.data.filter(function(_course) {
                 return _course._checked;
             });
             studentService.selectCourse(id, array, function() {
@@ -75,7 +74,7 @@ angular.module('scheduleApp')
         // 全选
         self.select = function() {
             $scope.selectAllOrNot = !$scope.selectAllOrNot;
-            angular.forEach($scope.data.content, function(course) {
+            angular.forEach($scope.data, function(course) {
                 course._checked = $scope.selectAllOrNot;
             });
         };

@@ -21,4 +21,5 @@ public interface CourseRepository extends PagingAndSortingRepository<Course, Lon
      * @return
      */
     List<Course> findBySemester(Semester semester);
+
 }
