@@ -8,6 +8,7 @@ import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import com.mengyunzhi.schedule.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -108,6 +109,15 @@ public class StudentController {
     public List<Student> getActiveStudents()
     {
         return studentService.getActiveStudent();
+    }
+
+    //分页
+    //page?page=0&size=1
+    @GetMapping("/page")
+    @JsonView(View.Student.class)
+    public Iterable<Student> page(@RequestParam int page ,@RequestParam int size){
+        PageRequest pageRequest =new PageRequest(page,size);
+        return studentService.page(pageRequest);
     }
 }
 
