@@ -2,6 +2,8 @@ package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Student;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Set;
@@ -59,4 +61,7 @@ public interface StudentService {
      * @return
      */
     List<Student> getActiveStudent();
+
+    //分页
+    Page<Student> page(Pageable pageable);
 }
