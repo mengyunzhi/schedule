@@ -18,4 +18,6 @@ public class View {
     public interface Contribution{}
 
     public interface NoJsonView {}
+
+    public interface CoursePageJsonView {}
 }
