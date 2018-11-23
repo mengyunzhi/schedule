@@ -3,11 +3,12 @@ package com.mengyunzhi.schedule.repository;
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Student;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 import java.util.Set;
 
-public interface StudentRepository extends CrudRepository<Student, Long> {
+public interface StudentRepository extends PagingAndSortingRepository<Student, Long> {
     /**
      * @return com.mengyunzhi.schedule.entity.Student
      * @param: [github]
