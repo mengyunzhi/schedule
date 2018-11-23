@@ -3,11 +3,11 @@ package com.mengyunzhi.schedule.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.Semester;
-import com.mengyunzhi.schedule.jsonView.CourseJsonView;
 import com.mengyunzhi.schedule.service.SemesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 /**

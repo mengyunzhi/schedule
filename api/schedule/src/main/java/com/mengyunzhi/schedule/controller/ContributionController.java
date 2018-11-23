@@ -3,16 +3,17 @@ package com.mengyunzhi.schedule.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.Contribution;
+import com.mengyunzhi.schedule.jsonView.CourseJsonView;
 import com.mengyunzhi.schedule.other.PayLoad;
 import com.mengyunzhi.schedule.service.ContributionService;
 import com.mengyunzhi.schedule.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
+import java.awt.print.Pageable;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author liyiheng
@@ -54,6 +55,14 @@ public class ContributionController {
     @JsonView(View.Contribution.class)
     public List<Contribution> getDetailedInformation(@PathVariable Long id) {
         return contributionService.getDetailedInformation(id);
+    }
+
+    // page?page=0&size=1
+    @JsonView(View.Contribution.class)
+    @GetMapping("/page")
+    public Iterable<Contribution> page(@RequestParam int page, @RequestParam int size) {
+        PageRequest pageRequest = new PageRequest(page, size);
+        return contributionService.page((Pageable)pageRequest);
     }
 
     /**
