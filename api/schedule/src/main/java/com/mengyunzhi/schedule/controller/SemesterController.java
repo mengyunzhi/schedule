@@ -74,9 +74,9 @@ public class SemesterController {
      * @param size  分页大小
      * @return 分页数据
      */
-    @GetMapping("/page/name")
+    @GetMapping("/pageByName/{name}/{page}/{size}")
     @JsonView(View.Semester.class)
-    public Page<Semester> getByNameAndPage(@RequestParam String name ,@RequestParam int page, @RequestParam int size) {
+    public Page<Semester> getByNameAndPage(@PathVariable String name ,@PathVariable int page, @PathVariable int size) {
         PageRequest pageable = new PageRequest(page, size);
         return semesterService.pageByName(name, pageable);
     }
@@ -104,9 +104,9 @@ public class SemesterController {
      * @param size
      * @return
      */
-    @GetMapping("/page")
+    @GetMapping("/page/{page}/{size}")
     @JsonView(View.Semester.class)
-    public Page<Semester> page(@RequestParam int page, @RequestParam int size) {
+    public Page<Semester> page(@PathVariable int page, @PathVariable int size) {
         PageRequest pageRequest = new PageRequest(page, size);
         Page<Semester> semesterPage = semesterService.page(pageRequest);
         return semesterPage;

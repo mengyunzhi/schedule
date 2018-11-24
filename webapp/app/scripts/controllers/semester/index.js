@@ -32,7 +32,7 @@ angular.module('scheduleApp')
         };
         self.delete = function(ob) {
             semester.delete(ob, function() {
-                $state.go('semester', {}, { reload: true });
+                self.reload();
             });
         };
         self.active = function(ob) {
