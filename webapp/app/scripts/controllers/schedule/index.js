@@ -73,14 +73,14 @@ angular.module('scheduleApp')
             }
         };
 
-        // $scope.random = function() {
-        //     $http.get('/schedule/randomPush').then(function success() {
-        //         console.log('success');
-        //     }, function error(response) {
-        //         console.log('error' + response);
-        //     });
+        $scope.random = function() {
+            $http.get('/schedule/randomPush').then(function success() {
+                console.log('success');
+            }, function error(response) {
+                console.log('error' + response);
+            });
 
-        // };
+        };
 
         self.init();
         $scope.reload = self.reload;

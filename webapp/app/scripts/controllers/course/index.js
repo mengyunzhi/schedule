@@ -74,6 +74,9 @@ angular.module('scheduleApp')
                 }
             });
             courseService.deleteMultiple(deleteList, function() {
+                //self.findBySemesterIdAndName();
+                
+
                 self.reloadData();
                 $scope.selectAllOrNot = false;
 
@@ -106,8 +109,10 @@ angular.module('scheduleApp')
         // 根据学期ID和课程名查询
         self.findBySemesterIdAndName = function() {
             var semesterId = $scope.query.selectSemester.id;
-            var courseName = $scope.query.name;          
+            var courseName = $scope.query.name;
+            
             $scope.params.semesterId = semesterId;
+
             courseService.query(semesterId, courseName, $scope.params, function(data) {
                 $scope.data = data;
                 self.initSelect($scope.data.content);
