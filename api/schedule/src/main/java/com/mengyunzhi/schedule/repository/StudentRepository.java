@@ -2,6 +2,8 @@ package com.mengyunzhi.schedule.repository;
 
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Student;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -46,4 +48,6 @@ public interface StudentRepository extends PagingAndSortingRepository<Student, L
      * @return
      */
     List<Student> findByState(boolean state);
+
+    Page<Student> findAllByNameLike(String name, Pageable pageable);
 }

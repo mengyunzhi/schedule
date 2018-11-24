@@ -38,7 +38,8 @@ angular.module('scheduleApp')
     	.then(function() {
     		callBack();
     	}, function() {
-    		console.log('false to delete semester');
+            alert('删除失败');
+            console.log('false to delete semester');
     	});
     };
     self.active = function(id, callBack) {
@@ -90,7 +91,8 @@ angular.module('scheduleApp')
     };
 
     self.getPage = function(pageParams, callBack) {
-        $http.get(baseUrl + '/page', {params: pageParams})
+        var getPageUrl = baseUrl + '/page/' + pageParams.page + '/' + pageParams.size;
+        $http.get(getPageUrl)
         .then(function(response) {
             callBack(response.data);
         }, function() {
@@ -99,7 +101,9 @@ angular.module('scheduleApp')
     };
 
     self.getPageAndName = function(pageParams, callBack) {
-        $http.get(baseUrl + '/page/name', {params: pageParams})
+        var getPageAndNameUrl = baseUrl + '/pageByName/' + pageParams.name + '/' 
+        + pageParams.page + '/' + pageParams.size;
+        $http.get(getPageAndNameUrl)
         .then(function(response) {
             callBack(response.data);
         }, function() {

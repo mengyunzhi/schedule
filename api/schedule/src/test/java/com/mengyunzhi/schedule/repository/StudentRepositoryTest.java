@@ -35,9 +35,11 @@ public class StudentRepositoryTest extends ScheduleApplicationTests {
         Student student = new Student();
         student.setState(true);
         student.setCourseList(courses);
+        student.setState(true);
         Student student2 = new Student();
         student2.setState(true);
         ArrayList<Course> courses1 = new ArrayList<>();
+        student2.setState(true);
         courses1.add(course);
         student2.setCourseList(courses1);
         studentRepository.save(student);

@@ -39,7 +39,6 @@ angular.module('scheduleApp')
                 .then(function success(response) {
                     //用回调函数绑定数据到$scope
                     if (callback) {
-                        console.log(response.data);
                         callback(response);
                     }
                     console.log('success');
@@ -59,7 +58,7 @@ angular.module('scheduleApp')
                 angular.forEach(student.contributionList, function (contribution) {
                     
                     // 当前的年月
-                    var contributionTime = new Date(1539522437438);
+                    var contributionTime = new Date();
                     
                     var contributionYear = contributionTime.getFullYear();   // 年
                     var contributionMonth = contributionTime.getMonth();    // 月
@@ -79,15 +78,26 @@ angular.module('scheduleApp')
             
             var begin = date.setDate(date.getDate() - date.getDay() + 1);  // 周一
             var end = date.setDate(date.getDate() + 6);                    // 周日
-            
             angular.forEach(students, function (student) {
                 student.weekIncrease = 0;
-                
+
                 angular.forEach(student.contributionList, function (contribution) {
+
                     if (contribution.time > begin && contribution.time < end) {
                         student.weekIncrease += contribution.value;
                     }
                 });
             });
+        };
+
+        self.getPage = function (pageParams, callback) {
+
+            var pageUrl = '/Contribution/page';
+            $http.get(pageUrl, { params: pageParams})
+                .then(function (response) {
+                    callback(response.data);
+                }, function () {
+                    console.log('failed to get contributions page');
+                });
         };
     });
