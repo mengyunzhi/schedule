@@ -2,7 +2,9 @@ package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Contribution;
 import com.mengyunzhi.schedule.other.PayLoad;
+import org.springframework.data.domain.Page;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 /**
@@ -29,4 +31,7 @@ public interface ContributionService {
 
     //pull request 时自动计算贡献度
     void addContribution(PayLoad payLoad);
+
+    // 分页
+    Page<Contribution> page(Pageable pageable);
 }
