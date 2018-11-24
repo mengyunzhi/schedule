@@ -23,7 +23,7 @@
             <td>状态</td>
             <td>操作</td>
         </tr>
-        <tr align="center" ng-repeat="(key, semester) in semesters|orderBy: '-id'">
+        <tr align="center" ng-repeat="(key, semester) in page.content|orderBy: '-id'">
             <td>{{key + 1}}</td>
             <td>{{semester.name}}</td>
             <td>{{semester.startTime | timeFormat}}</td>
@@ -36,4 +36,5 @@
             </td>
         </tr>
     </table>
+    <yunzhi-page number="page.number" total-pages="page.totalPages" reload-page="reloadByPage" first="page.first" last="page.last"></yunzhi-page>
 </ui-view>
