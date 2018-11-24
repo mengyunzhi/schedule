@@ -13,14 +13,6 @@ public class JsonPage<T> extends org.springframework.data.domain.PageImpl<T> {
         super(content, pageable, total);
     }
 
-    public JsonPage(final List<T> content) {
-        super(content);
-    }
-
-    public JsonPage(final Page<T> page, final Pageable pageable) {
-        super(page.getContent(), pageable, page.getTotalElements());
-    }
-
 
     public int getTotalPages() {
         return super.getTotalPages();

@@ -26,8 +26,8 @@ angular.module('scheduleApp')
         self.init = function () {
             //得到所有的学生数据
             studentService.getAllStudent(function (data) {
+
                 $scope.allStudents = data;
-                
                 //得到本月累增
                 monthIncrease($scope.allStudents);
                 
