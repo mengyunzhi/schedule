@@ -82,14 +82,15 @@ public class CourseController {
      * @Date: 10/26/2018
      * @Description: 通过学期和课程名查找课程
      */
-    @JsonView(CourseJsonView.class)
+    @JsonView(View.CoursePageJsonView.class)
     @GetMapping("query")
-    public List<Course> findCourseByNameAndSemesterId(@RequestParam(required = false) Long id, @RequestParam(required = false) String name) {
+    public Page<Course> findCourseByNameAndSemesterId(@RequestParam(required = false) Long id, @RequestParam(required = false) String name, @RequestParam int page, @RequestParam int size) {
 
         //如果学期为空，返回空
         if (id == null)
             return null;
-        return courseService.findCourseByNameAndSemesterId(id, name);
+        PageRequest pageRequest = new PageRequest(page, size);
+        return courseService.findCourseByNameAndSemesterId(id, name, pageRequest);
     }
 
     // 为课程选择时间
