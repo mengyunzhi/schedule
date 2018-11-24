@@ -9,6 +9,8 @@ import com.mengyunzhi.schedule.repository.SemesterRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -139,20 +141,25 @@ public class CourseServiceImplTest extends ServiceTest {
         logger.info("新建semester");
         Semester semester = new Semester();
         semesterRepository.save(semester);
+
         logger.info("新建一个Course");
         Course testCourse = new Course();
         testCourse.setName("test");
         courseRepository.save(testCourse);
+
+        logger.info("新建分页请求");
+        PageRequest pageRequest = new PageRequest(0,3);
+
         logger.info("通过测试方法查询");
         logger.info("名字为空的情况");
-        List<Course> courseList = courseService.findCourseByNameAndSemesterId(semester.getId(), "");
+        Page<Course> courseList = courseService.findCourseByNameAndSemesterId(semester.getId(), "", pageRequest);
         logger.info("断言结果");
         for (Course course : courseList) {
             assertThat(course.getName()).isEqualTo(testCourse.getName());
             assertThat(course.getSemester()).isEqualTo(semester);
         }
         logger.info("名字不为空");
-        List<Course> courseList1 = courseService.findCourseByNameAndSemesterId(semester.getId(), testCourse.getName());
+        Page<Course> courseList1 = courseService.findCourseByNameAndSemesterId(semester.getId(), testCourse.getName(), pageRequest);
         logger.info("断言结果");
         for (Course course : courseList) {
             assertThat(course.getName()).isEqualTo(testCourse.getName());

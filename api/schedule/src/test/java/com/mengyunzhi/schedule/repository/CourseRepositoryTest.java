@@ -7,6 +7,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 
 
 import java.util.List;
@@ -38,20 +40,23 @@ public class CourseRepositoryTest extends ScheduleApplicationTests {
         logger.info("新建semester");
         Semester semester = new Semester();
         semesterRepository.save(semester);
+
         logger.info("新建一个Course");
         Course testCourse = new Course();
         testCourse.setName("test");
         courseRepository.save(testCourse);
+        logger.info("新建分页请求");
+        PageRequest pageRequest = new PageRequest(0, 3);
         logger.info("通过测试方法查询");
         logger.info("名字为空的情况");
-        List<Course> courseList = courseRepository.findByNameLikeAndSemester("", semester);
+        Page<Course> courseList = courseRepository.findByNameLikeAndSemester("", semester, pageRequest);
         logger.info("断言结果");
         for (Course course : courseList) {
             assertThat(course.getName()).isEqualTo(testCourse.getName());
             assertThat(course.getSemester()).isEqualTo(semester);
         }
         logger.info("名字不为空");
-        List<Course> courseList1 = courseRepository.findByNameLikeAndSemester(testCourse.getName(), semester);
+        Page<Course> courseList1 = courseRepository.findByNameLikeAndSemester(testCourse.getName(), semester, pageRequest);
         logger.info("断言结果");
         for (Course course : courseList) {
             assertThat(course.getName()).isEqualTo(testCourse.getName());

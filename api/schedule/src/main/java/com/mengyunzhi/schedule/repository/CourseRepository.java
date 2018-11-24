@@ -16,7 +16,7 @@ import java.util.List;
  * 课程
  */
 public interface CourseRepository extends PagingAndSortingRepository<Course, Long> {
-    List<Course> findByNameLikeAndSemester(String name, Semester semester);
+    Page<Course> findByNameLikeAndSemester(String name, Semester semester, Pageable pageable);
 
     /**
      * 获得与学期有关的所有课程

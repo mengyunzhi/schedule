@@ -82,8 +82,8 @@ public class CourseServiceImpl implements CourseService {
      * @Description: 通过学期和课程名查找课程
      */
     @Override
-    public List<Course> findCourseByNameAndSemesterId(Long id, String name) {
-        return courseRepository.findByNameLikeAndSemester("%" + name + "%", semesterRepository.findOne(id));
+    public Page<Course> findCourseByNameAndSemesterId(Long id, String name, Pageable pageable) {
+        return courseRepository.findByNameLikeAndSemester("%" + name + "%", semesterRepository.findOne(id), pageable);
     }
 
     @Override
