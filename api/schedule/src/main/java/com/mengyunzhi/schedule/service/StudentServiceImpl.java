@@ -6,6 +6,7 @@ import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -115,5 +116,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Page<Student> page(Pageable pageable) {
         return studentRepository.findAll(pageable);
+    }
+
+    //按分页信息查询
+    @Override
+    public Page<Student> findByNameLike(String name, PageRequest pageRequest) {
+        return studentRepository.findAllByNameLike("%" + name + "%",pageRequest);
     }
 }

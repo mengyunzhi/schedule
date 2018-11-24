@@ -11,16 +11,30 @@ angular.module('scheduleApp')
     .controller('StudentIndexCtrl', function($scope, $http, $state, studentService) {
         var self = this;
         self.init = function() {
+            $scope.params = { page: 0, size: 3 };
             $scope.query = {};
             $scope.query.name = '';
             self.reload();
         };
 
-        //获取所有学生
+        // 加载数据
         self.reload = function(students) {
-            studentService.getAllStudent(function(students) {
-                $scope.students = students;
+            studentService.page($scope.params, function(data) {
+                $scope.data = data;
             });
+        };
+
+        //分页时重新加载数据
+        self.reloadPage = function(page) {
+            $scope.params.page = page;
+            self.reload();
+            self.findByName();
+        };
+
+        //选择每页大小时重新加载数据
+        self.reloadBySize = function(size) {
+            $scope.params.size = size;
+            self.reload();
         };
 
         //点击改变学生状态
@@ -34,8 +48,9 @@ angular.module('scheduleApp')
                 });
         };
 
+        //删除
         self.removeStudent = function(id) {
-            $scope.studens = $scope.students.filter(function(_student) {
+            $scope.studens = $scope.data.content.filter(function(_student) {
                 if (_student.id === id) {
                     return false;
                 } else {
@@ -58,14 +73,16 @@ angular.module('scheduleApp')
             if ($scope.query.name === '') {
                 self.reload();
             } else {
-                studentService.findByName($scope.query.name, function(students) {
-                    $scope.students = students;
+                studentService.findByName($scope.query.name, $scope.params, function(data) {
+                    $scope.data = data;
                 });
             }
         };
 
-        self.init();
         $scope.delete = self.delete;
         $scope.changeState = self.changeState;
         $scope.findByName = self.findByName;
+        $scope.reloadPage = self.reloadPage;
+        $scope.reloadBySize = self.reloadBySize;
+        self.init();
     });
