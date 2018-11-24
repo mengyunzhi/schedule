@@ -7,6 +7,8 @@ import com.mengyunzhi.schedule.other.PayLoad;
 import com.mengyunzhi.schedule.service.ContributionService;
 import com.mengyunzhi.schedule.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -69,5 +71,14 @@ public class ContributionController {
 
         contributionService.addContribution(payLoad);
     }
+
+    @GetMapping("/page")
+    @JsonView(View.Contribution.class)
+    public Page<Contribution> page(@RequestParam int page, @RequestParam int size) {
+        PageRequest pageRequest = new PageRequest(page, size);
+        return contributionService.page(pageRequest);
+    }
+
+
 
 }

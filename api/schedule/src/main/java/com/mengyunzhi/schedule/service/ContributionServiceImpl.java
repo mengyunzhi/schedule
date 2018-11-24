@@ -6,6 +6,8 @@ import com.mengyunzhi.schedule.other.PayLoad;
 import com.mengyunzhi.schedule.repository.ContributionRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -100,4 +102,10 @@ public class ContributionServiceImpl implements ContributionService {
         studentRepository.save(student);
         contributionRepository.save(contribution);
     }
+
+    @Override
+    public Page<Contribution> page(Pageable pageable) {
+        return contributionRepository.findAll(pageable);
+    }
+
 }
