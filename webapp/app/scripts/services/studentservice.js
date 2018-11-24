@@ -59,18 +59,32 @@ angular.module('scheduleApp')
                 .then(function succsess(response) {
                     if (callback) { callback(response.data); }
                 }, function error() {
+                    alert('删除失败');
                     console.log('删除失败');
                 });
         };
 
         // 按学生名称查询
-        self.findByName = function(name, callback) {
-            var url = '/student/name/' + name;
-            $http.get(url)
+        self.findByName = function(name, params, callback) {
+            var url = '/student/query/' + name;
+            $http.get(url, {params: params })
                 .then(function(response) {
                     if (callback) { callback(response.data); }
                 }, function() {
                     console.log('error');
+                });
+        };
+
+        //分页
+        self.page = function(params, callback) {
+            var url = '/student/page';
+            $http.get(url, { params: params })
+                .then(function success(response) {
+                    if (callback) {
+                        callback(response.data);
+                    }
+                }, function error(response) {
+                    console.log('error', response);
                 });
         };
 
@@ -80,6 +94,7 @@ angular.module('scheduleApp')
             checkAll: self.checkAll,
             delete: self.delete,
             findByName: self.findByName,
-            getStudentByCourse: self.getStudentByCourse
+            getStudentByCourse: self.getStudentByCourse,
+            page: self.page
         };
     });

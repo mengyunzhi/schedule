@@ -131,6 +131,7 @@ angular.module('scheduleApp')
                     if (callback) { callback(); }
                     console.log("deleteSuccesss");
                 }, function error(response) {
+                    alert('已有学生选中该课程，无法删除');
                     console.log("deleteError", response.status);
                 });
         };
