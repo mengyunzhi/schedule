@@ -33,8 +33,10 @@ public class StudentRepositoryTest extends ScheduleApplicationTests {
         courseRepository.save(courses);
 
         Student student = new Student();
+        student.setState(true);
         student.setCourseList(courses);
         Student student2 = new Student();
+        student2.setState(true);
         ArrayList<Course> courses1 = new ArrayList<>();
         courses1.add(course);
         student2.setCourseList(courses1);
@@ -42,7 +44,7 @@ public class StudentRepositoryTest extends ScheduleApplicationTests {
         studentRepository.save(student2);
         studentRepository.save(studentRepository.save(new Student()));
 
-        Set<Student> students = studentRepository.findByCourseListIn(courses);
+        Set<Student> students = studentRepository.findByStateAndCourseListIn( true,courses);
 
         assertThat(students.contains(student)).isTrue();
         assertThat(students.contains(student2)).isTrue();

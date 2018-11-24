@@ -47,7 +47,7 @@ public interface CourseService {
      * @Date: 10/26/2018
      * @Description: 通过学期和课程名查找课程
      */
-    List<Course> findCourseByNameAndSemesterId(Long id, String name);
+    Page<Course> findCourseByNameAndSemesterId(Long id, String name, Pageable pageable);
 
     // 为课程选择时间
     void selectCourseBySchedule(Long id, int week, int node,Long semesterId, List<Integer> weekOrders);

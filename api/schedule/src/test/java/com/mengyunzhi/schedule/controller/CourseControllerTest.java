@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -87,35 +88,51 @@ public class CourseControllerTest extends ControllerTest {
         logger.info("新建semester");
         Semester semester = new Semester();
         semesterRepository.save(semester);
+
         logger.info("新建一个Course");
         Course testCourse = new Course();
         testCourse.setName("test");
         courseRepository.save(testCourse);
+
+        logger.info("新建一个分页信息");
+        int page = 0;
+        int size = 3;
+
         logger.info("构造url模拟访问并断言");
         String queryUrl = baseUrl + "/query";
+
         logger.info("学期为空");
         this.mockMvc
                 .perform(get(queryUrl)
                         .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .param("name", testCourse.getName()))
+                        .param("name", testCourse.getName())
+                        .param("page", String.valueOf(page))
+                        .param("size", String.valueOf(size)))
+
                 //.andDo(print())
                 .andExpect(status().isOk());
+
         logger.info("课程名为空");
         this.mockMvc
                 .perform(get(queryUrl)
                         .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
-                        .param("id", String.valueOf(semester.getId())))
+                        .param("id", String.valueOf(semester.getId()))
+                        .param("page", String.valueOf(page))
+                        .param("size", String.valueOf(size)))
                 //.andDo(print())
                 .andExpect(status().isOk());
+
         logger.info("两个都不为空");
         this.mockMvc
                 .perform(get(queryUrl)
                         .cookie(this.cookie)
                         .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .param("name", testCourse.getName())
-                        .param("id", String.valueOf(semester.getId())))
+                        .param("id", String.valueOf(semester.getId()))
+                        .param("page", String.valueOf(page))
+                        .param("size", String.valueOf(size)))
                 //.andDo(print())
                 .andExpect(status().isOk());
 

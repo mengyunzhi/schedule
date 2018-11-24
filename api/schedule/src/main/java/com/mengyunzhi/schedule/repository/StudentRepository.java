@@ -3,11 +3,12 @@ package com.mengyunzhi.schedule.repository;
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Student;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 import java.util.Set;
 
-public interface StudentRepository extends CrudRepository<Student, Long> {
+public interface StudentRepository extends PagingAndSortingRepository<Student, Long> {
     /**
      * @return com.mengyunzhi.schedule.entity.Student
      * @param: [github]
@@ -17,12 +18,12 @@ public interface StudentRepository extends CrudRepository<Student, Long> {
     Student findByGithub(String github);
 
     /**
-     * 返回有关课程的所有学生
+     * 返回有关课程的所有激活学生
      *
      * @param courses 有关课程
-     * @return 有关课程的所有学生
+     * @return 有关课程的所有激活学生
      */
-    Set<Student> findByCourseListIn(List<Course> courses);
+    Set<Student> findByStateAndCourseListIn(boolean state ,List<Course> courses);
 
     /**
      * 通过名字找到学生

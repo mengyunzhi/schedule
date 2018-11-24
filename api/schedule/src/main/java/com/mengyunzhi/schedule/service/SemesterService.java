@@ -1,6 +1,8 @@
 package com.mengyunzhi.schedule.service;
 
 import com.mengyunzhi.schedule.entity.Semester;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -49,4 +51,9 @@ public interface SemesterService {
     // 返回当前激活的学期
     Semester getSemester();
 
+    //返回分页学期
+    Page<Semester> page(Pageable pageable);
+
+    //通过学期返回分页
+    Page<Semester> pageByName(String name, Pageable pageable);
 }

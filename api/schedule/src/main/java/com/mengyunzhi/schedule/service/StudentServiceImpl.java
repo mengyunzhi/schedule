@@ -5,6 +5,8 @@ import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ public class StudentServiceImpl implements StudentService {
      */
     @Override
     public Set<Student> findByCoursesIn(List<Course> courses) {
-        return studentRepository.findByCourseListIn(courses);
+        return studentRepository.findByStateAndCourseListIn(true ,courses);
     }
 
     @Override
@@ -107,5 +109,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getActiveStudent() {
         return studentRepository.findByState(true);
+    }
+
+    //分页
+    @Override
+    public Page<Student> page(Pageable pageable) {
+        return studentRepository.findAll(pageable);
     }
 }
