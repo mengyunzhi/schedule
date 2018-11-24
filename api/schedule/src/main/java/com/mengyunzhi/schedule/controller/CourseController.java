@@ -100,9 +100,10 @@ public class CourseController {
 
     // 获取当前激活学期的课程
     @JsonView(CourseJsonView.class)
-    @GetMapping("getActiveSemesterByCourse")
-    public List<Course> getActiveSemesterByCourse() {
-        return courseService.getActiveSemesterByCourse();
+    @GetMapping("getCoursePageByActiveSemester")
+    public Page<Course> getActiveSemesterByCourse(@RequestParam int page ,@RequestParam int size) {
+        PageRequest pageRequest =new PageRequest(page,size);
+        return courseService.getCoursePageByActiveSemester(pageRequest);
     }
 
 }

@@ -8,6 +8,7 @@ import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.SemesterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -103,16 +104,8 @@ public class CourseServiceImpl implements CourseService {
         courseRepository.save(course);
     }
 
-    // 获取当前激活学期的课程
     @Override
-    public List<Course> getActiveSemesterByCourse() {
-        List<Semester> semesters = semesterRepository.findByStatus(true);
-        if (semesters.isEmpty()) {
-            return null;
-        } else {
-            Semester semester = semesters.get(0);
-            List<Course> courses = courseRepository.findBySemester(semester);
-            return  courses;
-        }
+    public Page<Course> getCoursePageByActiveSemester(PageRequest pageRequest) {
+        return courseRepository.findAllBySemesterStatus(true, pageRequest);
     }
 }

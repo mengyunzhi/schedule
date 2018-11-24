@@ -4,6 +4,7 @@ package com.mengyunzhi.schedule.service;
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Schedule;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -53,6 +54,5 @@ public interface CourseService {
     void selectCourseBySchedule(Long id, int week, int node,Long semesterId, List<Integer> weekOrders);
 
     // 获取当前激活学期的课程
-    List<Course> getActiveSemesterByCourse();
-
+    Page<Course> getCoursePageByActiveSemester(PageRequest pageRequest);
 }

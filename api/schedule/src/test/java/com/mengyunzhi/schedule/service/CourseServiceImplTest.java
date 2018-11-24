@@ -159,44 +159,4 @@ public class CourseServiceImplTest extends ServiceTest {
             assertThat(course.getSemester()).isEqualTo(semester);
         }
     }
-
-    @Test
-    public void getActiveSemesterByCourse() throws Exception {
-       logger.info("新建semester1");
-        Semester semester1 = new Semester();
-
-        logger.info("将新增的学期置为激活状态");
-        semester1.setStatus(true);
-
-        logger.info("新建semester2");
-        Semester semester2 = new Semester();
-
-        logger.info("将新增的学期置为激活状态");
-        semester2.setStatus(false);
-
-        logger.info("持久化新增的学期");
-        semesterRepository.save(semester1);
-        semesterRepository.save(semester2);
-
-        List<Course> courses = new ArrayList<>();
-        logger.info("新建Course1");
-        Course course1 = new Course();
-        course1.setName("数学");
-        course1.setSemester(semester1);
-
-        logger.info("新建Course2");
-        Course course2 = new Course();
-        course2.setName("物理");
-        course2.setSemester(semester1);
-
-        logger.info("持久化新建Course");
-        courseRepository.save(course1);
-        courseRepository.save(course2);
-
-        courses.add(course1);
-        courses.add(course2);
-
-        logger.info("断言获得当前激活学期的课程");
-        assertThat(courseService.getActiveSemesterByCourse()).isEqualTo(courses);
-    }
 }
