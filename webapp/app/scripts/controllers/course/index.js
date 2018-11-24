@@ -27,6 +27,8 @@ angular.module('scheduleApp')
             courseService.page($scope.params, function(data) {
                 // 获取到所有的课程
                 $scope.data = data;
+                self.initSelect($scope.data.content);
+                $scope.selectAllOrNot = false;
             });
         };
 
