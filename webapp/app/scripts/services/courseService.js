@@ -131,7 +131,6 @@ angular.module('scheduleApp')
                     if (callback) { callback(); }
                     console.log("deleteSuccesss");
                 }, function error(response) {
-
                     console.log("deleteError", response.status);
                 });
         };
