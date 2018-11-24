@@ -26,7 +26,7 @@ angular.module('scheduleApp')
         self.load = self.reload = function() {
             courseService.page($scope.params, function(data) {
                 // 获取到所有的课程
-                $scope.data = data;     
+                $scope.data = data;
             });
         };
 
@@ -55,13 +55,13 @@ angular.module('scheduleApp')
         // 分页时重新加载数据
         self.reloadByPage = function(page) {
             $scope.params.page = page;
-            self.reload();
+            self.reloadData();
         };
 
         // 进行每页大小
         self.reloadBySize = function(size) {
             $scope.params.size = size;
-            self.load();
+            self.reloadData();
         };
 
         // 批量删除
@@ -74,8 +74,12 @@ angular.module('scheduleApp')
                 }
             });
             courseService.deleteMultiple(deleteList, function() {
-                self.findBySemesterIdAndName();
+                //self.findBySemesterIdAndName();
+                
+
+                self.reloadData();
                 $scope.selectAllOrNot = false;
+
             })
         };
 
@@ -98,7 +102,7 @@ angular.module('scheduleApp')
                 });
                 if (count != 0) {
                     $scope.selectAllOrNot = count === newValue.length;
-                }               
+                }
             }
         };
 
@@ -106,10 +110,26 @@ angular.module('scheduleApp')
         self.findBySemesterIdAndName = function() {
             var semesterId = $scope.query.selectSemester.id;
             var courseName = $scope.query.name;
-            courseService.query(semesterId, courseName, function(data) {
-                $scope.data.content = data;
+            
+            $scope.params.semesterId = semesterId;
+
+            courseService.query(semesterId, courseName, $scope.params, function(data) {
+                $scope.data = data;
                 self.initSelect($scope.data.content);
             });
+        };
+
+        // 点击查询
+        $scope.find = function() {
+            $scope.params = {page: 0, size: 3};
+            self.findBySemesterIdAndName();
+        };
+
+        // 重新加载查询数据或者当前学期数据
+        self.reloadData = function() {
+            if ($scope.query.name || $scope.query.selectSemester != $scope.currentSemester) {
+                self.findBySemesterIdAndName();
+            } else { self.reload(); }
         };
 
         self.init();

@@ -126,13 +126,13 @@ angular.module('scheduleApp')
          */
         self.deleteMultiple = function(deleteList, callback) {
             var url = '/Course/deleteAll';
-
             $http.delete(url, { data: deleteList, headers: { 'Content-type': 'application/json;charset=utf-8' } })
                 .then(function success() {
                     if (callback) { callback(); }
                     console.log("deleteSuccesss");
                 }, function error(response) {
-                    console.log("deleteError", response);
+
+                    console.log("deleteError", response.status);
                 });
         };
 
@@ -170,11 +170,13 @@ angular.module('scheduleApp')
          * @param    {[string]}               courseName [课程名称]
          * @param    {Function}               callback   [description]
          */
-        self.query = function(semesterId, courseName, callback) {
+        self.query = function(semesterId, courseName, pageRequestParams, callback) {
             var url = '/Course/query';
             var params = {
                 id: semesterId,
-                name: courseName
+                name: courseName,
+                page: pageRequestParams.page,
+                size: pageRequestParams.size
             };
             $http.get(url, { params: params })
                 .then(function success(response) {
