@@ -88,4 +88,25 @@ angular.module('scheduleApp')
         semester.startTime = new Date(parseInt(semester.startTime));
         semester.endTime = new Date(parseInt(semester.endTime));
     };
+
+    self.getPage = function(pageParams, callBack) {
+        var getPageUrl = baseUrl + '/page/' + pageParams.page + '/' + pageParams.size;
+        $http.get(getPageUrl)
+        .then(function(response) {
+            callBack(response.data);
+        }, function() {
+            console.log('fail to get semster page');            
+        });
+    };
+
+    self.getPageAndName = function(pageParams, callBack) {
+        var getPageAndNameUrl = baseUrl + '/pageByName/' + pageParams.name + '/' 
+        + pageParams.page + '/' + pageParams.size;
+        $http.get(getPageAndNameUrl)
+        .then(function(response) {
+            callBack(response.data);
+        }, function() {
+            console.log('fail to pageAndName semster');
+        });
+    };
   });

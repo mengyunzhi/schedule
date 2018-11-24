@@ -10,19 +10,29 @@
 angular.module('scheduleApp')
     .controller('SemesterIndexCtrl', function($scope, $state, semester) {
         var self = this;
+        
         self.init = function() {
             $scope.query = {};
             $scope.query.name = '';
+            $scope.pageParams = {page: 0, size: 2};
             self.reload();
         };
         self.reload = function() {
-            semester.getAll(function(data) {
-                $scope.semesters = data;
+            semester.getPage($scope.pageParams, function(data) {
+                $scope.page = data;
             });
+        };
+        /**
+         * 根据当前页数获取分页
+         * @param  当前页数
+         */
+        self.reloadByPage = function(page) {
+            $scope.pageParams.page = page;
+            self.reload();
         };
         self.delete = function(ob) {
             semester.delete(ob, function() {
-                $state.go('semester', {}, { reload: true });
+                self.reload();
             });
         };
         self.active = function(ob) {
@@ -34,8 +44,10 @@ angular.module('scheduleApp')
             if ($scope.query.name == '') {
                 self.reload();
             } else {
-                semester.findByName($scope.query.name, function(data) {
-                    $scope.semesters = data;
+                var pageAndNameParams = {page: 0, size: 2};
+                pageAndNameParams.name = $scope.query.name;
+                semester.getPageAndName(pageAndNameParams, function(data) {
+                    $scope.page = data;
                 });
             }
         };
@@ -43,4 +55,5 @@ angular.module('scheduleApp')
         $scope.delete = self.delete;
         $scope.active = self.active;
         $scope.findByName = self.findByName;
+        $scope.reloadByPage = self.reloadByPage;
     });

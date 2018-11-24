@@ -6,8 +6,10 @@ import com.mengyunzhi.schedule.other.PayLoad;
 import com.mengyunzhi.schedule.repository.ContributionRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.List;
 
@@ -99,5 +101,10 @@ public class ContributionServiceImpl implements ContributionService {
         //保存数据
         studentRepository.save(student);
         contributionRepository.save(contribution);
+    }
+
+    @Override
+    public Page<Contribution> page(Pageable pageable) {
+        return contributionRepository.findAll((org.springframework.data.domain.Pageable) pageable);
     }
 }
