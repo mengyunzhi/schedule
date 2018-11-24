@@ -38,7 +38,6 @@ angular.module('scheduleApp')
     	.then(function() {
     		callBack();
     	}, function() {
-    	    alert("删除失败");
     		console.log('false to delete semester');
     	});
     };
