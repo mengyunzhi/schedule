@@ -23,7 +23,7 @@
             <td>状态</td>
             <td>操作</td>
         </tr>
-        <tr align="center" ng-repeat="_student in students | orderBy:'-id'">
+        <tr align="center" ng-repeat="_student in data.content | orderBy:'-id'">
             <td>{{$index + 1}}</td>
             <td>{{_student.name}}</td>
             <td>{{_student.phoneNumber}}</td>
@@ -39,5 +39,5 @@
             </td>
         </tr>
     </table>
-    </div>
+    <yunzhi-page total-pages="data.totalPages" number="data.number" reload-page="reloadPage" total-Elements="data.totalElements" first="data.first" last="data.last"></yunzhi-page>
 </ui-view>

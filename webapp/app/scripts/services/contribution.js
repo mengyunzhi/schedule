@@ -89,4 +89,15 @@ angular.module('scheduleApp')
                 });
             });
         };
+
+        self.getPage = function (pageParams, callback) {
+
+            var pageUrl = '/Contribution/page';
+            $http.get(pageUrl, { params: pageParams})
+                .then(function (response) {
+                    callback(response.data);
+                }, function () {
+                    console.log('failed to get contributions page');
+                });
+        };
     });

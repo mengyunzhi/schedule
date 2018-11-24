@@ -3,7 +3,6 @@ package com.mengyunzhi.schedule.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
 import com.mengyunzhi.schedule.entity.Contribution;
-import com.mengyunzhi.schedule.jsonView.CourseJsonView;
 import com.mengyunzhi.schedule.other.PayLoad;
 import com.mengyunzhi.schedule.service.ContributionService;
 import com.mengyunzhi.schedule.service.StudentService;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 /**
@@ -57,14 +55,6 @@ public class ContributionController {
         return contributionService.getDetailedInformation(id);
     }
 
-    // page?page=0&size=1
-    @JsonView(View.Contribution.class)
-    @GetMapping("/page")
-    public Iterable<Contribution> page(@RequestParam int page, @RequestParam int size) {
-        PageRequest pageRequest = new PageRequest(page, size);
-        return contributionService.page((Pageable)pageRequest);
-    }
-
     /**
      *
      * @param: [payLoad]
@@ -78,5 +68,14 @@ public class ContributionController {
 
         contributionService.addContribution(payLoad);
     }
+
+    @GetMapping("/page")
+    @JsonView(View.Contribution.class)
+    public Page<Contribution> page(@RequestParam int page, @RequestParam int size) {
+        PageRequest pageRequest = new PageRequest(page, size);
+        return contributionService.page(pageRequest);
+    }
+
+
 
 }
