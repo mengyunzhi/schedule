@@ -187,8 +187,9 @@ angular.module('scheduleApp')
         };
 
         // 获取当前激活学期的课程
-        self.getActiveSemesterByCourse = function(callback) {
-            $http.get('/Course/getActiveSemesterByCourse')
+        self.getActiveSemesterByCourse = function(params, callback) {
+            var url = '/Course/getCoursePageByActiveSemester';
+            $http.get(url, {params: params})
                 .then(function success(response) {
                     if (callback) { callback(response.data) }
                 }, function error(response) {

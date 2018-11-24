@@ -10,7 +10,7 @@
         <td>序号</td>
         <td>课程名</td>
     </tr>
-    <tr align="center" ng-repeat="_course in courses | orderBy: '-id'">
+    <tr align="center" ng-repeat="_course in courses.content | orderBy: '-id'">
         <td>
             <input type="checkbox" ng-model="_course._checked" />
         </td>
@@ -18,3 +18,4 @@
         <td>{{_course.name}}</td>
     </tr>
 </table>
+<yunzhi-page total-pages="courses.totalPages" number="courses.number" reload-page="reloadPage" total-Elements="courses.totalElements" first="courses.first" last="courses.last"></yunzhi-page>

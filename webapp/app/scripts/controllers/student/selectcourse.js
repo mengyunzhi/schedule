@@ -10,19 +10,26 @@
 angular.module('scheduleApp')
     .controller('StudentSelectcourseCtrl', function($http, $state, $scope, $stateParams, courseService, studentService) {
         var self = this;
+        var selectCourses = [];
+        self.studentCourses = [];
+
         // 初始化
         self.init = function() {
+            $scope.params = { page: 0, size: 3 };
             $scope.selectAllOrNot = false;
+            studentService.getStudentByCourse($stateParams.id, function(data) {
+                    self.studentCourses = data.courseList;
+            });
             self.load();
-            $scope.$watch('courses', self.watchCourses, true);
+            $scope.$watch('courses.content', self.watchCourses, true);
         };
 
         // 加载数据
         self.load = self.reload = function() {
-            courseService.getActiveSemesterByCourse(function(data) {
+            courseService.getActiveSemesterByCourse($scope.params, function(data) {
                 $scope.courses = data;
                 // 将所有课程状态初始化为false
-                angular.forEach($scope.courses, function(course) {
+                angular.forEach($scope.courses.content, function(course) {
                     course._checked = false;
                 });
                 self.selectActive();
@@ -34,24 +41,58 @@ angular.module('scheduleApp')
             var id = $stateParams.id;
             studentService.getStudentByCourse(id, function(data) {
                 // 循环所有课程
-                angular.forEach($scope.courses, function(course) {
-                    // 循环当前学生所选的课程
-                    angular.forEach(data.courseList, function(checkedCourse) {
-                        // 判断当前学生课程与所有课程中相同的课程
-                        if (course.id === checkedCourse.id) {
-                            //默认选中已选课程
-                            course._checked = true;
-                        }
-                    });
+                angular.forEach($scope.courses.content, function(course) {
+                    if (selectCourses[$scope.params.page] !== undefined) {
+                        self.courseSelectActive(selectCourses[$scope.params.page], course);
+                        $scope.selectAllOrNot = selectCourses[$scope.params.page].length === $scope.courses.content.length
+                    } else {
+                        self.courseSelectActive(data.courseList, course);
+                        $scope.selectAllOrNot = data.courseList.length === $scope.courses.content.length
+                    }
                 });
+
+
             });
+
         };
 
+        self.courseSelectActive = function(data, targe) {
+            // 循环当前学生所选的课程
+            angular.forEach(data, function(checkedCourse) {
+                // 判断当前学生课程与所有课程中相同的课程
+                if (targe.id === checkedCourse.id) {
+                    //默认选中已选课程
+                    targe._checked = true;
+                }
+            });
+        }
+
         // 分页时重新加载数据
-        self.reloadByPage = function(page) {
+        self.reloadPage = function(page) {
+            var array = [];
+            angular.forEach($scope.courses.content, function(content) {
+                if (content._checked) {
+                    array.push(content);
+                } else {
+                    if (self.entityContain(content, self.studentCourses)) {
+                        self.studentCourses = self.studentCourses.filter(function(course) {
+                            return course.id !== content.id;
+                        });
+                    }
+                }
+            });
+            selectCourses[$scope.params.page] = array;
             $scope.params.page = page;
             self.reload();
         };
+
+        self.entityContain = function(entity, entitys) {
+            for (var i = 0; i < entitys.length; i ++) {
+                if (entity.id === entitys[i].id) {
+                    return true;
+                }
+            }
+        }
 
         // 进行每页大小
         self.reloadBySize = function(size) {
@@ -62,10 +103,21 @@ angular.module('scheduleApp')
         // 选课
         self.selectCourse = function() {
             var id = $stateParams.id;
-            var array = $scope.courses.filter(function(_course) {
+            var array = $scope.courses.content.filter(function(_course) {
                 return _course._checked;
             });
-            studentService.selectCourse(id, array, function() {
+            console.log(self.studentCourses);
+            selectCourses[$scope.params.page] = array;
+            var data = [];
+            angular.forEach(selectCourses, function(tempArray) {
+                angular.forEach(tempArray, function(temp) {
+                    data.push(temp);
+                });
+            });
+            angular.forEach(self.studentCourses, function(studentCourse) {
+                data.push(studentCourse);
+            });
+            studentService.selectCourse(id, data, function() {
                 $state.transitionTo('student', {}, { reload: true });
             });
         };
@@ -73,7 +125,7 @@ angular.module('scheduleApp')
         // 全选
         self.select = function() {
             $scope.selectAllOrNot = !$scope.selectAllOrNot;
-            angular.forEach($scope.courses, function(course) {
+            angular.forEach($scope.courses.content, function(course) {
                 course._checked = $scope.selectAllOrNot;
             });
         };
@@ -95,7 +147,7 @@ angular.module('scheduleApp')
 
         $scope.select = self.select;
         $scope.selectCourse = self.selectCourse;
-        $scope.reloadByPage = self.reloadByPage;
+        $scope.reloadPage = self.reloadPage;
         $scope.reloadBySize = self.reloadBySize;
         self.init();
     });
