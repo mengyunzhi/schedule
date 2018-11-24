@@ -15,14 +15,14 @@ public class Contribution {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @JsonView(View.Contribution.class)
+    @JsonView({View.Contribution.class, View.Student.class})
     private float value;
 
     //备注
     @JsonView(View.Contribution.class)
     private String remarks;
 
-    @JsonView(View.Contribution.class)
+    @JsonView({View.Contribution.class, View.Student.class})
     private long time;
 
     @JsonView(View.Contribution.class)

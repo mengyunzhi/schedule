@@ -5,6 +5,7 @@ import com.mengyunzhi.schedule.other.PayLoad;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 /**
@@ -34,6 +35,4 @@ public interface ContributionService {
 
     // 分页
     Page<Contribution> page(Pageable pageable);
-
-
 }
