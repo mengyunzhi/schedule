@@ -9,11 +9,10 @@
  * @author     chenjie
  */
 angular.module('scheduleApp')
-    .service('courseService', function($http) {
+    .service('courseService', function ($http) {
         var self = this;
 
         self.currentSemester = {};
-
 
 
         /**
@@ -22,28 +21,32 @@ angular.module('scheduleApp')
          * @param callback
          * @author     chenjie
          */
-        self.page = function(params, callback) {
+        self.page = function (params, callback) {
             var url = '/Course/pageAndSemesterId';
             // 使用参数发起get请求
-            $http.get(url, { params: params })
+            $http.get(url, {params: params})
                 .then(function success(response) {
-                    if (callback) { callback(response.data); }
+                    if (callback) {
+                        callback(response.data);
+                    }
                 }, function error(response) {
                     console.log('error', response);
                 });
         };
 
         /**
-         * 请求当前这个课程       
+         * 请求当前这个课程
          * param      {long} <id> { 当前页面的课程id }
          * return     {course} { 返回请求到的课程 }
-         * @author    chenjie 
+         * @author    chenjie
          */
-        self.getCourseById = function(id, callback) {
+        self.getCourseById = function (id, callback) {
             var url = '/Course/' + id;
             $http.get(url)
                 .then(function success(response) {
-                    if (callback) { callback(response.data); }
+                    if (callback) {
+                        callback(response.data);
+                    }
                 }, function error(response) {
                     console.log('请求失败 ' + url, response);
                 });
@@ -51,10 +54,10 @@ angular.module('scheduleApp')
         };
 
         /**
-         * 设置当前这个学期       
-         * @author    chenjie 
+         * 设置当前这个学期
+         * @author    chenjie
          */
-        self.getCurrentSemester = function(callback) {
+        self.getCurrentSemester = function (callback) {
             $http.get('/semester/getSemester')
                 .then(function success(response) {
                     callback(response.data);
@@ -65,17 +68,19 @@ angular.module('scheduleApp')
 
 
         /**
-         * 更新课程       
+         * 更新课程
          * param      {long} <id> { 需要编辑的课程id }
          * param      {object} <data> { 更新后的课程 }
          * paeam      callback
          * @author    chenjie
          */
-        self.update = function(id, data, callback) {
+        self.update = function (id, data, callback) {
             var url = '/Course/' + id;
             $http.put(url, data)
                 .then(function success() {
-                    if (callback) { callback(); }
+                    if (callback) {
+                        callback();
+                    }
                 }, function error(response) {
                     console.log('请求失败 ' + url, response);
                 });
@@ -83,16 +88,18 @@ angular.module('scheduleApp')
 
 
         /**
-         * 新增       
+         * 新增
          * param      {object} <data> { 新增的数据 }
          * paeam      callback
          * @author    chenjie
          */
-        self.add = function(data, callback) {
+        self.add = function (data, callback) {
             var url = '/Course/';
             $http.post(url, data)
                 .then(function success() {
-                    if (callback) { callback(); }
+                    if (callback) {
+                        callback();
+                    }
                 }, function error(response) {
                     console.log('新增课程发生错误' + url, response);
                 });
@@ -105,7 +112,7 @@ angular.module('scheduleApp')
          * return     {array} <idArray> { 返回全部数据的id }
          * @author    chenjie
          */
-        self.dataIds = function(status, data) {
+        self.dataIds = function (status, data) {
             var idArray = [];
             if (status === true) {
                 var j = 0;
@@ -124,13 +131,16 @@ angular.module('scheduleApp')
          * @param     callback
          * @author    chenjie
          */
-        self.deleteMultiple = function(deleteList, callback) {
+        self.deleteMultiple = function (deleteList, callback) {
             var url = '/Course/deleteAll';
-            $http.delete(url, { data: deleteList, headers: { 'Content-type': 'application/json;charset=utf-8' } })
+            $http.delete(url, {data: deleteList, headers: {'Content-type': 'application/json;charset=utf-8'}})
                 .then(function success() {
-                    if (callback) { callback(); }
+                    if (callback) {
+                        callback();
+                    }
                     console.log("deleteSuccesss");
                 }, function error(response) {
+                    alert('删除错误，该课程已有学生选中');
                     console.log("deleteError", response.status);
                 });
         };
@@ -145,7 +155,7 @@ angular.module('scheduleApp')
          * @param    {array<int>}           selectWeekOrders [周次数组]
          * @param    {Function}             callback         [description]
          */
-        self.selectSchedule = function(courseId, semesterId, week, node, selectWeekOrders, callback) {
+        self.selectSchedule = function (courseId, semesterId, week, node, selectWeekOrders, callback) {
             var url = '/Course/select/' + courseId + '/';
             var params = {
                 semesterId: semesterId,
@@ -153,10 +163,12 @@ angular.module('scheduleApp')
                 node: node,
                 weekOrders: selectWeekOrders
             };
-            $http.put(url, {}, { params: params })
+            $http.put(url, {}, {params: params})
                 .then(function success() {
                     console.log('success');
-                    if (callback) { callback(); }
+                    if (callback) {
+                        callback();
+                    }
                 }, function error(response) {
                     console.log('选时失败' + url, response);
                 });
@@ -169,7 +181,7 @@ angular.module('scheduleApp')
          * @param    {[string]}               courseName [课程名称]
          * @param    {Function}               callback   [description]
          */
-        self.query = function(semesterId, courseName, pageRequestParams, callback) {
+        self.query = function (semesterId, courseName, pageRequestParams, callback) {
             var url = '/Course/query';
             var params = {
                 id: semesterId,
@@ -177,19 +189,23 @@ angular.module('scheduleApp')
                 page: pageRequestParams.page,
                 size: pageRequestParams.size
             };
-            $http.get(url, { params: params })
+            $http.get(url, {params: params})
                 .then(function success(response) {
-                    if (callback) { callback(response.data); }
+                    if (callback) {
+                        callback(response.data);
+                    }
                 }, function error(response) {
                     console.log('查询失败' + url, response);
                 });
         };
 
         // 获取当前激活学期的课程
-        self.getActiveSemesterByCourse = function(callback) {
+        self.getActiveSemesterByCourse = function (callback) {
             $http.get('/Course/getActiveSemesterByCourse')
                 .then(function success(response) {
-                    if (callback) { callback(response.data) }
+                    if (callback) {
+                        callback(response.data)
+                    }
                 }, function error(response) {
                     console.log('获取失败' + response);
                 });

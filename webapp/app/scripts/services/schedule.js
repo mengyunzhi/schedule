@@ -21,7 +21,7 @@ angular.module('scheduleApp')
             $http.get('/semester/currentSemester')
                 .then(function(response) {
                     callBack(response.data);
-                }, function(response) {
+                }, function() {
                     console.log('false to get current semester');
                 });
         };
