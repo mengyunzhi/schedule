@@ -8,7 +8,9 @@ import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import com.mengyunzhi.schedule.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -98,6 +100,14 @@ public class StudentController {
     @JsonView(View.Student.class)
     public List<Student> findByNameLike(@PathVariable String name) {
         return studentService.findByNameLike("%" + name + "%");
+    }
+
+    // 按分页信息查询
+    @GetMapping("/query/{name}")
+    @JsonView(View.Student.class)
+    public Page<Student> findByNameLike(@PathVariable String name,@RequestParam int page ,@RequestParam int size) {
+        PageRequest pageRequest =new PageRequest(page,size);
+        return studentService.findByNameLike("%" + name + "%", pageRequest);
     }
 
     /**
