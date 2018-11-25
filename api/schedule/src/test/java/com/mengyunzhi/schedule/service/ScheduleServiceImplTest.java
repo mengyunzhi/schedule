@@ -2,8 +2,11 @@ package com.mengyunzhi.schedule.service;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mengyunzhi.schedule.entity.Course;
+import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.entity.Semester;
 import com.mengyunzhi.schedule.entity.Student;
+import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,17 +31,32 @@ public class ScheduleServiceImplTest extends ServiceTest {
     StudentService studentService;
     @Autowired
     StudentRepository studentRepository;
+    @Autowired
+    CourseRepository courseRepository;
 
     @Test
     public void sendToDD() throws IOException {
+        Calendar calendar = Calendar.getInstance();
         Semester semester = new Semester();
         semester.setStatus(true);
         semester.setStartTime(Long.toString(new Date().getTime()));
         semester.setEndTime(Long.toString(new Date().getTime() + 343423434));
         semesterService.add(semester);
+        // 新建一个与课程绑定的学生
+        Course course = new Course();
+        Student student = new Student();
+        student.setState(true);
+        student.setName("黄挺像");
+        course.setStudentList(Collections.singletonList(student));
+        student.setCourseList(Collections.singletonList(course));
+        courseRepository.save(course);
+        studentRepository.save(student);
+        Schedule schedule = scheduleService.getBySemesterAndWeekOrder(semester.getId(), calendar.get(Calendar.DAY_OF_WEEK)).get(0);
+        schedule.setCourseList(Collections.singletonList(course));
+
+
         ResponseEntity<String> stringResponseEntity = scheduleService.sendToDD();
         String body = stringResponseEntity.getBody();
-
 
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String, Object> maps = objectMapper.readValue(
