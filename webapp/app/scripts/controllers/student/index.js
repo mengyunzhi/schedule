@@ -11,7 +11,7 @@ angular.module('scheduleApp')
     .controller('StudentIndexCtrl', function($scope, $http, $state, studentService) {
         var self = this;
         self.init = function() {
-            $scope.params = { page: 0, size: 3 };
+            $scope.params = { page: 0, size: 5 };
             $scope.query = {};
             $scope.query.name = '';
             self.reload();

@@ -77,6 +77,7 @@ angular.module('scheduleApp')
                 .then(function success() {
                     if (callback) { callback(); }
                 }, function error(response) {
+                    alert('表单信息有误');
                     console.log('请求失败 ' + url, response);
                 });
         };
@@ -94,6 +95,7 @@ angular.module('scheduleApp')
                 .then(function success() {
                     if (callback) { callback(); }
                 }, function error(response) {
+                    alert('表单信息有误');
                     console.log('新增课程发生错误' + url, response);
                 });
         };
@@ -159,6 +161,7 @@ angular.module('scheduleApp')
                     console.log('success');
                     if (callback) { callback(); }
                 }, function error(response) {
+                    alert('选时失败');
                     console.log('选时失败' + url, response);
                 });
         };
@@ -182,6 +185,7 @@ angular.module('scheduleApp')
                 .then(function success(response) {
                     if (callback) { callback(response.data); }
                 }, function error(response) {
+                    alert('查询失败');
                     console.log('查询失败' + url, response);
                 });
         };

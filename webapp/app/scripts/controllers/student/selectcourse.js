@@ -15,7 +15,7 @@ angular.module('scheduleApp')
 
         // 初始化
         self.init = function() {
-            $scope.params = { page: 0, size: 3 };
+            $scope.params = { page: 0, size: 5 };
             $scope.selectAllOrNot = false;
             studentService.getStudentByCourse($stateParams.id, function(data) {
                 self.studentCourses = data.courseList;
