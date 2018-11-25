@@ -18,7 +18,7 @@ angular.module('scheduleApp')
             $scope.params = { page: 0, size: 3 };
             $scope.selectAllOrNot = false;
             studentService.getStudentByCourse($stateParams.id, function(data) {
-                    self.studentCourses = data.courseList;
+                self.studentCourses = data.courseList;
             });
             self.load();
             $scope.$watch('courses.content', self.watchCourses, true);
@@ -69,25 +69,36 @@ angular.module('scheduleApp')
 
         // 分页时重新加载数据
         self.reloadPage = function(page) {
-            var array = [];
-            angular.forEach($scope.courses.content, function(content) {
-                if (content._checked) {
-                    array.push(content);
-                } else {
-                    if (self.entityContain(content, self.studentCourses)) {
-                        self.studentCourses = self.studentCourses.filter(function(course) {
-                            return course.id !== content.id;
-                        });
-                    }
-                }
-            });
-            selectCourses[$scope.params.page] = array;
+            selectCourses[$scope.params.page] = self.saveCourseByLeave();
             $scope.params.page = page;
             self.reload();
         };
 
+        // 当离开分页时过滤学生课程 并返回保存数据
+        self.saveCourseByLeave = function() {
+            var array = [];
+            angular.forEach($scope.courses.content, function(content) {
+                if (content._checked) {
+                    array.push(content);
+                }
+                self.filterStudentCourse(content);
+            });
+            return array;
+        }
+
+        // 过滤学生课程
+        self.filterStudentCourse = function(filterCourse) {
+            var isContain = self.entityContain(filterCourse, self.studentCourses);
+            if (isContain) {
+                self.studentCourses = self.studentCourses.filter(function(course) {
+                    return course.id !== filterCourse.id;
+                });
+            }
+        }
+
+        // 判断实体是否包含
         self.entityContain = function(entity, entitys) {
-            for (var i = 0; i < entitys.length; i ++) {
+            for (var i = 0; i < entitys.length; i++) {
                 if (entity.id === entitys[i].id) {
                     return true;
                 }
@@ -103,11 +114,7 @@ angular.module('scheduleApp')
         // 选课
         self.selectCourse = function() {
             var id = $stateParams.id;
-            var array = $scope.courses.content.filter(function(_course) {
-                return _course._checked;
-            });
-            console.log(self.studentCourses);
-            selectCourses[$scope.params.page] = array;
+            selectCourses[$scope.params.page] = self.saveCourseByLeave();
             var data = [];
             angular.forEach(selectCourses, function(tempArray) {
                 angular.forEach(tempArray, function(temp) {

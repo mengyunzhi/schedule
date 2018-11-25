@@ -59,7 +59,6 @@ angular.module('scheduleApp')
                 .then(function succsess(response) {
                     if (callback) { callback(response.data); }
                 }, function error() {
-                    alert('删除失败');
                     console.log('删除失败');
                 });
         };
