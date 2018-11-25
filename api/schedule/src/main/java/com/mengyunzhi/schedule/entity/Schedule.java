@@ -29,7 +29,7 @@ public class Schedule {
     @ManyToOne
     private Semester semester;
 
-    @ManyToMany(mappedBy = "scheduleList")
+    @ManyToMany(mappedBy = "scheduleList",fetch = FetchType.EAGER)
     @JsonView({View.Schedule.class})
     private List<Course> courseList = new ArrayList<Course>();
 

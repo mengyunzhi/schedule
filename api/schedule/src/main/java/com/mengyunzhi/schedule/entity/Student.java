@@ -137,4 +137,22 @@ public class Student {
     public void setGroups(String groups) {
         this.groups = groups;
     }
+
+    /**
+     * 复写两个实体的对象当id相等时即相等
+     * @param v
+     * @return
+     */
+    @Override
+    public boolean equals(Object v) {
+        Student v1 = (Student)v;
+        return this.id == v1.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
 }
