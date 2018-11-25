@@ -14,7 +14,7 @@ angular.module('scheduleApp')
         self.init = function() {
             $scope.query = {};
             $scope.query.name = '';
-            $scope.pageParams = {page: 0, size: 2};
+            $scope.pageParams = {page: 0, size: 5};
             self.reload();
         };
         self.reload = function() {
@@ -44,7 +44,7 @@ angular.module('scheduleApp')
             if ($scope.query.name == '') {
                 self.reload();
             } else {
-                var pageAndNameParams = {page: 0, size: 2};
+                var pageAndNameParams = {page: 0, size: 5};
                 pageAndNameParams.name = $scope.query.name;
                 semester.getPageAndName(pageAndNameParams, function(data) {
                     $scope.page = data;
