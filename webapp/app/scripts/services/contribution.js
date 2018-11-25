@@ -74,20 +74,38 @@ angular.module('scheduleApp')
         //取得本周类增的数据
         self.getWeekIncrease = function (students) {
             //得到本周一，本周日
-            var date = new Date();
-            
-            var begin = date.setDate(date.getDate() - date.getDay() + 1);  // 周一
-            var end = date.setDate(date.getDate() + 6);                    // 周日
+            var time = new Date();
+            var begin; // 周一
+            var end;   // 周日
+            var day = time.getDay();
+            var date = time.getDate();
+
+            // 计算周一和周日的日期
+            if (day === 0) {
+                begin = date - 6;
+                end = date;
+            } else if (day === 1) {
+                begin = date;
+                end = begin + 6;
+            } else {
+                begin = date - day + 1;
+                end = begin + 6;
+            }
+
             angular.forEach(students, function (student) {
                 student.weekIncrease = 0;
 
                 angular.forEach(student.contributionList, function (contribution) {
 
-                    if (contribution.time > begin && contribution.time < end) {
+
+                    var contributionDate = new Date(contribution.time).getDate();
+                    if (contributionDate >= begin && contributionDate <= end) {
+
                         student.weekIncrease += contribution.value;
                     }
                 });
             });
+
         };
 
         self.getPage = function (pageParams, callback) {
