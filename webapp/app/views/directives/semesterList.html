@@ -1,2 +1,2 @@
-<label for="semesterId" control-label">学期</label>
+<label for="semesterId" control-label>学期</label>
 <select class="form-control" ng-model="selectSemester" name="semesterId" id="semesterId" ng-options="_semester.name for _semester in semesters track by _semester.id" ng-change="updateModel(selectSemester)"></select>
