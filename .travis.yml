@@ -5,6 +5,8 @@ language: java
 jdk:
   - openjdk8
 
+os: Ubuntu Xenial
+
 # 声明所需的服务
 services:
   - mysql
