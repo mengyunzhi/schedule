@@ -6,7 +6,8 @@ spring:
       enabled: true
   session:
     store-type: hash_map
-
+server:
+  port: 8080
 ---
 spring:
   profiles:test
@@ -18,9 +19,20 @@ spring:
     hibernate:
       ddl-auto: create-drop
   datasource:
-    url: jdbc:mysql://localhost:3306/schedule?characterEncoding=UTF-8
-    username: root
-    password:
+    url: jdbc:mysql://localhost:3306/${dbname:schedule}?characterEncoding=UTF-8
+    username: ${username:root}
+    password: ${password:}
+
+---
+spring:
+  profiles: production
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:${dbport:3306}/${dbname:schedule}?characterEncoding=UTF-8
+    username: ${username:root}
+    password: ${password:}
 
 
 
