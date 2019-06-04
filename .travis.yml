@@ -3,7 +3,7 @@ language: java
 
 # 声明使用的JDK版本
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 # 声明所需的服务
 services:
