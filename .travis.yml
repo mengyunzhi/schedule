@@ -12,10 +12,11 @@ services:
 # 指定使用的软件版本
 addons:
   apt:
+    sources:
+      - mysql-5.7-trusty
     packages:
-      - mysql-server-5.6
-      - mysql-client-core-5.6
-      - mysql-client-5.6
+      - mysql-server
+      - mysql-client
 
 # 通知方式
 notifications:
