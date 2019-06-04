@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: test
+  h2:
+    console:
+      enabled: true
+  session:
+    store-type: hash_map
+
+---
+spring:
+  profiles:test
+
+---
+spring:
+  profiles: travis
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:mysql://localhost:3306/schedule?characterEncoding=UTF-8
+    username: root
+    password:
+
+
+
