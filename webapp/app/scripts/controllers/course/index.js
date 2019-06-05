@@ -13,7 +13,7 @@ angular.module('scheduleApp')
         var self = this;
         // 初始化
         self.init = function() {
-            $scope.params = { page: 0, size: 3 };
+            $scope.params = { page: 0, size: 5 };
             $scope.query = {};
             $scope.query.name = '';
             $scope.query.selectSemester = {};
@@ -42,15 +42,17 @@ angular.module('scheduleApp')
         // 获取当前学期
         self.getCurrentSemester = function() {
             courseService.getCurrentSemester(function(currentSemester) {
-                // 将当前学期存到服务中去
-                courseService.currentSemester = currentSemester;
+                if (currentSemester != null) {
+                    // 将当前学期存到服务中去
+                    courseService.currentSemester = currentSemester;
 
-                // 将当前学期传给页面
-                $scope.currentSemester = currentSemester;
+                    // 将当前学期传给页面
+                    $scope.currentSemester = currentSemester;
 
-                $scope.params.semesterId = currentSemester.id;
+                    $scope.params.semesterId = currentSemester.id;
 
-                self.load();
+                    self.load();
+                }
             });
         };
 
@@ -108,7 +110,7 @@ angular.module('scheduleApp')
         // 根据学期ID和课程名查询
         self.findBySemesterIdAndName = function() {
             var semesterId = $scope.query.selectSemester.id;
-            var courseName = $scope.query.name;          
+            var courseName = $scope.query.name;
             $scope.params.semesterId = semesterId;
             courseService.query(semesterId, courseName, $scope.params, function(data) {
                 $scope.data = data;
@@ -118,8 +120,10 @@ angular.module('scheduleApp')
 
         // 点击查询
         $scope.find = function() {
-            $scope.params = {page: 0, size: 3};
-            self.findBySemesterIdAndName();
+            if ($scope.query.selectSemester.id) {
+                $scope.params = { page: 0, size: 5 };
+                self.findBySemesterIdAndName();
+            }
         };
 
         // 重新加载查询数据或者当前学期数据

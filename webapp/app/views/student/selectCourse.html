@@ -15,7 +15,7 @@
             <input type="checkbox" ng-model="_course._checked" />
         </td>
         <td>{{$index + 1}}</td>
-        <td>{{_course.name}}</td>
+        <td><a href="#!/course/selectSchedule/{{_course.id}}" class="label label-info">{{_course.name}}</a></td>
     </tr>
 </table>
 <yunzhi-page total-pages="courses.totalPages" number="courses.number" reload-page="reloadPage" total-Elements="courses.totalElements" first="courses.first" last="courses.last"></yunzhi-page>
