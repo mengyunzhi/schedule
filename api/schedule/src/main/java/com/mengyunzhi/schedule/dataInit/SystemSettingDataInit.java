@@ -21,7 +21,7 @@ public class SystemSettingDataInit implements ApplicationListener<ContextRefresh
     SystemSettingRepository systemSettingRepository;
 
     List<SystemSetting> defaultSetting = Arrays.asList(
-            new SystemSetting("ddUrl", "")
+            new SystemSetting("ddUrl", "https://oapi.dingtalk.com/robot/send?access_token=c35fe37f4d691bb469fe094b210786299218f2ace6c7e2d92b6c3fb375488aa4")
     );  //  默认系统设置
 
     /**
