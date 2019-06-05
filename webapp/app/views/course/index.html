@@ -1,5 +1,5 @@
 <ui-view>
-    <div class="alert alert-warning" role="alert" ng-if="currentSemester == null">未选择学期且未激活一个学期</div>
+    <div class="alert alert-warning" role="alert" ng-if="currentSemester == null">未添加学期或未激活一个学期</div>
     <h4>当前激活学期:{{currentSemester.name}}</h4>
     <hr>
     <div class="row">
@@ -19,7 +19,7 @@
         </div>
     </div>
     <br />
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered" ng-if="data.content != null && data.content.length != 0">
         <tr align="center" class="info">
             <td><input type="checkbox" ng-model="selectAllOrNot" ng-click="select()"></td>
             <td>序号</td>
@@ -35,6 +35,7 @@
                 <a class="btn btn-sm btn-default glyphicon glyphicon-pencil" href="#!/course/edit/{{_list.id}}">&nbsp;编辑</a>
             </td>
         </tr>
-    </table> 
+    </table>
+    <div class="alert alert-info" role="alert" ng-if="data.content.length == 0 || data.content == null">请尝试增加课程或激活一个学期来显示数据</div> 
     <yunzhi-page number="data.number" total-pages="data.totalPages" reload-page="reloadByPage" first="data.first" last="data.last"></yunzhi-page>
 </ui-view>
