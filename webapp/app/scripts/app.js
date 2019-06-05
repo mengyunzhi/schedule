@@ -163,6 +163,16 @@ angular
             }
         },
         {
+            name: 'systemSetting',
+            url: '/systemSetting',
+            templateUrl: 'views/systemSetting/index.html',
+            controller: 'SystemSettingIndexCtrl',
+            data: {
+                title: '系统设置',
+                show: true
+            }
+        },
+        {
             name: 'login',
             url: '/login',
             controller: "LoginCtrl",

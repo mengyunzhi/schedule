@@ -8,7 +8,7 @@
  * Controller of the scheduleApp
  */
 angular.module('scheduleApp')
-    .controller('ScheduleIndexCtrl', function($scope, $http, schedule) {
+    .controller('ScheduleIndexCtrl', function($scope, $http, schedule, systemSetting) {
 
         var self = this;
 

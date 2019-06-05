@@ -7,7 +7,7 @@
  * # listindex
  */
 angular.module('scheduleApp')
-    .directive('listIndex', function($state, routers, user, $location) {
+    .directive('listIndex', function($state, routers, systemSetting, user, $location) {
         return {
             templateUrl: 'views/directives/listIndex.html',
             restrict: 'E',
