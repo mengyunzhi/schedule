@@ -38,7 +38,7 @@ angular.module('scheduleApp')
     	.then(function() {
     		callBack();
     	}, function() {
-            alert('删除失败');
+            self.alertWindow('删除失败');
             console.log('false to delete semester');
     	});
     };
@@ -47,6 +47,7 @@ angular.module('scheduleApp')
     	.then(function() {
     		callBack();
     	}, function() {
+            self.alertWindow('操作失败');
     		console.log('fail to active semester');
     	});
     };
@@ -56,6 +57,7 @@ angular.module('scheduleApp')
     		var data = response.data;
     		callBack(data);
     	}, function() {
+            self.alertWindow('获取数据失败');
     		console.log('false to get one semester');
     	});
     };
@@ -69,6 +71,7 @@ angular.module('scheduleApp')
     	.then(function() {
     		callBack();
     	}, function() {
+            self.alertWindow('更新失败');
     		console.log('false to update semester');
     	});
     };
@@ -77,6 +80,7 @@ angular.module('scheduleApp')
     	.then(function(response) {
     		callBack(response.data);
     	}, function() {
+            self.alertWindow();
     		console.log('false to find semester by name');
     	});
     };
@@ -110,4 +114,9 @@ angular.module('scheduleApp')
             console.log('fail to pageAndName semster');
         });
     };
+
+      // 弹窗， 写一个方法，方便重写
+      self.alertWindow = function (msg) {
+          alert(msg);
+      };
   });

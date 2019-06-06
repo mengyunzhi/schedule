@@ -3,10 +3,7 @@ package com.mengyunzhi.schedule.entity;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.mengyunzhi.schedule.config.View;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author liyiheng
@@ -19,6 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(unique = true)
     private String username;
 
     @JsonView(View.NoJsonView.class)

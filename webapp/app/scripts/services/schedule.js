@@ -22,6 +22,7 @@ angular.module('scheduleApp')
                 .then(function(response) {
                     callBack(response.data);
                 }, function(response) {
+                    self.alertWindow('获得当前学期失败');
                     console.log('false to get current semester');
                 });
         };
@@ -75,6 +76,7 @@ angular.module('scheduleApp')
                     var data = response.data;
                     callBack(data);
                 }, function() {
+                    self.alertWindow('获得schedule失败');
                     console.log('false get nowschedules');
                 });
         };
@@ -86,7 +88,7 @@ angular.module('scheduleApp')
          */
         self.createSechedules = function(arr) {
             var schedules = self.initSechedules();
-            if (arr.length == 35) {
+            if (arr.length === 35) {
                 var sign = 0;
                 var week = 0;
                 var tempArr = [];
@@ -120,12 +122,18 @@ angular.module('scheduleApp')
                                     schedule.students = students;
                                 }
                             }, function() {
+                                self.alertWindow('为schedule添加学生数组和状态值失败');
                                 console.log('false to get schedule students');
                             });
                     });
         		}, function(response) {
         			console.log(response);
         		});                
+        };
+
+        // 弹窗， 写一个方法，方便重写
+        self.alertWindow = function (msg) {
+            alert(msg);
         };
 
         /**

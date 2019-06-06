@@ -11,7 +11,7 @@
 angular.module('scheduleApp')
     .service('contribution', function ($http, $state) {
         var self = this;
-        
+
         //直接修改贡献值
         self.modifyContribution = function (data, id) {
             
@@ -26,6 +26,7 @@ angular.module('scheduleApp')
                     $state.transitionTo('contribution', {}, {reload: true});
                     console.log('success');
                 }, function error() {
+                    self.alertWindow('修改贡献值失败');
                     console.log('error');
                 });
         };
@@ -43,6 +44,7 @@ angular.module('scheduleApp')
                     }
                     console.log('success');
                 }, function error() {
+                    self.alertWindow('取得对象贡献值失败');
                     console.log('error');
                 });
         };
@@ -96,16 +98,18 @@ angular.module('scheduleApp')
                 student.weekIncrease = 0;
 
                 angular.forEach(student.contributionList, function (contribution) {
-
-
                     var contributionDate = new Date(contribution.time).getDate();
                     if (contributionDate >= begin && contributionDate <= end) {
-
                         student.weekIncrease += contribution.value;
                     }
                 });
             });
 
+        };
+
+        // 弹窗， 写一个方法，方便重写
+        self.alertWindow = function (msg) {
+            alert(msg);
         };
 
         self.getPage = function (pageParams, callback) {
@@ -115,6 +119,7 @@ angular.module('scheduleApp')
                 .then(function (response) {
                     callback(response.data);
                 }, function () {
+                    self.alertWindow('获取数据失败');
                     console.log('failed to get contributions page');
                 });
         };

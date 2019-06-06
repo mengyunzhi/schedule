@@ -21,6 +21,7 @@ angular.module('scheduleApp')
                         callback(response.data);
                     }
                 }, function error() {
+                    self.alertWindow('获取学生失败');
                     // console.log(response);
                     console.log('error');
                 });
@@ -34,6 +35,7 @@ angular.module('scheduleApp')
                 .then(function success(response) {
                     if (callback) { callback(response.data); }
                 }, function error(response) {
+                    self.alertWindow('获取学生课程失败');
                     console.log('请求失败 ' + url, response);
                 });
 
@@ -48,6 +50,7 @@ angular.module('scheduleApp')
                         callback();
                     }
                 }, function error() {
+                    self.alertWindow('保存课程失败');
                     console.log('error');
                 });
         };
@@ -59,6 +62,7 @@ angular.module('scheduleApp')
                 .then(function succsess(response) {
                     if (callback) { callback(response.data); }
                 }, function error() {
+                    self.alertWindow('删除失败');
                     console.log('删除失败');
                 });
         };
@@ -70,6 +74,7 @@ angular.module('scheduleApp')
                 .then(function(response) {
                     if (callback) { callback(response.data); }
                 }, function() {
+                    self.alertWindow('查询失败');
                     console.log('error');
                 });
         };
@@ -83,8 +88,14 @@ angular.module('scheduleApp')
                         callback(response.data);
                     }
                 }, function error(response) {
+                    self.alertWindow('获取数据失败');
                     console.log('error', response);
                 });
+        };
+
+        // 弹窗， 写一个方法，方便重写
+        self.alertWindow = function (msg) {
+            alert(msg);
         };
 
         return {
