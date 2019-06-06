@@ -3,7 +3,9 @@ language: java
 
 # 声明使用的JDK版本
 jdk:
-  - oraclejdk8
+  - openjdk8
+
+os: Ubuntu Xenial
 
 # 声明所需的服务
 services:
@@ -12,10 +14,11 @@ services:
 # 指定使用的软件版本
 addons:
   apt:
+    sources:
+      - mysql-5.7-trusty
     packages:
-      - mysql-server-5.6
-      - mysql-client-core-5.6
-      - mysql-client-5.6
+      - mysql-server
+      - mysql-client
 
 # 通知方式
 notifications:
@@ -24,7 +27,7 @@ notifications:
 
 # 执行脚本之前创建数据库
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS schedule default charset utf8 COLLATE utf8_general_ci;' -uroot
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS schedule default charset utf8 COLLATE utf8_general_ci;'
 
 # 执行脚本
 script:

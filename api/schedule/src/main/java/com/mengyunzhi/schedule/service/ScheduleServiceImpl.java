@@ -5,20 +5,14 @@ import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.entity.Semester;
 import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.ScheduleRepository;
-import com.mengyunzhi.schedule.repository.SemesterRepository;
+import com.mengyunzhi.schedule.repository.SystemSettingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
-import sun.net.www.http.HttpClient;
-
-
-import java.awt.geom.Ellipse2D;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,11 +22,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 
     static final long aWeekStamp = (7 * 24 * 60 * 60 * 1000);
 
-    static final String WEBHOOK_TOKEN = "https://oapi.dingtalk.com/robot/send?access_token=c35fe37f4d691bb469fe094b210786299218f2ace6c7e2d92b6c3fb375488aa4";
-
-
     @Autowired
     ScheduleRepository scheduleRepository;
+
+    @Autowired
+    SystemSettingRepository systemSettingRepository;
 
     @Autowired
     SemesterService semesterService;
@@ -162,7 +156,7 @@ public class ScheduleServiceImpl implements ScheduleService {
      */
     public ResponseEntity<String> postToDD(String message) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = WEBHOOK_TOKEN;
+        String url = systemSettingRepository.findOne("ddUrl").getValue();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
