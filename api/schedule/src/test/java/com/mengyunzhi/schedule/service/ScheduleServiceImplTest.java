@@ -7,6 +7,7 @@ import com.mengyunzhi.schedule.entity.Schedule;
 import com.mengyunzhi.schedule.entity.Semester;
 import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.CourseRepository;
+import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +52,7 @@ public class ScheduleServiceImplTest extends ServiceTest {
         student.setCourseList(Collections.singletonList(course));
         courseRepository.save(course);
         studentRepository.save(student);
-        Schedule schedule = scheduleService.getBySemesterAndWeekOrder(semester.getId(), calendar.get(Calendar.DAY_OF_WEEK)).get(0);
+        Schedule schedule = scheduleService.getBySemesterAndWeekOrder(semester.getId(), 1).get(0);
         schedule.setCourseList(Collections.singletonList(course));
 
 
