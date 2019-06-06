@@ -27,14 +27,6 @@ public class WebMvcConfig {
         return new WebMvcConfigurerAdapter() {
 
             @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                //添加一个映射
-                //此映射允许进行CORS的地址为：http://localhost:9000
-                registry.addMapping("/**").allowedOrigins("http://localhost:8200")
-                        .allowedMethods("OPTIONS", "GET", "PUT", "POST", "PATCH", "DELETE");
-            }
-
-            @Override
             public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
                 ObjectMapper mapper = Jackson2ObjectMapperBuilder.json().defaultViewInclusion(true).build();
                 converters.add(new MappingJackson2HttpMessageConverter(mapper));

@@ -156,7 +156,7 @@ public class ScheduleServiceImpl implements ScheduleService {
      */
     public ResponseEntity<String> postToDD(String message) {
         RestTemplate restTemplate = new RestTemplate();
-        String url = systemSettingRepository.findOne("ddUrl").getValue();
+        String url = systemSettingRepository.findOneByKey("ddUrl").getValue();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
