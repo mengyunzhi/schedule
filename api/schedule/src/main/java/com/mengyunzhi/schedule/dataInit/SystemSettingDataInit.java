@@ -25,14 +25,16 @@ public class SystemSettingDataInit implements ApplicationListener<ContextRefresh
     );  //  默认系统设置
 
     /**
-     * @description  初始化系统设置
      * @param contextRefreshedEvent
      * @return void
+     * @description 初始化系统设置
      * @author htx
      * @date 下午12:19 19-6-5
      **/
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        systemSettingRepository.save(defaultSetting);
+        List<SystemSetting> testSetting = (List<SystemSetting>) systemSettingRepository.findAll();
+        if (testSetting.size() == 0)
+            systemSettingRepository.save(defaultSetting);
     }
 }

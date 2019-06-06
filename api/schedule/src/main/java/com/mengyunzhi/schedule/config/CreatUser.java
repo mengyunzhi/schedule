@@ -19,9 +19,13 @@ public class CreatUser implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments applicationArguments) throws Exception {
-        User user = new User();
-        user.setUsername("admin");
-        user.setPassword("admin");
-        userRepository.save(user);
+        User user = userRepository.findByUsername("admin");
+
+        if (user == null) {
+            user = new User();
+            user.setUsername("admin");
+            user.setPassword("admin");
+            userRepository.save(user);
+        }
     }
 }

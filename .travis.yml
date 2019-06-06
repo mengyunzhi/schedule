@@ -23,7 +23,7 @@ addons:
 # 通知方式
 notifications:
   email: false
-  webhooks: https://oapi.dingtalk.com/robot/send?access_token=a2aea3835064e9d9ca1ea1c9c1583422746d09071d2b8f711870f027300c8093
+  webhooks: https://oapi.dingtalk.com/robot/send?access_token=d4ba2f25ee333fc02b14deceee4577460d67ad0d850f65960cbb1515ac653c1b
 
 # 执行脚本之前创建数据库
 before_install:
