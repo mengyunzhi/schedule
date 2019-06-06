@@ -19,50 +19,49 @@ angular
         'ui.router',
         'ui.bootstrap'
     ])
-    .config(function ($provide) {
+    .config(function($provide) {
         $provide
-            .constant('routers', [
-                {
+            .constant('routers', [{
                     name: 'schedule',
                     url: '/',
                     templateUrl: 'views/schedule/index.html',
                     controller: 'ScheduleIndexCtrl',
-                    data: {title: '首页', show: true}
+                    data: { title: '首页', show: true }
                 },
                 {
                     name: 'student',
                     url: '/student',
                     templateUrl: 'views/student/index.html',
                     controller: 'StudentIndexCtrl',
-                    data: {title: '学生管理', show: true}
+                    data: { title: '学生管理', show: true }
                 },
                 {
                     name: 'student.add',
                     url: '/add',
                     templateUrl: 'views/student/add.html',
                     controller: 'StudentAddCtrl',
-                    data: {title: '增加', show: false}
+                    data: { title: '增加', show: false }
                 },
                 {
                     name: 'student.edit',
                     url: '/edit/:id',
                     templateUrl: 'views/student/edit.html',
                     controller: 'StudentEditCtrl',
-                    data: {title: '编辑', show: false}
+                    data: { title: '编辑', show: false }
                 },
                 {
                     name: 'student.select',
                     url: '/select/:id',
                     templateUrl: 'views/student/selectCourse.html',
                     controller: 'StudentSelectcourseCtrl',
-                    data: {title: '选课', show: false}
+                    data: { title: '选课', show: false }
                 },
                 {
                     name: 'course',
                     url: '/course',
                     templateUrl: 'views/course/index.html',
                     controller: 'CourseIndexCtrl',
-                    data: {title: '课程管理', show: true}
+                    data: { title: '课程管理', show: true }
                 },
                 // course/add
                 // @author chenjie
@@ -118,28 +117,28 @@ angular
                     url: '/semester',
                     templateUrl: 'views/semester/index.html',
                     controller: 'SemesterIndexCtrl',
-                    data: {title: '学期管理', show: true}
+                    data: { title: '学期管理', show: true }
                 },
                 {
                     name: 'semester.add',
                     url: '/add',
                     templateUrl: 'views/semester/add.html',
                     controller: 'SemesterAddCtrl',
-                    data: {title: 'semesterAdd', show: false}
+                    data: { title: 'semesterAdd', show: false }
                 },
                 {
                     name: 'semester.edit',
                     url: '/edit/:id',
                     templateUrl: 'views/semester/edit.html',
                     controller: 'SemesterEditCtrl',
-                    data: {title: 'semesterEdit', show: false}
+                    data: { title: 'semesterEdit', show: false }
                 },
                 {
                     name: 'contribution',
                     url: '/contribution',
                     templateUrl: 'views/contribution/index.html',
                     controller: 'ContributionIndexCtrl',
-                    data: {title: '贡献值管理', show: true}
+                    data: { title: '贡献值管理', show: true }
                 },
                 {
                     name: 'contribution.information',
@@ -162,6 +161,16 @@ angular
                     }
                 },
                 {
+                    name: 'systemSetting',
+                    url: '/systemSetting',
+                    templateUrl: 'views/systemSetting/index.html',
+                    controller: 'SystemSettingIndexCtrl',
+                    data: {
+                        title: '系统设置',
+                        show: true
+                    }
+                },
+                {
                     name: 'login',
                     url: '/login',
                     controller: "LoginCtrl",
@@ -173,17 +182,17 @@ angular
                 }
             ]);
     })
-    .config(function ($stateProvider, $urlRouterProvider, $provide, $httpProvider, routers) {
-        angular.forEach(routers, function (router) {
+    .config(function($stateProvider, $urlRouterProvider, $provide, $httpProvider, routers) {
+        angular.forEach(routers, function(router) {
             $stateProvider
                 .state(router);
         });
         $urlRouterProvider.otherwise('/');
 
-        $provide.factory('myHttpInterceptor', function ($q, $location) {
+        $provide.factory('myHttpInterceptor', function($q, $location) {
             return {
                 //拦截请求信息
-                'request': function (config) {
+                'request': function(config) {
                     //如果以html结尾，那么就不进行URL改写，否则就进行改写
                     var suffix = config.url.split('.').pop();
                     if (suffix !== 'html') {
@@ -193,7 +202,7 @@ angular
                 },
 
                 // 判断是否登录
-                'responseError': function (rejection) {
+                'responseError': function(rejection) {
                     console.log(rejection);
 
                     if (rejection.status === 502) {
