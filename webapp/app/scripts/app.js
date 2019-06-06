@@ -80,7 +80,6 @@ angular
                 // course/edit
                 // @author chenjie
                 {
-
                     name: 'course.edit',
                     url: '/edit/:id',
                     templateUrl: 'views/course/edit.html',
@@ -93,7 +92,6 @@ angular
                 // course/selectSchedule
                 // @author chenjie
                 {
-
                     name: 'course.selectSchedule',
                     url: '/selectSchedule/:id',
                     templateUrl: 'views/course/selectSchedule.html',
