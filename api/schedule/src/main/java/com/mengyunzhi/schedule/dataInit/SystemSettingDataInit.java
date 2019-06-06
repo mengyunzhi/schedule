@@ -34,7 +34,7 @@ public class SystemSettingDataInit implements ApplicationListener<ContextRefresh
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         List<SystemSetting> testSetting = (List<SystemSetting>) systemSettingRepository.findAll();
-        if (testSetting == null)
+        if (testSetting.size() == 0)
             systemSettingRepository.save(defaultSetting);
     }
 }
