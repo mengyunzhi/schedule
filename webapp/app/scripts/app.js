@@ -199,10 +199,13 @@ angular
                     if (rejection.status === 502) {
                         alert('后台未启动');
                     }
-                    if (rejection.status === 401 && rejection.data.url !== '/api/User/login') {
-                        alert("用户认证失败");
-                        console.log("用户认证失败");
-                        $location.url('/login');
+                    if (rejection.status === 401) {
+                        if (rejection.data.url !== '/api/User/login') {
+                            $location.url('/login');
+                        } else {
+                            alert("用户认证失败");
+                            console.log("用户认证失败");
+                        }
                     }
 
                     return $q.reject(rejection);

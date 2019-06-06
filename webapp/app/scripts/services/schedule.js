@@ -22,7 +22,9 @@ angular.module('scheduleApp')
                 .then(function(response) {
                     callBack(response.data);
                 }, function(response) {
-                    self.alertWindow('获得当前学期失败');
+                    if (response.status !== 401) {
+                        self.alertWindow('获得当前学期失败');
+                    }
                     console.log('false to get current semester');
                 });
         };

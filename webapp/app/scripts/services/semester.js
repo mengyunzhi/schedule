@@ -80,7 +80,7 @@ angular.module('scheduleApp')
     	.then(function(response) {
     		callBack(response.data);
     	}, function() {
-            self.alertWindow();
+            self.alertWindow('获取数据失败');
     		console.log('false to find semester by name');
     	});
     };
@@ -100,6 +100,7 @@ angular.module('scheduleApp')
         .then(function(response) {
             callBack(response.data);
         }, function() {
+            self.alertWindow('获取数据失败');
             console.log('fail to get semster page');            
         });
     };
@@ -111,6 +112,7 @@ angular.module('scheduleApp')
         .then(function(response) {
             callBack(response.data);
         }, function() {
+            self.alertWindow('获取数据失败');
             console.log('fail to pageAndName semster');
         });
     };

@@ -64,7 +64,9 @@ angular.module('scheduleApp')
                 .then(function success(response) {
                     callback(response.data);
                 }, function error(response) {
-                    self.alertWindow('获取当前学期失败');
+                    if (response.status !== 401) {
+                        self.alertWindow('获取当前学期失败');
+                    }
                     console.log('请求失败' + response);
                 });
         };

@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: ${active:travis}
+    active: ${active:test}
   h2:
     console:
       enabled: true
