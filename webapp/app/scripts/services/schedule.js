@@ -49,7 +49,10 @@ angular.module('scheduleApp')
          * @param  {string long}   	endTime   	end timestamp
          * @return {int}						weekOrder
          */
-        self.getWeekOder = function(startTime, endTime = new Date().getTime()) {
+        self.getWeekOder = function(startTime, endTime) {
+            if (typeof (endTime) === 'undefined') {
+                 endTime = new Date().getTime();
+            }
             var aWeekStamp = 7 * 24 * 60 * 60 * 1000;
             var startDate = new Date(parseInt(startTime));
             var endDate = new Date(parseInt(endTime));

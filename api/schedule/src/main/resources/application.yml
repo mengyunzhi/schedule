@@ -1,0 +1,50 @@
+spring:
+  profiles:
+    active: ${active:travis}
+  h2:
+    console:
+      enabled: true
+  session:
+    store-type: hash_map
+server:
+  port: 8080
+---
+spring:
+  profiles:test
+
+---
+spring:
+  profiles: travis
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        # 未配置此项时, spring-boot 2.0.5环境下，将默认配置mysql的方言为MYISAM
+        # MYISAM查询效率高，但不支持事务。回滚操作需要手动处理。
+        # InnoDB 支持事务，但查询效率相对MYISAM低
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/${dbname:schedule}?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: ${username:root}
+    password: ${password:}
+
+---
+spring:
+  profiles: production
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        # 未配置此项时, spring-boot 2.0.5环境下，将默认配置mysql的方言为MYISAM
+        # MYISAM查询效率高，但不支持事务。回滚操作需要手动处理。
+        # InnoDB 支持事务，但查询效率相对MYISAM低
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  datasource:
+    url: jdbc:mysql://localhost:${dbport:3306}/${dbname:schedule}?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: ${username:root}
+    password: ${password:}
+
+
+

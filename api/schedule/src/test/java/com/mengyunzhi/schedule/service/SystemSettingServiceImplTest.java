@@ -38,7 +38,7 @@ public class SystemSettingServiceImplTest extends ServiceTest {
         systemSettingService.updateSettings(Collections.singletonList(systemSetting));
 
         logger.info("断言更新成功");
-        assertThat(systemSettingRepository.findOne(systemSetting.getKey()).getValue()).isEqualTo("test2");
+        assertThat(systemSettingRepository.findOneByKey(systemSetting.getKey()).getValue()).isEqualTo("test2");
 
     }
 

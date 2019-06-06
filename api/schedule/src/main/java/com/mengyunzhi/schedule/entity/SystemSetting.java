@@ -1,7 +1,6 @@
 package com.mengyunzhi.schedule.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author htx
@@ -12,6 +11,10 @@ import javax.persistence.Id;
 public class SystemSetting {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Short id;
+
+    @Column(name = "k", unique = true)
     String key; // 键
 
     String value; // 值
@@ -39,5 +42,13 @@ public class SystemSetting {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Short getId() {
+        return id;
+    }
+
+    public void setId(Short id) {
+        this.id = id;
     }
 }
