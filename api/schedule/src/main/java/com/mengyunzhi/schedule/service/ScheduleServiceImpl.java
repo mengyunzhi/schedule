@@ -132,7 +132,7 @@ public class ScheduleServiceImpl implements ScheduleService {
             for (HashSet<Student> set :
                     sets) {
                 if (set.contains(student)) {
-                    message += formatString("有课", 32, 5);
+                    message += formatString("   " + "--"  + "   ", 32, 8);
                 } else {
                     message += formatString("无课", 32, 5);
                 }
