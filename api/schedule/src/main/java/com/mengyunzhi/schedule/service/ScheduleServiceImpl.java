@@ -124,7 +124,7 @@ public class ScheduleServiceImpl implements ScheduleService {
         //获得所有的学生
         String tableHead = formatString("", 32, 16) + formatString("一", 32, 7) + formatString("二", 32, 7) + formatString("三", 32, 7) + formatString("四", 32, 7) + formatString("五", 32, 7) + "\n";
         strings.add(tableHead);
-        Iterable<Student> students = studentService.getAll();
+        Iterable<Student> students = studentService.getActiveStudent();
         for (Student student :
                 students) {
             int lenth = student.getName().length();
