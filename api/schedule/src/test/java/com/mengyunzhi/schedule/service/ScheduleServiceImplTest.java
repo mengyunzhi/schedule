@@ -1,6 +1,7 @@
 package com.mengyunzhi.schedule.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mengyunzhi.schedule.entity.Course;
 import com.mengyunzhi.schedule.entity.Schedule;
@@ -9,13 +10,15 @@ import com.mengyunzhi.schedule.entity.Student;
 import com.mengyunzhi.schedule.repository.CourseRepository;
 import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.StudentRepository;
+import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
@@ -35,6 +38,19 @@ public class ScheduleServiceImplTest extends ServiceTest {
     @Autowired
     CourseRepository courseRepository;
 
+
+    @Before
+    public void before() {
+        this.scheduleService = Mockito.spy(this.scheduleService);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("errmsg", "ok");
+        jsonObject.put("errcode", 0);
+        ResponseEntity<String> responseEntity = new ResponseEntity(
+                jsonObject.toJSONString(),
+                HttpStatus.OK);
+        Mockito.doReturn(responseEntity).when(this.scheduleService)
+                .postToDD(Mockito.anyString());
+    }
     @Test
     public void sendToDD() throws IOException {
         Calendar calendar = Calendar.getInstance();
