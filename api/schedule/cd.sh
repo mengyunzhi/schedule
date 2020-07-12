@@ -3,14 +3,15 @@
 # 使用方法：
 # 1. curl cip.cc 查看本机IP地址
 # 2. 将IP地址发送给服务器运维人员，让其协助添加防火墙
-``# 3. 找运维人员获取服务器对应的用户名、服务器端口号
+# 3. 找运维人员获取服务器对应的用户名、服务器端口号
 # 4. 执行 bash cd.sh -u <用户名> -p <服务器端口号> 完成后台的自动发布。
 
 # 帮助函数
 helpFunction() {
   echo ""
-  echo "Usage: $0 -u uesrname"
+  echo "Usage: $0 -u uesrname -p port"
   echo -e "\t-u the username of the serivce"
+  echo -e "\t-p the port of the serivce"
   exit 1 # Exit script after printing help
 }
 
