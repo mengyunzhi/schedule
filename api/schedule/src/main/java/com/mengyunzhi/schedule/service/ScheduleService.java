@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public interface ScheduleService {
@@ -34,6 +35,8 @@ public interface ScheduleService {
      * 向钉钉发送课表信息
      */
     ResponseEntity<String> sendToDD();
+
+    ResponseEntity<String> sendToDD(Date date);
 
     /**
      * 向钉钉发送课表消息
