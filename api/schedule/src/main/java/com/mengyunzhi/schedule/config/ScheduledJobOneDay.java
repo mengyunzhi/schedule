@@ -27,12 +27,12 @@ public class ScheduledJobOneDay{
     /**
      * 每晚22点触发
      */
-    @Scheduled(cron="0 0 22 * * ?")  //定时任务注解
+    @Scheduled(cron="0 25 22 * * ?")  //定时任务注解
     public void tomorrow()  {
         logger.info("发送信息");
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, 1);
-        scheduleService.sendToDD(new Date(calendar.getTimeInMillis()));
+        scheduleService.sendToDD(calendar);
     }
 }
 

@@ -92,14 +92,14 @@ public class ScheduleServiceImpl implements ScheduleService {
 
   @Override
   public ResponseEntity<String> sendToDD() {
-    return this.sendToDD(new Date());
+    return this.sendToDD(Calendar.getInstance());
   }
 
   /**
    * 向钉钉发送今日课表信息
    */
   @Override
-  public ResponseEntity<String> sendToDD(Date date) {
+  public ResponseEntity<String> sendToDD(Calendar calendar) {
     // 学生信息
     List<String> strings = new ArrayList<>();
 
@@ -108,11 +108,10 @@ public class ScheduleServiceImpl implements ScheduleService {
     if (semester == null) {
       return null;
     }
-    Long nowTime = date.getTime();
+    Long nowTime = calendar.getTimeInMillis();
     Long startTime = Long.parseLong(semester.getStartTime());
     Long totalTime = nowTime - startTime;
     int weekOrder = (int) (totalTime / aWeekStamp) + 1;
-    Calendar calendar = Calendar.getInstance();
     int week = calendar.get(Calendar.DAY_OF_WEEK) - 1 == 0 ? 7 : calendar.get(Calendar.DAY_OF_WEEK) - 1;
     List<Schedule> schedules = scheduleRepository.findBySemesterAndWeekOrderAndWeekOrderByNodeAsc(semester, weekOrder, week);
 
