@@ -1,6 +1,9 @@
 {
   "name": "schedule",
   "private": true,
+  "engine": {
+      "node": "8.17.0"
+  },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
     "grunt": "^0.4.5",
@@ -40,6 +43,5 @@
   "scripts": {
     "test": "karma start test/karma.conf.js"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
