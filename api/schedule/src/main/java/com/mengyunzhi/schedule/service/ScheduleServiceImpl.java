@@ -1,9 +1,6 @@
 package com.mengyunzhi.schedule.service;
 
-import com.mengyunzhi.schedule.entity.Course;
-import com.mengyunzhi.schedule.entity.Schedule;
-import com.mengyunzhi.schedule.entity.Semester;
-import com.mengyunzhi.schedule.entity.Student;
+import com.mengyunzhi.schedule.entity.*;
 import com.mengyunzhi.schedule.repository.ScheduleRepository;
 import com.mengyunzhi.schedule.repository.SystemSettingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,21 +123,23 @@ public class ScheduleServiceImpl implements ScheduleService {
     }
 
     //获得所有的学生
-    String tableHead = formatString("", 32, 16) + formatString("一", 32, 7) + formatString("二", 32, 7) + formatString("三", 32, 7) + formatString("四", 32, 7) + formatString("五", 32, 7) + "\n";
+    String tableHead = formatString("", 32, 16) + formatString("一", 32, 7)
+        + formatString("二", 32, 7) + formatString("三", 32, 7)
+        + formatString("四", 32, 7) + formatString("五", 32, 7)
+        + formatString("月分值", 32, 7)
+        + "\n";
     strings.add(tableHead);
     Iterable<Student> students = studentService.getActiveStudent();
-    for (Student student :
-        students) {
-      int lenth = student.getName().length();
+    for (Student student : students) {
       String message = formatString(student.getName(), 32, 8);
-      for (HashSet<Student> set :
-          sets) {
+      for (HashSet<Student> set : sets) {
         if (set.contains(student)) {
           message += formatString("   " + "--" + "   ", 32, 8);
         } else {
           message += formatString("无课", 32, 5);
         }
       }
+      message += "   " + this.getMonthContribution(student.getContributionList());
       message += "\n";
       strings.add(message);
     }
@@ -151,6 +150,22 @@ public class ScheduleServiceImpl implements ScheduleService {
       textMsg += s;
     }
     return postToDD(textMsg);
+  }
+
+  /**
+   * 获取月贡献度
+   * @param contributionList 所有的贡献度
+   */
+  private float getMonthContribution(List<Contribution> contributionList) {
+    Calendar calendar = Calendar.getInstance();
+    calendar.add(Calendar.MONTH, -1);
+    float result = 0;
+    for (Contribution contribution: contributionList) {
+      if (contribution.getTime() > calendar.getTimeInMillis()) {
+        result += contribution.getValue();
+      }
+    }
+    return result;
   }
 
   /**

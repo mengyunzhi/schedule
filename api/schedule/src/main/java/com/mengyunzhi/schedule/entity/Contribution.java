@@ -66,10 +66,6 @@ public class Contribution {
         return time;
     }
 
-    public void setTime(Long time) {
-        this.time = time;
-    }
-
     public String getTitle() {
         return title;
     }
