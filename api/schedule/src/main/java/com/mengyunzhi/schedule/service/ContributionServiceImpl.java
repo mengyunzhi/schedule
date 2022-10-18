@@ -33,6 +33,7 @@ public class ContributionServiceImpl implements ContributionService {
     @Override
     public void modifyContribution(Contribution contribution, Long id) {
         Student student = studentRepository.findOne(id);
+        contribution.setTime(System.currentTimeMillis());
         student.setContributionValue(student.getContributionValue() + contribution.getValue());
         contributionRepository.save(contribution);
         List<Contribution> contributionList = student.getContributionList();
